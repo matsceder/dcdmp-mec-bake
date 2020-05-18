@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+    {% block head %}
+    <title>Recipe Database</title>
+    {% endblock %}
+
+    {% block content %}
+
+
+
+        {% for rec in recipe %}
+            {{rec.rec_name}}
+            {{rec.rec_type}}
+            {{rec.rec_diff}}
+        {% endfor %}
+    {% endblock %}
+
