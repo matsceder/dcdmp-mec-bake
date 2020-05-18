@@ -10,7 +10,7 @@
     {% block content %}
 
         <div class="row">
-            <form class="col s12" action="" method="POST">
+            <form class="col s12" action="{{ url_for('send_new') }}" method="POST">
                 <div class="row">
                     <div class="input-field col s6">
                         <!-- <i class="material-icons prefix">account_circle</i> -->
@@ -18,6 +18,11 @@
                         <label for="icon_prefix">Recipe Name</label>
                     </div>
                     <div class="input-field col s6">
+                        <!-- <i class="material-icons prefix">account_circle</i> -->
+                        <input id="rec_aut" name="rec_aut" type="text" class="validate">
+                        <label for="icon_prefix">Author Name</label>
+                    </div>
+                    <div class="input-field col s3">
                         <select id="rec_type" name="rec_type">
                             <option value="" disabled selected>Types</option>
                             {% for type in recipe_type %}
@@ -26,7 +31,7 @@
                         </select>
                         <label>Recipe Type</label>
                     </div>
-                    <div class="input-field col s6">
+                    <div class="input-field col s3">
                         <select id="rec_diff" name="rec_diff">
                             <option value="" disabled selected>Difficulty</option>
                             {% for diff in recipe_diff %}
@@ -37,45 +42,45 @@
                     </div>
                     <div class="input-field col s3">
                         <!-- <i class="material-icons prefix">account_circle</i> -->
-                        <input id="rec_time_h" name="rec_time_h" type="number" class="validate">
+                        <input id="time_h" name="time_h" type="number" class="validate">
                         <label for="icon_prefix">Hours</label>
                     </div>
                     <div class="input-field col s3">
                         <!-- <i class="material-icons prefix">account_circle</i> -->
-                        <input id="rec_time_m" name="rec_time_m" type="number" min="0" max="59" class="validate">
+                        <input id="time_m" name="time_m" type="number" min="0" max="59" class="validate">
                         <label for="icon_prefix">Minutes</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s3">
                         <!-- <i class="material-icons prefix">account_circle</i> -->
-                        <input id="rec_equip_n" name="rec_equip_n" type="text" class="validate">
+                        <input id="equip_name" name="equip_name" type="text" class="validate">
                         <label for="icon_prefix">Equpment needed</label>
                     </div>
                     <div class="input-field col s3">
                         <!-- <i class="material-icons prefix">account_circle</i> -->
-                        <input id="rec_equip_a" name="rec_equip_a" type="text" class="validate">
+                        <input id="equip_aff" name="equip_aff" type="text" class="validate">
                         <label for="icon_prefix">Affiliate link</label>
                     </div>
                     <div class="input-field col s6">
                         <!-- <i class="material-icons prefix">account_circle</i> -->
-                        <input id="rec_equip_d" name="rec_equip_a" type="text" class="validate">
+                        <input id="equip_desc" name="equip_desc" type="text" class="validate">
                         <label for="icon_prefix">Description of equipment</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
                         <!-- <i class="material-icons prefix">account_circle</i> -->
-                        <input id="rec_ing_n" name="rec_ing_n" type="text" class="validate">
+                        <input id="ing_name" name="ing_name" type="text" class="validate">
                         <label for="icon_prefix">Ingredient</label>
                     </div>
                     <div class="input-field col s3">
                         <!-- <i class="material-icons prefix">account_circle</i> -->
-                        <input id="rec_ing_a" name="rec_ing_a" type="text" class="validate">
+                        <input id="ing_amount" name="ing_amount" type="text" class="validate">
                         <label for="icon_prefix">amount</label>
                     </div>
                     <div class="input-field col s3">
-                        <select id="rec_ing_u" name="rec_ing_u">
+                        <select id="ing_unit" name="ing_unit">
                             <option value="" disabled selected>Unit</option>
                             {% for unit in ingredient_units %}
                                 <option value="{{unit.ing_unit}}">{{unit.ing_unit}}</option>
@@ -87,19 +92,19 @@
                 <div class="row">
                     <div class="input-field col s2">
                         <!-- <i class="material-icons prefix">account_circle</i> -->
-                        <input id="rec_step_num" name="rec_step_num" type="number" min="1" max="99" class="validate">
+                        <input id="step_num" name="step_num" type="number" min="1" max="99" class="validate">
                         <label for="icon_prefix">Step #</label>
                     </div>
                     <div class="input-field col s10">
                         <!-- <i class="material-icons prefix">account_circle</i> -->
-                        <input id="rec_step_desc" name="rec_step_desc" type="text" class="validate">
+                        <input id="step_desc" name="step_desc" type="text" class="validate">
                         <label for="icon_prefix">Description of step</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
                         <!-- <i class="material-icons prefix">account_circle</i> -->
-                        <input id="rec_img_up" name="rec_img_up" type="text" class="validate">
+                        <input id="rec_pic" name="rec_pic" type="text" class="validate">
                         <label for="icon_prefix">Link to image</label>
                     </div>
                     <button class="btn waves-effect waves-light" type="submit" name="action">Send
