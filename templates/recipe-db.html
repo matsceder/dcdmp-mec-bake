@@ -18,8 +18,11 @@
                 <span>{{rec.rec_type}} {{rec.rec_diff}}</span>
             </div>
             </li>
+            <a href="{{url_for('recipe_update', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small blue">Edit</a>
+            <a class="waves-effect waves-light btn">delete</a>
             {% endfor %}
         </ul>
 
     {% endblock %}
 
+<!--href="{{url_for('recipe_update', recipe_id=recipe._id)}}" -->

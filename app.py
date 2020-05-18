@@ -1,7 +1,7 @@
 import os
 from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
-from bson import ObjectId
+from bson.objectid import ObjectId
 
 
 app = Flask(__name__)
@@ -42,13 +42,11 @@ def send_new():
     return redirect(url_for('get_recipes'))
 
 
-@app.route('/recipe_update')
-def recipe_update():
-    return render_template("recipe-update.html",
-                            recipe_type=mongo.db.recipe_type.find(),
-                            recipe_diff=mongo.db.recipe_diff.find(),
-                            recipe=mongo.db.recipe.find(),
-                            ingredient_units=mongo.db.ingredient_units.find())
+@app.route('/recipe_update/<recipe_id>')
+def recipe_update(recipe_id):
+    the_recipe = mongo.db.recipe.find_one({"_id": ObjectId(recipe_id)})
+    all_types = mongo.db.recipe_type.find()
+    return render_template('recipe-update.html', recipe=the_recipe, recipe_type=all_types)
 
 
 if __name__ == '__main__':
