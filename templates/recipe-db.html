@@ -1,17 +1,25 @@
 {% extends 'base.html' %}
 
     {% block head %}
-    <title>Recipe Database</title>
     {% endblock %}
 
+    {% block title %}
+    {% endblock %}
+    Recipe Database
     {% block content %}
 
+        <ul class="collapsible">
+            {% for rec in recipe %}
+            <li>
+            <div class="collapsible-header"><i class="material-icons">expand_more</i>
+                {{rec.rec_name}}
+            </div>
+            <div class="collapsible-body">
+                <span>{{rec.rec_type}} {{rec.rec_diff}}</span>
+            </div>
+            </li>
+            {% endfor %}
+        </ul>
 
-
-        {% for rec in recipe %}
-            {{rec.rec_name}}
-            {{rec.rec_type}}
-            {{rec.rec_diff}}
-        {% endfor %}
     {% endblock %}
 

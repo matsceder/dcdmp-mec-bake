@@ -7,34 +7,27 @@
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
 
     {% block head %}
     {% endblock %}
+
+    <title>{% block title %}Index{% endblock %}</title>
+
 </head>
 
 <body>
+
     {% block content %}
-    {% endblock %}
-    <ul class="collapsible">
-        <li>
-        <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-        </li>
-        <li>
-        <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-        </li>
-        <li>
-        <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-        </li>
-    </ul>
     
+    {% endblock %}
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    <script type="javascript/text">
+    <script type="text/javascript">
         $(document).ready(function(){
             $('.collapsible').collapsible();
+            $('select').material_select();
         });
     </script>
 
