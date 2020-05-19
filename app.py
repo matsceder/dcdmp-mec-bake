@@ -42,11 +42,11 @@ def send_new():
     return redirect(url_for('get_recipes'))
 
 
-@app.route('/recipe_update/<recipe_id>')
-def recipe_update(recipe_id):
+@app.route('/update_recipe/<recipe_id>')
+def update_recipe(recipe_id):
     the_recipe = mongo.db.recipe.find_one({"_id": ObjectId(recipe_id)})
     all_types = mongo.db.recipe_type.find()
-    return render_template('recipe-update.html', recipe=the_recipe, recipe_type=all_types)
+    return render_template('recipe-update.html', recipe=the_recipe, types=all_types)
 
 
 if __name__ == '__main__':

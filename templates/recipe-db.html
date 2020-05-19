@@ -8,21 +8,34 @@
     Recipe Database
     {% block content %}
 
-        <ul class="collapsible">
+    <div class="row">
+        <ul class="collapsible" data-collapsible="accordion">
             {% for rec in recipe %}
             <li>
-            <div class="collapsible-header"><i class="material-icons">expand_more</i>
-                {{rec.rec_name}}
-            </div>
-            <div class="collapsible-body">
-                <span>{{rec.rec_type}} {{rec.rec_diff}}</span>
-            </div>
+                <div class="collapsible-header">
+                    <div class="col s3">
+                        <i class="material-icons">expand_more</i>
+                        <a href="{{url_for('update_recipe', recipe_id=rec._id)}}" class="waves-effect waves-light btn btn_small blue">Edit</a>
+                        
+                    </div>
+                    <div class="col s9">
+                        <strong>{{rec.rec_name}}</strong>
+                    </div>
+                </div>
+                <div class="collapsible-body">
+                    <span>{{rec.rec_diff}}</span>
+                    <span>{{rec.rec_aut}}</span>
+                    <span>{{rec.rec_type}}</span>
+                    <span>{{rec.rec_diff}}</span>
+                    <span>{{rec.rec_time}}</span>
+                    <span>{{rec.rec_equip}}</span>
+                    <span>{{rec.rec_ing}}</span>
+                    <span>{{rec.rec_step}}</span>
+                    <span>{{rec.rec_pic}}</span>
+                </div>
             </li>
-            <a href="{{url_for('recipe_update', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small blue">Edit</a>
-            <a class="waves-effect waves-light btn">delete</a>
             {% endfor %}
         </ul>
+    </div>
 
     {% endblock %}
-
-<!--href="{{url_for('recipe_update', recipe_id=recipe._id)}}" -->
