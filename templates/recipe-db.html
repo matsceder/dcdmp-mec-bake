@@ -9,9 +9,35 @@
     {% block content %}
 
     <div class="row">
+    <form class="col s12" action="{{ url_for('') }}" method="POST">
+        <div class="input-field col s2">
+            <select>
+                <option value="all">Show all</option>
+                {% for type in recipe_type %}
+                <option id="{{type.rec_type}}" name="{{type.rec_type}}" value="{{type.rec_type}}">{{type.rec_type}}</option>
+                {% endfor %}
+            </select>
+            <label>Recipe type</label>
+        </div>
+        <div class="input-field col s2">
+            <select>
+                <option value="all">Show all</option>
+                {% for diff in recipe_diff %}
+                <option id="{{diff.rec_diff}}" name="{{diff.rec_diff}}" value="{{diff.rec_diff}}">{{diff.rec_diff}}</option>
+                {% endfor %}
+            </select>
+            <label>Recipe difficulty</label>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit" name="action">Sort
+            <i class="material-icons right">send</i>
+        </button>
+    </form>
+    </div>
+
+    <div class="row">
         <ul class="collapsible" data-collapsible="accordion">
             {% for rec in recipe %}
-            <li>
+                <li class="{{rec.rec_type}}">
                 <div class="collapsible-header">
                     <div class="col s3">
                         <i class="material-icons">expand_more</i>
@@ -33,7 +59,8 @@
                     <span>{{rec.rec_step}}</span>
                     <span>{{rec.rec_pic}}</span>
                 </div>
-            </li>
+                </li>
+
             {% endfor %}
         </ul>
     </div>
