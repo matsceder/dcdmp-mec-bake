@@ -13,18 +13,22 @@
             <form class="col s12" action="{{ url_for('send_new') }}" method="POST">
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="rec_name" name="rec_name" type="text" class="validate">
+                        <input id="rec_name" name="rec_name" type="text" class="validate" value="{{recipe.rec_name}}">
                         <label for="icon_prefix">Recipe Name</label>
                     </div>
                     <div class="input-field col s6">
-                        <input id="rec_aut" name="rec_aut" type="text" class="validate">
+                        <input id="rec_aut" name="rec_aut" type="text" class="validate" value="{{recipe.rec_aut}}">
                         <label for="icon_prefix">Author Name</label>
                     </div>
                     <div class="input-field col s3">
                         <select id="rec_type" name="rec_type">
                             <option value="" disabled selected>Types</option>
                             {% for type in recipe_type %}
-                                <option value="{{type.rec_type}}">{{type.rec_type}}</option>
+                                {% if type.rec_type == recipe.rec_type %}
+                                    <option value="{{type.rec_type}}" selected>{{type.rec_type}}</option>
+                                {% else %}
+                                    <option value="{{type.rec_type}}">{{type.rec_type}}</option>
+                                {% endif %}
                             {% endfor %}
                         </select>
                         <label>Recipe Type</label>
@@ -33,48 +37,56 @@
                         <select id="rec_diff" name="rec_diff">
                             <option value="" disabled selected>Difficulty</option>
                             {% for diff in recipe_diff %}
-                                <option value="{{diff.rec_diff}}">{{diff.rec_diff}}</option>
+                                {% if diff.rec_diff == recipe.rec_diff %}
+                                    <option value="{{diff.rec_diff}}" selected>{{diff.rec_diff}}</option>
+                                {% else %}
+                                    <option value="{{diff.rec_diff}}">{{diff.rec_diff}}</option>
+                                {% endif %}
                             {% endfor %}
                         </select>
                         <label>Difficulty level</label>
                     </div>
                     <div class="input-field col s3">
-                        <input id="time_h" name="time_h" type="number" class="validate">
+                        <input id="time_h" name="time_h" type="number" class="validate" value="{{recipe.time_h}}">
                         <label for="icon_prefix">Hours</label>
                     </div>
                     <div class="input-field col s3">
-                        <input id="time_m" name="time_m" type="number" min="0" max="59" class="validate">
+                        <input id="time_m" name="time_m" type="number" min="0" max="59" class="validate" value="{{recipe.time_m}}">
                         <label for="icon_prefix">Minutes</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s3">
-                        <input id="equip_name" name="equip_name" type="text" class="validate">
+                        <input id="equip_name" name="equip_name" type="text" class="validate"value="{{recipe.equip_name}}">
                         <label for="icon_prefix">Equpment needed</label>
                     </div>
                     <div class="input-field col s3">
-                        <input id="equip_aff" name="equip_aff" type="text" class="validate">
+                        <input id="equip_aff" name="equip_aff" type="text" class="validate" value="{{recipe.equip_aff}}">
                         <label for="icon_prefix">Affiliate link</label>
                     </div>
                     <div class="input-field col s6">
-                        <input id="equip_desc" name="equip_desc" type="text" class="validate">
+                        <input id="equip_desc" name="equip_desc" type="text" class="validate" value="{{recipe.equip_desc}}">
                         <label for="icon_prefix">Description of equipment</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="ing_name" name="ing_name" type="text" class="validate">
+                        <input id="ing_name" name="ing_name" type="text" class="validate" value="{{recipe.ing_name}}">
                         <label for="icon_prefix">Ingredient</label>
                     </div>
                     <div class="input-field col s3">
-                        <input id="ing_amount" name="ing_amount" type="text" class="validate">
+                        <input id="ing_amount" name="ing_amount" type="text" class="validate" value="{{recipe.ing_amount}}">
                         <label for="icon_prefix">amount</label>
                     </div>
                     <div class="input-field col s3">
                         <select id="ing_unit" name="ing_unit">
                             <option value="" disabled selected>Unit</option>
                             {% for unit in ingredient_units %}
-                                <option value="{{unit.ing_unit}}">{{unit.ing_unit}}</option>
+                                {% if unit.ing_unit == recipe._ing_unit %}
+                                    <option value="{{unit.ing_unit}}" selected>{{unit.ing_unit}}</option>
+                                {% else %}
+                                    <option value="{{unit.ing_unit}}">{{unit.ing_unit}}</option>
+                                {% endif %}
                             {% endfor %}
                         </select>
                         <label>Measurement unit</label>
@@ -82,17 +94,17 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s2">
-                        <input id="step_num" name="step_num" type="number" min="1" max="99" class="validate">
+                        <input id="step_num" name="step_num" type="number" min="1" max="99" class="validate" value="{{recipe.step_num}}">
                         <label for="icon_prefix">Step #</label>
                     </div>
                     <div class="input-field col s10">
-                        <input id="step_desc" name="step_desc" type="text" class="validate">
+                        <input id="step_desc" name="step_desc" type="text" class="validate" value="{{recipe.step_desc}}">
                         <label for="icon_prefix">Description of step</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="rec_pic" name="rec_pic" type="text" class="validate">
+                        <input id="rec_pic" name="rec_pic" type="text" class="validate" value="{{recipe.rec_pic}}">
                         <label for="icon_prefix">Link to image</label>
                     </div>
                     <button class="btn waves-effect waves-light" type="submit" name="action">Send

@@ -46,7 +46,11 @@ def send_new():
 def update_recipe(recipe_id):
     the_recipe = mongo.db.recipe.find_one({"_id": ObjectId(recipe_id)})
     all_types = mongo.db.recipe_type.find()
-    return render_template('recipe-update.html', recipe=the_recipe, types=all_types)
+    all_diffs = mongo.db.recipe_diff.find()
+    return render_template('recipe-update.html',
+                            recipe=the_recipe,
+                            recipe_type=all_types,
+                            recipe_diff=all_diffs)
 
 
 if __name__ == '__main__':
