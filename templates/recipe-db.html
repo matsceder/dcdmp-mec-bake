@@ -16,7 +16,7 @@
                     <div class="col s3">
                         <i class="material-icons">expand_more</i>
                         <a href="{{ url_for('update_recipe', recipe_id=rec._id)}}" class="waves-effect waves-light btn btn_small blue">Edit</a>
-                        
+                        <a href="{{ url_for('delete_recipe', recipe_id=rec._id)}}" class="waves-effect waves-light btn btn_small blue">Delete Recipe</a>
                     </div>
                     <div class="col s9">
                         <strong>{{rec.rec_name}}</strong>
