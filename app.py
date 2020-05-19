@@ -53,6 +53,31 @@ def update_recipe(recipe_id):
                             recipe_diff=all_diffs)
 
 
+@app.route('/send_update/<recipe_id>', methods=['POST'])
+def send_update(recipe_id):
+    recipe = mongo.db.recipe
+    recipe.update( {'_id': ObjectId(recipe_id)},
+        {
+            'rec_name': request.form.get('rec_name'),
+            'rec_aut': request.form.get('rec_aut'),
+            'rec_type': request.form.get('rec_type'),
+            'rec_diff': request.form.get('rec_diff'),
+            'time_h': request.form.get('time_h'),
+            'time_m': request.form.get('time_m'),
+            'equip_name': request.form.get('equip_name'),
+            'equip_aff': request.form.get('equip_aff'),
+            'equip_desc': request.form.get('equip_desc'),
+            'ing_name': request.form.get('ing_name'),
+            'ing_amount': request.form.get('ing_amount'),
+            'ing_unit': request.form.get('ing_unit'),
+            'step_num': request.form.get('step_num'),
+            'step_desc': request.form.get('step_desc'),
+            'rec_pic': request.form.get('rec_pic')
+        }
+    )
+    return redirect(url_for('get_recipes'))
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
