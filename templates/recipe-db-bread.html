@@ -35,6 +35,7 @@
     <div class="row">
         <ul class="collapsible" data-collapsible="accordion">
             {% for rec in recipe %}
+                {% if rec.rec_type == 'bread' %}
                 <li class="{{rec.rec_type}}">
                 <div class="collapsible-header">
                     <div class="col s3">
@@ -58,7 +59,7 @@
                     <span>{{rec.rec_pic}}</span>
                 </div>
                 </li>
-
+                {% endif %}
             {% endfor %}
         </ul>
     </div>

@@ -27,6 +27,22 @@ def recipe_db():
                             recipe_diff=mongo.db.recipe_diff.find())
 
 
+@app.route('/recipe_db_bread')
+def recipe_db_bread():
+    return render_template("recipe-db-bread.html",
+                            recipe=mongo.db.recipe.find(),
+                            recipe_type=mongo.db.recipe_type.find(),
+                            recipe_diff=mongo.db.recipe_diff.find())
+
+
+@app.route('/recipe_db_cake')
+def recipe_db_cake():
+    return render_template("recipe-db-cake.html",
+                            recipe=mongo.db.recipe.find(),
+                            recipe_type=mongo.db.recipe_type.find(),
+                            recipe_diff=mongo.db.recipe_diff.find())
+
+
 @app.route('/recipe_view')
 def recipe_view():
     return render_template("recipe-view.html",
