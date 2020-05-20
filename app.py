@@ -27,15 +27,15 @@ def recipe_db():
                             recipe_diff=mongo.db.recipe_diff.find())
 
 
-@app.route('/recipe_db_type/<type_id>')
+@app.route('/recipe_db<type_id>')
 def recipe_db_type(type_id):
     recipes = mongo.db.recipe.find()
-    the_type = mongo.db.recipe_type.find({"_id": ObjectId(type_id)})
-    diffs = mongo.db.recipe_diff.find()
-    return render_template("recipe-db-type.html",
+    the_type = mongo.db.recipe_type.find_one({"_id": ObjectId(type_id)})
+    recipe_diffs = mongo.db.recipe_diff.find()
+    return render_template("recipe-db.html",
+                            rtype=the_type,
                             recipe=recipes,
-                            recipe_diff=diffs,
-                            type=the_type)
+                            recipe_diff=recipe_diffs)
 
 
 @app.route('/recipe_view')
