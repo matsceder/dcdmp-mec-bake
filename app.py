@@ -14,8 +14,13 @@ mongo = PyMongo(app)
 
 
 @app.route('/')
-@app.route('/get_recipes')
-def get_recipes():
+@app.route('/index')
+def index():
+    return render_template("index.html")
+
+
+@app.route('/recipe_db')
+def recipe_db():
     return render_template("recipe-db.html",
                             recipe=mongo.db.recipe.find(),
                             recipe_type=mongo.db.recipe_type.find(),
@@ -41,7 +46,7 @@ def recipe_new():
 def send_new():
     recipe = mongo.db.recipe
     recipe.insert_one(request.form.to_dict())
-    return redirect(url_for('get_recipes'))
+    return redirect(url_for('recipe_db'))
 
 
 @app.route('/update_recipe/<recipe_id>')
@@ -77,13 +82,13 @@ def send_update(recipe_id):
             'rec_pic': request.form.get('rec_pic')
         }
     )
-    return redirect(url_for('get_recipes'))
+    return redirect(url_for('recipe_db'))
 
 
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
     mongo.db.recipe.remove({'_id': ObjectId(recipe_id)})
-    return redirect(url_for('get_recipes'))
+    return redirect(url_for('recipe_db'))
 
 
 if __name__ == '__main__':

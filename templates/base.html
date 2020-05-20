@@ -18,6 +18,22 @@
 
 <body>
 
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="{{ url_for('index') }}" class="brand-logo center">Logo</a>
+                <a href="#" onclick="history.go(-1)" class="left hide-on-med-and-down"><i class="material-icons">arrow_back</i></a>
+                <a href="{{ url_for('recipe_db') }}" class="right hide-on-med-and-down">GO TO RECIPES</a>
+                <a href="#" data-activates="mobile-demo" class="right button-collapse"><i class="material-icons">menu</i></a>
+                <ul class="side-nav" id="mobile-demo">
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('recipe_db') }}">Bread Recipes</a></li>
+                    <li><a href="{{ url_for('recipe_db') }}">Cake Recipes</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
     {% block content %}
     
     {% endblock %}
@@ -28,6 +44,7 @@
         $(document).ready(function(){
             $('.collapsible').collapsible();
             $('select').material_select();
+            $(".button-collapse").sideNav();
         });
     </script>
 
