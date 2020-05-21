@@ -11,7 +11,8 @@
     <div class="row">
         <ul id="dropdowntype" class="dropdown-content">
             {% for type in recipe_type %}
-            <li><a href="{{ url_for('recipe_db', type=type.rec_type)}}">{{type.rec_type}}</a></li>            {% endfor %}
+            <li><a href="{{ url_for('recipe_db', type_id=type._id)}}">{{type.rec_type}}</a></li>
+            {% endfor %}
         </ul>
         <ul id="dropdowndiff" class="dropdown-content">
             {% for diff in recipe_diff %}
@@ -25,8 +26,7 @@
     <div class="row">
         <ul class="collapsible" data-collapsible="accordion">
             {% for rec in recipe %}
-                {% if recipe_type.rec_type == '' %}
-                <li class="{{rec.rec_type}}">
+                <li>
                 <div class="collapsible-header">
                     <div class="col s3">
                         <i class="material-icons">expand_more</i>
@@ -49,9 +49,14 @@
                     <span>{{rec.rec_pic}}</span>
                 </div>
                 </li>
-                {% endif %}
             {% endfor %}
         </ul>
     </div>
+
+    {% if rtype == bread %}
+        <h1>foo</h1>
+    {% else %}
+        <h1>bar</h1>
+    {% endif %}
 
     {% endblock %}

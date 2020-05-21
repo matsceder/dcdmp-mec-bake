@@ -11,7 +11,7 @@
     <div class="row">
         <ul id="dropdowntype" class="dropdown-content">
             {% for type in recipe_type %}
-            <li><a href="{{ url_for('recipe_db', type_id=type._id)}}">{{type.rec_type}}</a></li>
+            <li><a href="{{ url_for('recipe_db_type', type_r=type.rec_type)}}">{{type.rec_type}}</a></li>
             {% endfor %}
         </ul>
         <ul id="dropdowndiff" class="dropdown-content">
@@ -26,29 +26,55 @@
     <div class="row">
         <ul class="collapsible" data-collapsible="accordion">
             {% for rec in recipe %}
+            {% if rtype is defined and rec.rec_type == rtype.rec_type %}
                 <li>
-                <div class="collapsible-header">
-                    <div class="col s3">
-                        <i class="material-icons">expand_more</i>
-                        <a href="{{ url_for('update_recipe', recipe_id=rec._id)}}" class="waves-effect waves-light btn btn_small blue">Edit</a>
-                        <a href="{{ url_for('delete_recipe', recipe_id=rec._id)}}" class="waves-effect waves-light btn btn_small blue">Delete Recipe</a>
+                    <div class="collapsible-header">
+                        <div class="col s3">
+                            <i class="material-icons">expand_more</i>
+                            <a href="{{ url_for('update_recipe', recipe_id=rec._id)}}" class="waves-effect waves-light btn btn_small blue">Edit</a>
+                            <a href="{{ url_for('delete_recipe', recipe_id=rec._id)}}" class="waves-effect waves-light btn btn_small blue">Delete Recipe</a>
+                        </div>
+                        <div class="col s9">
+                            <strong>{{rec.rec_name}}</strong>
+                        </div>
                     </div>
-                    <div class="col s9">
-                        <strong>{{rec.rec_name}}</strong>
+                    <div class="collapsible-body">
+                        <span>{{rec.rec_diff}}</span>
+                        <span>{{rec.rec_aut}}</span>
+                        <span>{{rec.rec_type}}</span>
+                        <span>{{rec.rec_diff}}</span>
+                        <span>{{rec.rec_time}}</span>
+                        <span>{{rec.rec_equip}}</span>
+                        <span>{{rec.rec_ing}}</span>
+                        <span>{{rec.rec_step}}</span>
+                        <span>{{rec.rec_pic}}</span>
                     </div>
-                </div>
-                <div class="collapsible-body">
-                    <span>{{rec.rec_diff}}</span>
-                    <span>{{rec.rec_aut}}</span>
-                    <span>{{rec.rec_type}}</span>
-                    <span>{{rec.rec_diff}}</span>
-                    <span>{{rec.rec_time}}</span>
-                    <span>{{rec.rec_equip}}</span>
-                    <span>{{rec.rec_ing}}</span>
-                    <span>{{rec.rec_step}}</span>
-                    <span>{{rec.rec_pic}}</span>
-                </div>
                 </li>
+            {% elif rtype is undefined or rtype.rec_type == 'all' %}
+                <li>
+                    <div class="collapsible-header">
+                        <div class="col s3">
+                            <i class="material-icons">expand_more</i>
+                            <a href="{{ url_for('update_recipe', recipe_id=rec._id)}}" class="waves-effect waves-light btn btn_small blue">Edit</a>
+                            <a href="{{ url_for('delete_recipe', recipe_id=rec._id)}}" class="waves-effect waves-light btn btn_small blue">Delete Recipe</a>
+                        </div>
+                        <div class="col s9">
+                            <strong>{{rec.rec_name}}</strong>
+                        </div>
+                    </div>
+                    <div class="collapsible-body">
+                        <span>{{rec.rec_diff}}</span>
+                        <span>{{rec.rec_aut}}</span>
+                        <span>{{rec.rec_type}}</span>
+                        <span>{{rec.rec_diff}}</span>
+                        <span>{{rec.rec_time}}</span>
+                        <span>{{rec.rec_equip}}</span>
+                        <span>{{rec.rec_ing}}</span>
+                        <span>{{rec.rec_step}}</span>
+                        <span>{{rec.rec_pic}}</span>
+                    </div>
+                </li>
+            {% endif %}
             {% endfor %}
         </ul>
     </div>
