@@ -11,12 +11,20 @@
     <div class="row">
         <ul id="dropdowntype" class="dropdown-content">
             {% for type in recipe_type %}
-            <li><a href="{{ url_for('recipe_db_type', type_r=type.rec_type)}}">{{type.rec_type}}</a></li>
+            {% if rdiff is defined %}
+                <li><a href="{{ url_for('recipe_db_t_d', type_r=type.rec_type, diff_r=rdiff.rec_diff)}}">{{type.rec_type}}</a></li>
+            {% else %}
+                <li><a href="{{ url_for('recipe_db_t_d', type_r=type.rec_type, diff_r='0')}}">{{type.rec_type}}</a></li>
+            {% endif %}
             {% endfor %}
         </ul>
         <ul id="dropdowndiff" class="dropdown-content">
             {% for diff in recipe_diff %}
-            <li><a href="#">{{diff.rec_diff}}</a></li>
+            {% if rtype is defined %}
+                <li><a href="{{ url_for('recipe_db_t_d', type_r=rtype.rec_type, diff_r=diff.rec_diff) }}">{{diff.rec_diff}}</a></li>
+            {% else %}
+                <li><a href="{{ url_for('recipe_db_t_d', type_r='0', diff_r=diff.rec_diff) }}">{{diff.rec_diff}}</a></li>
+            {% endif %}
             {% endfor %}
         </ul>
         <a class="dropdown-button waves-effect waves-light btn btn_small blue" href="#!" data-activates="dropdowntype">Type<i class="material-icons right">arrow_drop_down</i></a>
