@@ -28,38 +28,6 @@ def recipe_db():
                             recipe_diff=mongo.db.recipe_diff.find())
 
 
-"""
-# DB TYPE DEFINED
-@app.route('/recipe_db/<type_r>/0')
-def recipe_db_t(type_r):
-    recipes = mongo.db.recipe.find()
-    the_type = mongo.db.recipe_type.find_one({"rec_type": type_r})
-    recipe_types = mongo.db.recipe_type.find()
-    recipe_diffs = mongo.db.recipe_diff.find()
-    return render_template("recipe-db.html",
-                            recipe=recipes,
-                            rtype=the_type,
-                            recipe_type=recipe_types,
-                            recipe_diff=recipe_diffs)
-"""
-
-
-# DB DIFF DEFINED
-"""
-@app.route('/recipe_db/0/<diff_r>')
-def recipe_db_d(diff_r):
-    recipes = mongo.db.recipe.find()
-    recipe_types = mongo.db.recipe_type.find()
-    the_diff = mongo.db.recipe_diff.find_one({"rec_diff": diff_r})
-    recipe_diffs = mongo.db.recipe_diff.find()
-    return render_template("recipe-db.html",
-                            recipe=recipes,
-                            recipe_type=recipe_types,
-                            rdiff=the_diff,
-                            recipe_diff=recipe_diffs)
-"""
-
-
 # TYPE AND DIFF DEFINED
 @app.route('/recipe_db/<type_r>/<diff_r>')
 def recipe_db_t_d(type_r, diff_r):
