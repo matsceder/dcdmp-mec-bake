@@ -24,6 +24,7 @@ def index():
 def recipe_db():
     return render_template("recipe-db.html",
                             recipe=mongo.db.recipe.find(),
+                            times=mongo.db.recipe.rec_time.find(),
                             recipe_type=mongo.db.recipe_type.find(),
                             recipe_diff=mongo.db.recipe_diff.find())
 
@@ -62,7 +63,18 @@ def recipe_new():
 @app.route('/send_new', methods=['POST'])
 def send_new():
     recipe = mongo.db.recipe
-    recipe.insert_one(request.form.to_dict())
+    recipe.insert_one(
+        { "rec_name" : request.form['rec_name'],
+        "rec_aut" : request.form['rec_aut'],
+        "rec_type" : request.form['rec_type'],
+        "rec_diff" : request.form['rec_diff'],
+        "rec_time" : { "time_h" : request.form['time_h'], "time_m" : request.form['time_m'] },
+        "rec_equip" : { "equip_name" : request.form['equip_name'], "equip_aff" : request.form['equip_aff'], "equip_desc" : request.form['equip_desc'] },
+        "rec_ing" : { "ing_name" : request.form['ing_name'], "ing_amount" : request.form['ing_amount'], "ing_unit" : request.form['ing_unit'] },
+        "rec_step" : { "step_num" : request.form['step_num'], "step_desc" : request.form['step_desc'] },
+        "rec_pic" : request.form['rec_pic']
+        }
+    )
     return redirect(url_for('recipe_db'))
 
 

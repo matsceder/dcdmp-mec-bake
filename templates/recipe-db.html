@@ -83,11 +83,9 @@
         <ul class="collapsible" data-collapsible="accordion">
 
         {% for rec in recipe %}
-
             {% if rtype and rdiff is defined %}
 
                 {% if rtype.rec_type == '0' and rec.rec_diff == rdiff.rec_diff %}
-<h1>1</h1>
                     <li>
                         <div class="collapsible-header">
                             <div class="col s3">
@@ -113,7 +111,6 @@
                     </li>
 
                 {% elif rdiff.rec_diff == '0' and rec.rec_type == rtype.rec_type %}
-<h1>2</h1>
                     <li>
                         <div class="collapsible-header">
                             <div class="col s3">
@@ -139,7 +136,6 @@
                     </li>
 
                 {% elif rec.rec_type == rtype.rec_type and rec.rec_diff == rdiff.rec_diff %}
-<h1>3</h1>
                     <li>
                         <div class="collapsible-header">
                             <div class="col s3">
@@ -167,7 +163,6 @@
                 {% endif %}
 
             {% else %}
-<h1>5</h1>
                 <li>
                     <div class="collapsible-header">
                         <div class="col s3">
@@ -193,17 +188,9 @@
                 </li>
 
             {% endif %}
-
         {% endfor %}
 
         </ul>
     </div>
-
-{% if rdiff is defined %}
-<h1>{{rdiff}}</h1>
-{% endif %}
-{% if rtype is defined %}
-<h1>{{rtype}}</h1>
-{% endif %}
 
     {% endblock %}

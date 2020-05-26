@@ -61,17 +61,64 @@
                         <label for="icon_prefix">Description of equipment</label>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="input-field col s6">
-                        <input id="ing_name" name="ing_name" type="text" class="validate">
+                <div class="row ing_row" id="ing_row_1">
+                    <div class="input-field col s1">
+                        <label id="ing_num_1">1</label>
+                    </div>
+                    <div class="input-field col s5">
+                        <input id="ing_name_1" name="ing_name" type="text" class="validate">
                         <label for="icon_prefix">Ingredient</label>
                     </div>
                     <div class="input-field col s3">
-                        <input id="ing_amount" name="ing_amount" type="text" class="validate">
+                        <input id="ing_amount_1" name="ing_amount" type="text" class="validate">
                         <label for="icon_prefix">amount</label>
                     </div>
+                    <div class="input-field col s2">
+                        <select id="ing_unit_1" name="ing_unit">
+                            <option value="" disabled selected>Unit</option>
+                            {% for unit in ingredient_units %}
+                                <option value="{{unit.ing_unit}}">{{unit.ing_unit}}</option>
+                            {% endfor %}
+                        </select>
+                        <label>Measurement unit</label>
+                    </div>
+                </div>
+                <div class="row ing_row" id="ing_row_2">
+                    <div class="input-field col s1">
+                        <label id="ing_n_2">2</label>
+                    </div>
+                    <div class="input-field col s5">
+                        <input id="ing_name_2" name="ing_name" type="text" class="validate">
+                        <label for="icon_prefix">Ingredient</label>
+                    </div>
                     <div class="input-field col s3">
-                        <select id="ing_unit" name="ing_unit">
+                        <input id="ing_amount_2" name="ing_amount" type="text" class="validate">
+                        <label for="icon_prefix">amount</label>
+                    </div>
+                    <div class="input-field col s2">
+                        <select id="ing_unit_2" name="ing_unit">
+                            <option value="" disabled selected>Unit</option>
+                            {% for unit in ingredient_units %}
+                                <option value="{{unit.ing_unit}}">{{unit.ing_unit}}</option>
+                            {% endfor %}
+                        </select>
+                        <label>Measurement unit</label>
+                    </div>
+                </div>
+                <div class="row ing_row" id="ing_row_3">
+                    <div class="input-field col s1">
+                        <label id="ing_n_3">3</label>
+                    </div>
+                    <div class="input-field col s5">
+                        <input id="ing_name_3" name="ing_name" type="text" class="validate">
+                        <label for="icon_prefix">Ingredient</label>
+                    </div>
+                    <div class="input-field col s3">
+                        <input id="ing_amount_3" name="ing_amount" type="text" class="validate">
+                        <label for="icon_prefix">amount</label>
+                    </div>
+                    <div class="input-field col s2">
+                        <select id="ing_unit_3" name="ing_unit">
                             <option value="" disabled selected>Unit</option>
                             {% for unit in ingredient_units %}
                                 <option value="{{unit.ing_unit}}">{{unit.ing_unit}}</option>
