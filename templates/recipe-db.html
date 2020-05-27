@@ -94,7 +94,7 @@
                                 <a href="{{ url_for('delete_recipe', recipe_id=rec._id)}}" class="waves-effect waves-light btn btn_small blue">Delete Recipe</a>
                             </div>
                             <div class="col s9">
-                                <strong>{{rec.rec_name}}</strong>
+                                <a href="{{ url_for('recipe_view', recipe_id=rec._id)}}"><strong>{{rec.rec_name}}</strong></a>
                             </div>
                         </div>
                         <div class="collapsible-body">
@@ -119,7 +119,7 @@
                                 <a href="{{ url_for('delete_recipe', recipe_id=rec._id)}}" class="waves-effect waves-light btn btn_small blue">Delete Recipe</a>
                             </div>
                             <div class="col s9">
-                                <strong>{{rec.rec_name}}</strong>
+                                <a href="{{ url_for('recipe_view', recipe_id=rec._id)}}"><strong>{{rec.rec_name}}</strong></a>
                             </div>
                         </div>
                         <div class="collapsible-body">
@@ -144,7 +144,7 @@
                                 <a href="{{ url_for('delete_recipe', recipe_id=rec._id)}}" class="waves-effect waves-light btn btn_small blue">Delete Recipe</a>
                             </div>
                             <div class="col s9">
-                                <strong>{{rec.rec_name}}</strong>
+                                <a href="{{ url_for('recipe_view', recipe_id=rec._id)}}"><strong>{{rec.rec_name}}</strong></a>
                             </div>
                         </div>
                         <div class="collapsible-body">
@@ -171,7 +171,7 @@
                             <a href="{{ url_for('delete_recipe', recipe_id=rec._id)}}" class="waves-effect waves-light btn btn_small blue">Delete Recipe</a>
                         </div>
                         <div class="col s9">
-                            <strong>{{rec.rec_name}}</strong>
+                            <a href="{{ url_for('recipe_view', recipe_id=rec._id)}}"><strong>{{rec.rec_name}}</strong></a>
                         </div>
                     </div>
                     <div class="collapsible-body">
@@ -184,6 +184,7 @@
                         <span>{{rec.rec_ing}}</span>
                         <span>{{rec.rec_step}}</span>
                         <span>{{rec.rec_pic}}</span>
+
                     </div>
                 </li>
 

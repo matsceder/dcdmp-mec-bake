@@ -9,27 +9,6 @@
 
     {% block content %}
 
-        <ul class="collapsible">
-            {% for rec in recipe %}
-            <li>
-            <div class="collapsible-header"><i class="material-icons">expand_more</i>
-                {{rec.rec_name}}
-            </div>
-            <div class="collapsible-body">
-                <span>{{rec.rec_aut}}</span>
-                <span>{{rec.rec_type}}</span>
-                <span>{{rec.rec_diff}}</span>
-                <span>{{rec.rec_time}}</span>
-                <span>{{rec.rec_equip}}</span>
-                <span>{{rec.rec_ing}}</span>
-                <span>{{rec.rec_step}}</span>
-                <span>{{rec.rec_pic}}</span>
-            </div>
-            </li>
-            {% endfor %}
-        </ul>
-
-        <a class="waves-effect waves-light btn">edit</a>
-        <a class="waves-effect waves-light btn">delete</a>
+        {{ing_name}}
 
     {% endblock %}
