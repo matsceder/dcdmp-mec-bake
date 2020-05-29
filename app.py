@@ -24,7 +24,6 @@ def index():
 def recipe_db():
     return render_template("recipe-db.html",
                             recipe=mongo.db.recipe.find(),
-                            times=mongo.db.recipe.rec_time.find(),
                             recipe_type=mongo.db.recipe_type.find(),
                             recipe_diff=mongo.db.recipe_diff.find())
 
@@ -48,16 +47,12 @@ def recipe_db_t_d(type_r, diff_r):
 @app.route('/recipe_view/<recipe_id>')
 def recipe_view(recipe_id):
     the_recipe = mongo.db.recipe.find_one({"_id": ObjectId(recipe_id)})
-    rec_ing = the_recipe["rec_ing"]
-    ing_names = the_recipe["rec_ing"]["ing_name"]
-    all_types = mongo.db.recipe_type.find()
-    all_diffs = mongo.db.recipe_diff.find()
+    rec_name = the_recipe["rec_name"]
+    the_ing = mongo.db.ingredients.find_one({"rec_name": rec_name})
     return render_template('recipe-view.html',
                             recipe=the_recipe,
-                            recipe_type=all_types,
-                            recipe_diff=all_diffs,
-                            all_ing=rec_ing,
-                            ing_name=ing_names)
+                            r_name=rec_name,
+                            r_ing=the_ing)
 
 
 @app.route('/recipe_new')
@@ -72,48 +67,18 @@ def recipe_new():
 @app.route('/send_new', methods=['POST'])
 def send_new():
     recipe = mongo.db.recipe
-    steps = mongo.db.steps
-    ingredients = mongo.db.ingredients
     recipe.insert_one(
-        { "rec_name" : request.form['rec_name'],
-        "rec_aut" : request.form['rec_aut'],
-        "rec_type" : request.form['rec_type'],
-        "rec_diff" : request.form['rec_diff'],
-        "rec_time_h" : request.form['time_h'],
-        "rec_time_m" : request.form['ing_amount'],
-        "rec_pic" : request.form['rec_pic']
-        }
-    )
-    steps.insert_one(
-        { "rec_name" : request.form['rec_name'],
-        "rec_step_1" : request.form['rec_step_1'],
-        "rec_step_2" : request.form['rec_step_2'],
-        "rec_step_3" : request.form['rec_step_3'],
-        "rec_step_4" : request.form['rec_step_4'],
-        "rec_step_5" : request.form['rec_step_5'],
-        "rec_step_6" : request.form['rec_step_6'],
-        "rec_step_7" : request.form['rec_step_7'],
-        "rec_step_8" : request.form['rec_step_8'],
-        "rec_step_9" : request.form['rec_step_9'],
-        "rec_step_10" : request.form['rec_step_10'],
-        "rec_step_11" : request.form['rec_step_11'],
-        "rec_step_12" : request.form['rec_step_12']
-        }
-    )
-    ingredients.insert_one(
-        { "rec_name" : request.form['rec_name'],
-        "rec_ing_1" : request.form['rec_ing_1'],
-        "rec_ing_2" : request.form['rec_ing_2'],
-        "rec_ing_3" : request.form['rec_ing_3'],
-        "rec_ing_4" : request.form['rec_ing_4'],
-        "rec_ing_5" : request.form['rec_ing_5'],
-        "rec_ing_6" : request.form['rec_ing_6'],
-        "rec_ing_7" : request.form['rec_ing_7'],
-        "rec_ing_8" : request.form['rec_ing_8'],
-        "rec_ing_9" : request.form['rec_ing_9'],
-        "rec_ing_10" : request.form['rec_ing_10'],
-        "rec_ing_11" : request.form['rec_ing_11'],
-        "rec_ing_12" : request.form['rec_ing_12']
+        {
+            "rec_name": request.form['rec_name'],
+            "rec_aut": request.form['rec_aut'],
+            "rec_type": request.form['rec_type'],
+            "rec_diff": request.form['rec_diff'],
+            "rec_time": {"rec_time_h": request.form['time_h'], "rec_time_m": request.form['time_m']},
+            "rec_pic": request.form['rec_pic'],
+            "rec_ing": {"i1": request.form['in1'], "i2": request.form['in2'], "i3": request.form['in3'], "i4": request.form['in4'], "i5": request.form['in5'], "i6": request.form['in6'], "i7": request.form['in7'], "i8": request.form['in8'], "i9": request.form['in9'], "i10": request.form['in10'], "i11": request.form['in11'], "i12": request.form['in12']},
+            "amount": {"a1": request.form['ia1'], "a2": request.form['ia2'], "a3": request.form['ia3'], "a4": request.form['ia4'], "a5": request.form['ia5'], "a6": request.form['ia6'], "a7": request.form['ia7'], "a8": request.form['ia8'], "a9": request.form['ia9'], "a10": request.form['ia10'], "a11": request.form['ia11'], "a12": request.form['ia12']},
+            "unit": { "u1": request.form['iu1'], "u2": request.form['iu2'], "u3": request.form['iu3'], "u4": request.form['iu4'], "u5": request.form['iu5'], "u6": request.form['iu6'], "u7": request.form['iu7'], "u8": request.form['iu8'], "u9": request.form['iu9'], "u10": request.form['iu10'], "u11": request.form['iu11'], "u12": request.form['iu12']},
+            "step": {"s1": request.form['sn1'], "s2": request.form['sn2'], "s3": request.form['sn3'], "s4": request.form['sn4'], "s5": request.form['sn5'], "s6": request.form['sn6'], "s7": request.form['sn7'], "s8": request.form['sn8'], "s9": request.form['sn9'], "s10": request.form['sn10'], "s11": request.form['sn11'], "s12": request.form['sn12']}
         }
     )
     return redirect(url_for('recipe_db'))
