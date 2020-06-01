@@ -9,80 +9,581 @@
 
     {% block content %}
 
-    {% if r_ing.ing1 is defined %}
-        {{r_ing.ing1.name}}
-        {{r_ing.ing1.amount}}
-        {{r_ing.ing1.unit}}
-    {% endif %}
 
-    {% if r_ing.ing2 is defined %}
-        {{r_ing.ing2.name}}
-        {{r_ing.ing2.amount}}
-        {{r_ing.ing2.unit}}
-    {% endif %}
+        <div class="row">
+            <form class="col s12" action="{{ url_for('send_update', recipe_id=recipe._id) }}" method="POST">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="rec_name" name="rec_name" type="text" class="validate" value="{{recipe.rec_name}}">
+                        <label for="icon_prefix">Recipe Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="rec_aut" name="rec_aut" type="text" class="validate" value="{{recipe.rec_aut}}">
+                        <label for="icon_prefix">Author Name</label>
+                    </div>
+                    <div class="input-field col s3">
+                        <select id="rec_type" name="rec_type">
+                            <option value="" disabled selected>Types</option>
+                            {% for type in recipe_type %}
+                                {% if type.rec_type == '0' %}
+                                {% elif type.rec_type == recipe.rec_type %}
+                                    <option value="{{type.rec_type}}" selected>{{type.rec_type}}</option>
+                                {% else %}
+                                    <option value="{{type.rec_type}}">{{type.rec_type}}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                        <label>Recipe Type</label>
+                    </div>
+                    <div class="input-field col s3">
+                        <select id="rec_diff" name="rec_diff">
+                            <option value="" disabled selected>Difficulty</option>
+                            {% for diff in recipe_diff %}
+                                {% if diff.rec_diff == '0' %}
+                                {% elif diff.rec_diff == recipe.rec_diff %}
+                                    <option value="{{diff.rec_diff}}" selected>{{diff.rec_diff}}</option>
+                                {% else %}
+                                    <option value="{{diff.rec_diff}}">{{diff.rec_diff}}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                        <label>Difficulty level</label>
+                    </div>
+                    <div class="input-field col s2">
+                        <input id="rec_time_h" name="rec_time_h" type="number" class="validate" value="{{recipe.rec_time_h}}">
+                        <label for="icon_prefix">Hours</label>
+                    </div>
+                    <div class="input-field col s2">
+                        <input id="rec_time_m" name="rec_time_m" type="number" min="0" max="59" class="validate" value="{{recipe.rec_time_m}}">
+                        <label for="icon_prefix">Minutes</label>
+                    </div>
+                    <div class="input-field col s2">
+                        <input id="rec_serve" name="rec_serve" type="number" min="0" max="59" class="validate" value="{{recipe.rec_serve}}">
+                        <label for="icon_prefix">Servings</label>
+                    </div>
+                </div>
 
-    {% if r_ing.ing3 is defined %}
-        {{r_ing.ing3.name}}
-        {{r_ing.ing3.amount}}
-        {{r_ing.ing3.unit}}
-    {% endif %}
+    <!--    --------    Ingredient rows    --------    -->
+                <div class="row">
+                    <ul class="collapsible" data-collapsible="accordion">
+                        <li>
+                            <div class="collapsible-header">
+                                <i class="material-icons">expand_more</i>
+                                <strong>Ingredients</strong>
+                            </div>
+                            <div class="collapsible-body">
+                                <div class="ing1 row">
+                                    <div class="input-field col s1">
+                                        <label id="rec_ing1"></label>
+                                    </div>
+                                    <div class="input-field col s5">
+                                        <input id="rec_ing_n1" name="rec_ing_n1" type="text" class="validate" value="{{recipe.rec_ing_n1}}">
+                                        <label for="icon_prefix">Ingredient</label>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <input id="rec_ing_a1" name="rec_ing_a1" type="text" class="validate" value="{{recipe.rec_ing_a1}}">
+                                        <label for="icon_prefix">Amount</label>
+                                    </div>
+                                    <div class="input-field col s2">
+                                        <select id="rec_ing_u1" name="rec_ing_u1">
+                                            <option value="{{recipe.rec_ing_u1}}" selected>{{recipe.rec_ing_u1}}</option>
+                                            <option value="g">g</option>
+                                            <option value="hg">hg</option>
+                                            <option value="kg">kg</option>
+                                            <option value="cl">cl</option>
+                                            <option value="dl">dl</option>
+                                            <option value="l">l</option>
+                                            <option value="tsp">tsp</option>
+                                            <option value="tbsp">tbsp</option>
+                                            <option value="cup">cup</option>
+                                            <option value="x">x</option>
+                                        </select>
+                                        <label>Measurement unit</label>
+                                    </div>
+                                </div>
+                                <div class="ing2 row">
+                                    <div class="input-field col s1">
+                                        <label id="rec_ing2"></label>
+                                    </div>
+                                    <div class="input-field col s5">
+                                        <input id="rec_ing_n2" name="rec_ing_n2" type="text" class="validate" value="{{recipe.rec_ing_n2}}">
+                                        <label for="icon_prefix">Ingredient</label>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <input id="rec_ing_a2" name="rec_ing_a2" type="text" class="validate" value="{{recipe.rec_ing_a2}}">
+                                        <label for="icon_prefix">Amount</label>
+                                    </div>
+                                    <div class="input-field col s2">
+                                        <select id="rec_ing_u2" name="rec_ing_u2">
+                                            <option value="{{recipe.rec_ing_u2}}" selected>{{recipe.rec_ing_a2}}</option>
+                                            <option value="g">g</option>
+                                            <option value="hg">hg</option>
+                                            <option value="kg">kg</option>
+                                            <option value="cl">cl</option>
+                                            <option value="dl">dl</option>
+                                            <option value="l">l</option>
+                                            <option value="tsp">tsp</option>
+                                            <option value="tbsp">tbsp</option>
+                                            <option value="cup">cup</option>
+                                            <option value="x">x</option>
+                                        </select>
+                                        <label>Measurement unit</label>
+                                    </div>
+                                </div>
+                                <div class="ing3 row">
+                                    <div class="input-field col s1">
+                                        <label id="rec_ing3"></label>
+                                    </div>
+                                    <div class="input-field col s5">
+                                        <input id="rec_ing_n3" name="rec_ing_n3" type="text" class="validate" value="{{recipe.rec_ing_n3}}">
+                                        <label for="icon_prefix">Ingredient</label>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <input id="rec_ing_a3" name="rec_ing_a3" type="text" class="validate" value="{{recipe.rec_ing_a3}}">
+                                        <label for="icon_prefix">Amount</label>
+                                    </div>
+                                    <div class="input-field col s2">
+                                        <select id="rec_ing_u3" name="rec_ing_u3">
+                                            <option value="{{recipe.rec_ing_u3}}" selected>{{recipe.rec_ing_u3}}</option>
+                                            <option value="g">g</option>
+                                            <option value="hg">hg</option>
+                                            <option value="kg">kg</option>
+                                            <option value="cl">cl</option>
+                                            <option value="dl">dl</option>
+                                            <option value="l">l</option>
+                                            <option value="tsp">tsp</option>
+                                            <option value="tbsp">tbsp</option>
+                                            <option value="cup">cup</option>
+                                            <option value="x">x</option>
+                                        </select>
+                                        <label>Measurement unit</label>
+                                    </div>
+                                </div>
+                                <div class="ing4 row">
+                                    <div class="input-field col s1">
+                                        <label id="rec_ing4"></label>
+                                    </div>
+                                    <div class="input-field col s5">
+                                        <input id="rec_ing_n4" name="rec_ing_n4" type="text" class="validate" value="{{recipe.rec_ing_n4}}">
+                                        <label for="icon_prefix">Ingredient</label>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <input id="rec_ing_a4" name="rec_ing_a4" type="text" class="validate" value="{{recipe.rec_ing_a4}}">
+                                        <label for="icon_prefix">Amount</label>
+                                    </div>
+                                    <div class="input-field col s2">
+                                        <select id="rec_ing_u4" name="rec_ing_u4">
+                                            <option value="{{recipe.rec_ing_u4}}" selected>{{recipe.rec_ing_u4}}</option>
+                                            <option value="g">g</option>
+                                            <option value="hg">hg</option>
+                                            <option value="kg">kg</option>
+                                            <option value="cl">cl</option>
+                                            <option value="dl">dl</option>
+                                            <option value="l">l</option>
+                                            <option value="tsp">tsp</option>
+                                            <option value="tbsp">tbsp</option>
+                                            <option value="cup">cup</option>
+                                            <option value="x">x</option>
+                                        </select>
+                                        <label>Measurement unit</label>
+                                    </div>
+                                </div>
+                                <div class="ing5 row">
+                                    <div class="input-field col s1">
+                                        <label id="rec_ing5"></label>
+                                    </div>
+                                    <div class="input-field col s5">
+                                        <input id="rec_ing_n5" name="rec_ing_n5" type="text" class="validate" value="{{recipe.rec_ing_n5}}">
+                                        <label for="icon_prefix">Ingredient</label>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <input id="rec_ing_a5" name="rec_ing_a5" type="text" class="validate" value="{{recipe.rec_ing_a5}}">
+                                        <label for="icon_prefix">Amount</label>
+                                    </div>
+                                    <div class="input-field col s2">
+                                        <select id="rec_ing_u5" name="rec_ing_u5">
+                                            <option value="{{recipe.rec_ing_u5}}" selected>{{recipe.rec_ing_u5}}</option>
+                                            <option value="g">g</option>
+                                            <option value="hg">hg</option>
+                                            <option value="kg">kg</option>
+                                            <option value="cl">cl</option>
+                                            <option value="dl">dl</option>
+                                            <option value="l">l</option>
+                                            <option value="tsp">tsp</option>
+                                            <option value="tbsp">tbsp</option>
+                                            <option value="cup">cup</option>
+                                            <option value="x">x</option>
+                                        </select>
+                                        <label>Measurement unit</label>
+                                    </div>
+                                </div>
+                                <div class="ing6 row">
+                                    <div class="input-field col s1">
+                                        <label id="rec_ing6"></label>
+                                    </div>
+                                    <div class="input-field col s5">
+                                        <input id="rec_ing_n6" name="rec_ing_n6" type="text" class="validate" value="{{recipe.rec_ing_n6}}">
+                                        <label for="icon_prefix">Ingredient</label>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <input id="rec_ing_a6" name="rec_ing_a6" type="text" class="validate" value="{{recipe.rec_ing_a6}}">
+                                        <label for="icon_prefix">Amount</label>
+                                    </div>
+                                    <div class="input-field col s2">
+                                        <select id="rec_ing_u6" name="rec_ing_u6">
+                                            <option value="{{recipe.rec_ing_u6}}" selected>{{recipe.rec_ing_u6}}</option>
+                                            <option value="g">g</option>
+                                            <option value="hg">hg</option>
+                                            <option value="kg">kg</option>
+                                            <option value="cl">cl</option>
+                                            <option value="dl">dl</option>
+                                            <option value="l">l</option>
+                                            <option value="tsp">tsp</option>
+                                            <option value="tbsp">tbsp</option>
+                                            <option value="cup">cup</option>
+                                            <option value="x">x</option>
+                                        </select>
+                                        <label>Measurement unit</label>
+                                    </div>
+                                </div>
+                                <div class="ing7 row">
+                                    <div class="input-field col s1">
+                                        <label id="rec_ing7"></label>
+                                    </div>
+                                    <div class="input-field col s5">
+                                        <input id="rec_ing_n7" name="rec_ing_n7" type="text" class="validate" value="{{recipe.rec_ing_n7}}">
+                                        <label for="icon_prefix">Ingredient</label>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <input id="rec_ing_a7" name="rec_ing_a7" type="text" class="validate" value="{{recipe.rec_ing_a7}}">
+                                        <label for="icon_prefix">Amount</label>
+                                    </div>
+                                    <div class="input-field col s2">
+                                        <select id="rec_ing_u7" name="rec_ing_u7">
+                                            <option value="{{recipe.rec_ing_u7}}" selected>{{recipe.rec_ing_u7}}</option>
+                                            <option value="g">g</option>
+                                            <option value="hg">hg</option>
+                                            <option value="kg">kg</option>
+                                            <option value="cl">cl</option>
+                                            <option value="dl">dl</option>
+                                            <option value="l">l</option>
+                                            <option value="tsp">tsp</option>
+                                            <option value="tbsp">tbsp</option>
+                                            <option value="cup">cup</option>
+                                            <option value="x">x</option>
+                                        </select>
+                                        <label>Measurement unit</label>
+                                    </div>
+                                </div>
+                                <div class="ing8 row">
+                                    <div class="input-field col s1">
+                                        <label id="rec_ing8"></label>
+                                    </div>
+                                    <div class="input-field col s5">
+                                        <input id="rec_ing_n8" name="rec_ing_n8" type="text" class="validate" value="{{recipe.rec_ing_n8}}">
+                                        <label for="icon_prefix">Ingredient</label>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <input id="rec_ing_a8" name="rec_ing_a8" type="text" class="validate" value="{{recipe.rec_ing_a8}}">
+                                        <label for="icon_prefix">Amount</label>
+                                    </div>
+                                    <div class="input-field col s2">
+                                        <select id="rec_ing_u8" name="rec_ing_u8">
+                                            <option value="{{recipe.rec_ing_u8}}" selected>{{recipe.rec_ing_u8}}</option>
+                                            <option value="g">g</option>
+                                            <option value="hg">hg</option>
+                                            <option value="kg">kg</option>
+                                            <option value="cl">cl</option>
+                                            <option value="dl">dl</option>
+                                            <option value="l">l</option>
+                                            <option value="tsp">tsp</option>
+                                            <option value="tbsp">tbsp</option>
+                                            <option value="cup">cup</option>
+                                            <option value="x">x</option>
+                                        </select>
+                                        <label>Measurement unit</label>
+                                    </div>
+                                </div>
+                                <div class="ing9 row">
+                                    <div class="input-field col s1">
+                                        <label id="rec_ing9"></label>
+                                    </div>
+                                    <div class="input-field col s5">
+                                        <input id="rec_ing_n9" name="rec_ing_n9" type="text" class="validate" value="{{recipe.rec_ing_n9}}">
+                                        <label for="icon_prefix">Ingredient</label>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <input id="rec_ing_a9" name="rec_ing_a9" type="text" class="validate" value="{{recipe.rec_ing_a9}}">
+                                        <label for="icon_prefix">Amount</label>
+                                    </div>
+                                    <div class="input-field col s2">
+                                        <select id="rec_ing_u9" name="rec_ing_u9">
+                                            <option value="{{recipe.rec_ing_u9}}" selected>{{recipe.rec_ing_u9}}</option>
+                                            <option value="g">g</option>
+                                            <option value="hg">hg</option>
+                                            <option value="kg">kg</option>
+                                            <option value="cl">cl</option>
+                                            <option value="dl">dl</option>
+                                            <option value="l">l</option>
+                                            <option value="tsp">tsp</option>
+                                            <option value="tbsp">tbsp</option>
+                                            <option value="cup">cup</option>
+                                            <option value="x">x</option>
+                                        </select>
+                                        <label>Measurement unit</label>
+                                    </div>
+                                </div>
+                                <div class="ing10 row">
+                                    <div class="input-field col s1">
+                                        <label id="rec_ing10"></label>
+                                    </div>
+                                    <div class="input-field col s5">
+                                        <input id="rec_ing_n10" name="rec_ing_n10" type="text" class="validate" value="{{recipe.rec_ing_n10}}">
+                                        <label for="icon_prefix">Ingredient</label>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <input id="rec_ing_a10" name="rec_ing_a10" type="text" class="validate" value="{{recipe.rec_ing_a10}}">
+                                        <label for="icon_prefix">Amount</label>
+                                    </div>
+                                    <div class="input-field col s2">
+                                        <select id="rec_ing_u10" name="rec_ing_u10">
+                                            <option value="{{recipe.rec_ing_u10}}" selected>{{recipe.rec_ing_u10}}</option>
+                                            <option value="g">g</option>
+                                            <option value="hg">hg</option>
+                                            <option value="kg">kg</option>
+                                            <option value="cl">cl</option>
+                                            <option value="dl">dl</option>
+                                            <option value="l">l</option>
+                                            <option value="tsp">tsp</option>
+                                            <option value="tbsp">tbsp</option>
+                                            <option value="cup">cup</option>
+                                            <option value="x">x</option>
+                                        </select>
+                                        <label>Measurement unit</label>
+                                    </div>
+                                </div>
+                                <div class="ing11 row">
+                                    <div class="input-field col s1">
+                                        <label id="rec_ing11"></label>
+                                    </div>
+                                    <div class="input-field col s5">
+                                        <input id="rec_ing_n11" name="rec_ing_n11" type="text" class="validate" value="{{recipe.rec_ing_n11}}">
+                                        <label for="icon_prefix">Ingredient</label>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <input id="rec_ing_a11" name="rec_ing_a11" type="text" class="validate" value="{{recipe.rec_ing_a11}}">
+                                        <label for="icon_prefix">Amount</label>
+                                    </div>
+                                    <div class="input-field col s2">
+                                        <select id="rec_ing_u11" name="rec_ing_u11">
+                                            <option value="{{recipe.rec_ing_u11}}" selected>{{recipe.rec_ing_u11}}</option>
+                                            <option value="g">g</option>
+                                            <option value="hg">hg</option>
+                                            <option value="kg">kg</option>
+                                            <option value="cl">cl</option>
+                                            <option value="dl">dl</option>
+                                            <option value="l">l</option>
+                                            <option value="tsp">tsp</option>
+                                            <option value="tbsp">tbsp</option>
+                                            <option value="cup">cup</option>
+                                            <option value="x">x</option>
+                                        </select>
+                                        <label>Measurement unit</label>
+                                    </div>
+                                </div>
+                                <div class="ing12 row">
+                                    <div class="input-field col s1">
+                                        <label id="rec_ing12"></label>
+                                    </div>
+                                    <div class="input-field col s5">
+                                        <input id="rec_ing_n12" name="rec_ing_n12" type="text" class="validate" value="{{recipe.rec_ing_n12}}">
+                                        <label for="icon_prefix">Ingredient</label>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <input id="rec_ing_a12" name="rec_ing_a12" type="text" class="validate" value="{{recipe.rec_ing_a12}}">
+                                        <label for="icon_prefix">Amount</label>
+                                    </div>
+                                    <div class="input-field col s2">
+                                        <select id="rec_ing_u12" name="rec_ing_u12">
+                                            <option value="{{recipe.rec_ing_u12}}" selected>{{recipe.rec_ing_u12}}</option>
+                                            <option value="g">g</option>
+                                            <option value="hg">hg</option>
+                                            <option value="kg">kg</option>
+                                            <option value="cl">cl</option>
+                                            <option value="dl">dl</option>
+                                            <option value="l">l</option>
+                                            <option value="tsp">tsp</option>
+                                            <option value="tbsp">tbsp</option>
+                                            <option value="cup">cup</option>
+                                            <option value="x">x</option>
+                                        </select>
+                                        <label>Measurement unit</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+    <!--    --------    Directions rows    --------    -->
+                <div class="row">
+                    <ul class="collapsible" data-collapsible="accordion">
+                        <li>
+                            <div class="collapsible-header">
+                                <i class="material-icons">expand_more</i>
+                                <strong>Directions</strong>
+                            </div>
+                            <div class="collapsible-body" id="dire">
+                                <div class="dir1 row">
+                                    <div class="input-field col s2">
+                                        <label for="icon_prefix">Step 1</label>
+                                    </div>
+                                    <div class="input-field col s10">
+                                        <input id="rec_step1" name="rec_step1" type="text" class="validate" value="{{recipe.rec_step1}}">
+                                        <label for="icon_prefix">Describe step</label>
+                                    </div>
+                                </div>
+                                <div class="dir2 row">
+                                    <div class="input-field col s2">
+                                        <label for="icon_prefix">Step 2</label>
+                                    </div>
+                                    <div class="input-field col s10">
+                                        <input id="rec_step2" name="rec_step2" type="text" class="validate" value="{{recipe.rec_step2}}">
+                                        <label for="icon_prefix">Describe step</label>
+                                    </div>
+                                </div>
+                                <div class="dir3 row">
+                                    <div class="input-field col s2">
+                                        <label for="icon_prefix">Step 3</label>
+                                    </div>
+                                    <div class="input-field col s10">
+                                        <input id="rec_step3" name="rec_step3" type="text" class="validate" value="{{recipe.rec_step3}}">
+                                        <label for="icon_prefix">Describe step</label>
+                                    </div>
+                                </div>
+                                <div class="dir4 row">
+                                    <div class="input-field col s2">
+                                        <label for="icon_prefix">Step 4</label>
+                                    </div>
+                                    <div class="input-field col s10">
+                                        <input id="rec_step4" name="rec_step4" type="text" class="validate" value="{{recipe.rec_step4}}">
+                                        <label for="icon_prefix">Describe step</label>
+                                    </div>
+                                </div>
+                                <div class="dir5 row">
+                                    <div class="input-field col s2">
+                                        <label for="icon_prefix">Step 5</label>
+                                    </div>
+                                    <div class="input-field col s10">
+                                        <input id="rec_step5" name="rec_step5" type="text" class="validate" value="{{recipe.rec_step5}}">
+                                        <label for="icon_prefix">Describe step</label>
+                                    </div>
+                                </div>
+                                <div class="dir6 row">
+                                    <div class="input-field col s2">
+                                        <label for="icon_prefix">Step 6</label>
+                                    </div>
+                                    <div class="input-field col s10">
+                                        <input id="rec_step6" name="rec_step6" type="text" class="validate" value="{{recipe.rec_step6}}">
+                                        <label for="icon_prefix">Describe step</label>
+                                    </div>
+                                </div>
+                                <div class="dir7 row">
+                                    <div class="input-field col s2">
+                                        <label for="icon_prefix">Step 7</label>
+                                    </div>
+                                    <div class="input-field col s10">
+                                        <input id="rec_step7" name="rec_step7" type="text" class="validate" value="{{recipe.rec_step7}}">
+                                        <label for="icon_prefix">Describe step</label>
+                                    </div>
+                                </div>
+                                <div class="dir8 row">
+                                    <div class="input-field col s2">
+                                        <label for="icon_prefix">Step 8</label>
+                                    </div>
+                                    <div class="input-field col s10">
+                                        <input id="rec_step8" name="rec_step8" type="text" class="validate" value="{{recipe.rec_step8}}">
+                                        <label for="icon_prefix">Describe step</label>
+                                    </div>
+                                </div>
+                                <div class="dir9 row">
+                                    <div class="input-field col s2">
+                                        <label for="icon_prefix">Step 9</label>
+                                    </div>
+                                    <div class="input-field col s10">
+                                        <input id="rec_step9" name="rec_step9" type="text" class="validate" value="{{recipe.rec_step9}}">
+                                        <label for="icon_prefix">Describe step</label>
+                                    </div>
+                                </div>
+                                <div class="dir10 row">
+                                    <div class="input-field col s2">
+                                        <label for="icon_prefix">Step 10</label>
+                                    </div>
+                                    <div class="input-field col s10">
+                                        <input id="rec_step10" name="rec_step10" type="text" class="validate" value="{{recipe.rec_step10}}">
+                                        <label for="icon_prefix">Describe step</label>
+                                    </div>
+                                </div>
+                                <div class="dir11 row">
+                                    <div class="input-field col s2">
+                                        <label for="icon_prefix">Step 11</label>
+                                    </div>
+                                    <div class="input-field col s10">
+                                        <input id="rec_step11" name="rec_step11" type="text" class="validate" value="{{recipe.rec_step11}}">
+                                        <label for="icon_prefix">Describe step</label>
+                                    </div>
+                                </div>
+                                <div class="dir12 row">
+                                    <div class="input-field col s2">
+                                        <label for="icon_prefix">Step 12</label>
+                                    </div>
+                                    <div class="input-field col s10">
+                                        <input id="rec_step12" name="rec_step12" type="text" class="validate" value="{{recipe.rec_step12}}">
+                                        <label for="icon_prefix">Describe step</label>
+                                    </div>
+                                </div>
+                                <div class="dir13 row">
+                                    <div class="input-field col s2">
+                                        <label for="icon_prefix">Step 13</label>
+                                    </div>
+                                    <div class="input-field col s10">
+                                        <input id="rec_step13" name="rec_step13" type="text" class="validate" value="{{recipe.rec_step13}}">
+                                        <label for="icon_prefix">Describe step</label>
+                                    </div>
+                                </div>
+                                <div class="dir14 row">
+                                    <div class="input-field col s2">
+                                        <label for="icon_prefix">Step 14</label>
+                                    </div>
+                                    <div class="input-field col s10">
+                                        <input id="rec_step14" name="rec_step14" type="text" class="validate" value="{{recipe.rec_step14}}">
+                                        <label for="icon_prefix">Describe step</label>
+                                    </div>
+                                </div>
+                                <div class="dir15 row">
+                                    <div class="input-field col s2">
+                                        <label for="icon_prefix">Step 15</label>
+                                    </div>
+                                    <div class="input-field col s10">
+                                        <input id="rec_step15" name="rec_step15" type="text" class="validate" value="{{recipe.rec_step15}}">
+                                        <label for="icon_prefix">Describe step</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
 
-    {% if r_ing.ing4 is defined %}
-        {{r_ing.ing4.name}}
-        {{r_ing.ing4.amount}}
-        {{r_ing.ing4.unit}}
-    {% endif %}
-
-    {% if r_ing.ing5 is defined %}
-        {{r_ing.ing5.name}}
-        {{r_ing.ing5.amount}}
-        {{r_ing.ing5.unit}}
-    {% endif %}
-
-    {% if r_ing.ing6 is defined %}
-        {{r_ing.ing6.name}}
-        {{r_ing.ing6.amount}}
-        {{r_ing.ing6.unit}}
-    {% endif %}
-
-    {% if r_ing.ing7 is defined %}
-        {{r_ing.ing7.name}}
-        {{r_ing.ing7.amount}}
-        {{r_ing.ing7.unit}}
-    {% endif %}
-
-    {% if r_ing.ing8 is defined %}
-        {{r_ing.ing8.name}}
-        {{r_ing.ing8.amount}}
-        {{r_ing.ing8.unit}}
-    {% endif %}
-
-    {% if r_ing.ing9 is defined %}
-        {{r_ing.ing9.name}}
-        {{r_ing.ing9.amount}}
-        {{r_ing.ing9.unit}}
-    {% endif %}
-
-    {% if r_ing.ing10 is defined %}
-        {{r_ing.ing10.name}}
-        {{r_ing.ing10.amount}}
-        {{r_ing.ing10.unit}}
-    {% endif %}
-
-    {% if r_ing.ing11 is defined %}
-        {{r_ing.ing11.name}}
-        {{r_ing.ing11.amount}}
-        {{r_ing.ing11.unit}}
-    {% endif %}
-
-    {% if r_ing.ing12 is defined %}
-        {{r_ing.ing12.name}}
-        {{r_ing.ing12.amount}}
-        {{r_ing.ing12.unit}}
-    {% endif %}
-
-    {{r_ing.ing.i1}}
-
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="rec_pic" name="rec_pic" type="text" class="validate" value="{{recipe.rec_pic}}">
+                        <label for="icon_prefix">Link to image</label>
+                    </div>
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Send
+                        <i class="material-icons right">playlist_add</i>
+                    </button>
+                </div>
+            </form>
+        </div>
 
 
     {% endblock %}
