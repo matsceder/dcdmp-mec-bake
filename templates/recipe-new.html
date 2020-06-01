@@ -24,7 +24,10 @@
                         <select id="rec_type" name="rec_type">
                             <option value="" disabled selected>Types</option>
                             {% for type in recipe_type %}
-                                <option value="{{type.rec_type}}">{{type.rec_type}}</option>
+                                {% if type.rec_type == '0' %}
+                                {% else %}
+                                    <option value="{{type.rec_type}}">{{type.rec_type}}</option>
+                                {% endif %}
                             {% endfor %}
                         </select>
                         <label>Recipe Type</label>
@@ -33,18 +36,25 @@
                         <select id="rec_diff" name="rec_diff">
                             <option value="" disabled selected>Difficulty</option>
                             {% for diff in recipe_diff %}
-                                <option value="{{diff.rec_diff}}">{{diff.rec_diff}}</option>
+                                {% if diff.rec_diff == '0' %}
+                                {% else %}
+                                    <option value="{{diff.rec_diff}}">{{diff.rec_diff}}</option>
+                                {% endif %}
                             {% endfor %}
                         </select>
                         <label>Difficulty level</label>
                     </div>
-                    <div class="input-field col s3">
+                    <div class="input-field col s2">
                         <input id="time_h" name="time_h" type="number" class="validate">
                         <label for="icon_prefix">Hours</label>
                     </div>
-                    <div class="input-field col s3">
+                    <div class="input-field col s2">
                         <input id="time_m" name="time_m" type="number" min="0" max="59" class="validate">
                         <label for="icon_prefix">Minutes</label>
+                    </div>
+                    <div class="input-field col s2">
+                        <input id="rec_serve" name="rec_serve" type="number" min="0" max="59" class="validate">
+                        <label for="icon_prefix">Servings</label>
                     </div>
                 </div>
 
@@ -59,18 +69,18 @@
                                 {% for i in range(12) %}
                                 <div class="row">
                                     <div class="input-field col s1">
-                                        <label id="in_{{loop.index}}">{{loop.index}}</label>
+                                        <label id="rec_ing{{loop.index}}">{{loop.index}}</label>
                                     </div>
                                     <div class="input-field col s5">
-                                        <input id="in{{loop.index}}" name="in{{loop.index}}" type="text" class="validate">
+                                        <input id="rec_ing_n{{loop.index}}" name="rec_ing_n{{loop.index}}" type="text" class="validate">
                                         <label for="icon_prefix">Ingredient</label>
                                     </div>
                                     <div class="input-field col s3">
-                                        <input id="ia{{loop.index}}" name="ia{{loop.index}}" type="text" class="validate">
+                                        <input id="rec_ing_a{{loop.index}}" name="rec_ing_a{{loop.index}}" type="text" class="validate">
                                         <label for="icon_prefix">Amount</label>
                                     </div>
                                     <div class="input-field col s2">
-                                        <select id="iu{{loop.index}}" name="iu{{loop.index}}">
+                                        <select id="rec_ing_u{{loop.index}}" name="rec_ing_u{{loop.index}}">
                                             <option value="" disabled selected>Unit</option>
                                             <option value="g">g</option>
                                             <option value="hg">hg</option>
@@ -78,6 +88,9 @@
                                             <option value="cl">cl</option>
                                             <option value="dl">dl</option>
                                             <option value="l">l</option>
+                                            <option value="tsp">tsp</option>
+                                            <option value="tbsp">tbsp</option>
+                                            <option value="unit">unit</option>
                                         </select>
                                         <label>Measurement unit</label>
                                     </div>
@@ -95,14 +108,14 @@
                                 <i class="material-icons">expand_more</i>
                                 <strong>Directions</strong>
                             </div>
-                            <div class="collapsible-body">
-                            {% for i in range(12) %}
-                                <div class="row">
+                            <div class="collapsible-body" id="dire">
+                            {% for i in range(15) %}
+                                <div class="row directions">
                                     <div class="input-field col s2">
                                         <label for="icon_prefix">Step {{loop.index}}</label>
                                     </div>
                                     <div class="input-field col s10">
-                                        <input id="step{{loop.index}}" name="s{{loop.index}}" type="text" class="validate">
+                                        <input id="step{{loop.index}}" name="rec_step{{loop.index}}" type="text" class="validate">
                                         <label for="icon_prefix">Describe step</label>
                                     </div>
                                 </div>

@@ -60,27 +60,13 @@ def recipe_new():
     return render_template("recipe-new.html",
                             recipe_type=mongo.db.recipe_type.find(),
                             recipe_diff=mongo.db.recipe_diff.find(),
-                            recipe=mongo.db.recipe.find(),
-                            ingredient_units=mongo.db.ingredient_units.find())
+                            recipe=mongo.db.recipe.find())
 
 
 @app.route('/send_new', methods=['POST'])
 def send_new():
     recipe = mongo.db.recipe
-    recipe.insert_one(
-        {
-            "rec_name": request.form['rec_name'],
-            "rec_aut": request.form['rec_aut'],
-            "rec_type": request.form['rec_type'],
-            "rec_diff": request.form['rec_diff'],
-            "rec_time": {"rec_time_h": request.form['time_h'], "rec_time_m": request.form['time_m']},
-            "rec_pic": request.form['rec_pic'],
-            "rec_ing": {"i1": request.form['in1'], "i2": request.form['in2'], "i3": request.form['in3'], "i4": request.form['in4'], "i5": request.form['in5'], "i6": request.form['in6'], "i7": request.form['in7'], "i8": request.form['in8'], "i9": request.form['in9'], "i10": request.form['in10'], "i11": request.form['in11'], "i12": request.form['in12']},
-            "amount": {"a1": request.form['ia1'], "a2": request.form['ia2'], "a3": request.form['ia3'], "a4": request.form['ia4'], "a5": request.form['ia5'], "a6": request.form['ia6'], "a7": request.form['ia7'], "a8": request.form['ia8'], "a9": request.form['ia9'], "a10": request.form['ia10'], "a11": request.form['ia11'], "a12": request.form['ia12']},
-            "unit": { "u1": request.form['iu1'], "u2": request.form['iu2'], "u3": request.form['iu3'], "u4": request.form['iu4'], "u5": request.form['iu5'], "u6": request.form['iu6'], "u7": request.form['iu7'], "u8": request.form['iu8'], "u9": request.form['iu9'], "u10": request.form['iu10'], "u11": request.form['iu11'], "u12": request.form['iu12']},
-            "step": {"s1": request.form['sn1'], "s2": request.form['sn2'], "s3": request.form['sn3'], "s4": request.form['sn4'], "s5": request.form['sn5'], "s6": request.form['sn6'], "s7": request.form['sn7'], "s8": request.form['sn8'], "s9": request.form['sn9'], "s10": request.form['sn10'], "s11": request.form['sn11'], "s12": request.form['sn12']}
-        }
-    )
+    recipe.insert_one(request.form.to_dict())
     return redirect(url_for('recipe_db'))
 
 
