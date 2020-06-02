@@ -19,16 +19,20 @@
 <body>
 
     <header>
+        <ul id="dropdown1" class="dropdown-content">
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('recipe_db') }}">Bread Recipes</a></li>
+            <li><a href="{{ url_for('recipe_db') }}">Cake Recipes</a></li>
+        </ul>
         <nav>
             <div class="nav-wrapper">
                 <a href="{{ url_for('index') }}" class="brand-logo center">Online Baking</a>
-                <a href="#" onclick="history.go(-1)" class="left hide-on-med-and-down"><i class="material-icons">arrow_back</i></a>
-                <a href="{{ url_for('recipe_db') }}" class="right hide-on-med-and-down">GO TO RECIPES</a>
-                <a href="#" data-activates="mobile-demo" class="right button-collapse"><i class="material-icons">menu</i></a>
-                <ul class="side-nav" id="mobile-demo">
-                    <li><a href="{{ url_for('index') }}">Home</a></li>
-                    <li><a href="{{ url_for('recipe_db') }}">Bread Recipes</a></li>
-                    <li><a href="{{ url_for('recipe_db') }}">Cake Recipes</a></li>
+                <ul class="left">
+                {% block navback %}{% endblock %}
+                </ul>
+                <ul class="right">
+                    <li><a href="{{ url_for('recipe_db') }}" class="right hide-on-med-and-down">GO TO RECIPES</a></li>
+                    <li><a class="dropdown-button hide-on-large-only" href="#" data-activates="dropdown1"><i class="material-icons">menu</i></a></li>
                 </ul>
             </div>
         </nav>
