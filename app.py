@@ -47,12 +47,8 @@ def recipe_db_t_d(type_r, diff_r):
 @app.route('/recipe_view/<recipe_id>')
 def recipe_view(recipe_id):
     the_recipe = mongo.db.recipe.find_one({"_id": ObjectId(recipe_id)})
-    rec_name = the_recipe["rec_name"]
-    the_ing = mongo.db.ingredients.find_one({"rec_name": rec_name})
     return render_template('recipe-view.html',
-                            recipe=the_recipe,
-                            r_name=rec_name,
-                            r_ing=the_ing)
+                            recipe=the_recipe)
 
 
 @app.route('/recipe_new')
@@ -128,6 +124,15 @@ def send_update(recipe_id):
         "rec_ing_n12": request.form.get('rec_ing_n12'),
         "rec_ing_a12": request.form.get('rec_ing_a12'),
         "rec_ing_u12": request.form.get('rec_ing_u12'),
+        "rec_ing_n13": request.form.get('rec_ing_n13'),
+        "rec_ing_a13": request.form.get('rec_ing_a13'),
+        "rec_ing_u13": request.form.get('rec_ing_u13'),
+        "rec_ing_n14": request.form.get('rec_ing_n14'),
+        "rec_ing_a14": request.form.get('rec_ing_a14'),
+        "rec_ing_u14": request.form.get('rec_ing_u14'),
+        "rec_ing_n15": request.form.get('rec_ing_n15'),
+        "rec_ing_a15": request.form.get('rec_ing_a15'),
+        "rec_ing_u15": request.form.get('rec_ing_u15'),
         "rec_step1": request.form.get('rec_step1'),
         "rec_step2": request.form.get('rec_step2'),
         "rec_step3": request.form.get('rec_step3'),
