@@ -7,13 +7,15 @@
     Online Baking
     {% endblock %}
 
+    {% block mainhead %}
+
+    <div class="index-head">
+        <h4 class="page-head">Welcome</h4>
+    </div>
+
+    {% endblock %}
     {% block content %}
 
+    <h1>hi!!</h1>
 
-
-        {% for rec in recipe %}
-            {{rec.rec_name}}
-            {{rec.rec_type}}
-            {{rec.rec_diff}}
-        {% endfor %}
     {% endblock %}

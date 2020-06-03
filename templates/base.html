@@ -19,7 +19,7 @@
 <body>
 
     <header>
-        <ul id="dropdown1" class="dropdown-content">
+        <ul id="dropdown1" class="dropdown-content navdrop">
             <li><a href="{{ url_for('index') }}">Home</a></li>
             <li><a href="{{ url_for('recipe_db') }}">Bread Recipes</a></li>
             <li><a href="{{ url_for('recipe_db') }}">Cake Recipes</a></li>
@@ -35,14 +35,22 @@
                     <li><a class="dropdown-button hide-on-large-only" href="#" data-activates="dropdown1"><i class="material-icons">menu</i></a></li>
                 </ul>
             </div>
-        </nav>
+        </nav>        
     </header>
 
     <main>
 
+    {% block mainhead %}
+
+    {% endblock %}
+
+    <div class="content">
+
     {% block content %}
     
     {% endblock %}
+
+    </div>
 
     </main>
 
