@@ -13,16 +13,11 @@
 
     {% block mainhead %}
 
-    <div class="bread-head">
-        <h4 class="page-head">Recipes</h4>
-    </div>
-
-    {% endblock %}
-
-    {% block content %}
-
-    <div class="row">
-        <ul id="dropdowntype" class="dropdown-content">
+    <div class="row db-row">
+        <div class="bread-head col s5 m10 offset-m1 l8 offset-l2">
+            <h4 class="page-head">Recipes</h4>
+        </div>
+        <ul id="dropdowntype" class="dropdown-content td-drop">
             {% for type in recipe_type %}
                 {% if rdiff is defined %}
                     {% if type.rec_type == '0' %}
@@ -32,14 +27,13 @@
                     {% endif %}
                 {% else %}
                     {% if type.rec_type == '0' %}
-                    <li><a href="{{ url_for('recipe_db_t_d', type_r=type.rec_type, diff_r='0') }}">All</a></li>
                     {% else %}
                     <li><a href="{{ url_for('recipe_db_t_d', type_r=type.rec_type, diff_r='0') }}">{{type.rec_type}}</a></li>
                     {% endif %}
                 {% endif %}
             {% endfor %}
         </ul>
-        <ul id="dropdowndiff" class="dropdown-content">
+        <ul id="dropdowndiff" class="dropdown-content td-drop">
             {% for diff in recipe_diff %}
                 {% if rtype is defined %}
                     {% if diff.rec_diff == '0' %}
@@ -49,16 +43,21 @@
                     {% endif %}
                 {% else %}
                     {% if diff.rec_diff == '0' %}
-                    <li><a href="{{ url_for('recipe_db_t_d', type_r='0', diff_r=diff.rec_diff) }}">All</a></li>
                     {% else %}
                     <li><a href="{{ url_for('recipe_db_t_d', type_r='0', diff_r=diff.rec_diff) }}">{{diff.rec_diff}}</a></li>
                     {% endif %}
                 {% endif %}
             {% endfor %}
         </ul>
-        <a class="dropdown-button waves-effect waves-light btn btn_small blue" href="#!" data-activates="dropdowntype">Type<i class="material-icons right">arrow_drop_down</i></a>
-        <a class="dropdown-button waves-effect waves-light btn btn_small blue" href="#!" data-activates="dropdowndiff">Difficulty<i class="material-icons right">arrow_drop_down</i></a>
+        <div class="button-container">
+            <a class="dropdown-button td-btn btn col hide-on-med-and-down" href="#!" data-activates="dropdowntype">Type<i class="material-icons right">arrow_drop_down</i></a>
+            <a class="dropdown-button td-btn right btn col s6" href="#!" data-activates="dropdowndiff">Difficulty<i class="material-icons right">arrow_drop_down</i></a>
+        </div>
     </div>
+
+    {% endblock %}
+
+    {% block content %}
 
     <div class="row">
         <ul class="collapsible" data-collapsible="accordion">

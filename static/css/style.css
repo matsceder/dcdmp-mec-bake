@@ -99,27 +99,23 @@ main {
     flex: 1 0 auto;
 }
 
-.content {
-    margin: 9px;
-    background-color: #F7F3E0;
-    border: 2px solid #8DAAA6;
-    box-sizing: border-box;
-    align-self: center;
-    padding: 10px;
+.head-row {
+    margin-top: 9px !important;
+    margin-bottom: 6px !important;
 }
 
 .block-head {
     font-family: 'Anton', sans-serif;
     text-align: center;
-    color: #ECB07F;
+    color: #8DAAA6;
     margin-top: 0;
     margin-bottom: 8px;
     width: 100%;
     font-size: 1.8em;
 }
 
-.headban {
-    background-color: #ECB07F;
+.block-headban {
+    background-color: #8DAAA6;
     width: 100%;
     margin-top: 4px;
     margin-bottom: 4px;
@@ -132,6 +128,22 @@ main {
     font-size: 1.3em;
     margin: 0;
     padding: 4px;
+}
+
+.content {
+    margin: 9px;
+    background-color: #F7F3E0;
+    border: 2px solid #8DAAA6;
+    box-sizing: border-box;
+    align-self: center;
+    padding: 10px !important;
+}
+
+@media (max-width: 601px) {
+    .content {
+        width: auto !important;
+        margin: 0px 9px !important;
+    }
 }
 
 /*    --------   Footer   --------    */
@@ -167,5 +179,31 @@ main {
 /*    --------    Recipe Database    --------    */
 
 .bread-head {
-    
+    margin-left: 9px;
+    margin-right: 9px;
+}
+
+.db-row {
+    margin-bottom: 9px !important;
+    margin-top: 9px;
+}
+
+.button-container {
+    width: auto !important;
+    margin: 0px 9px !important;
+}
+
+.td-btn {
+    background-color: #8DAAA6;
+    color: #F7F3E0;
+    font-family: 'Anton', sans-serif;
+    font-size: 20px;
+    text-transform: none;
+    letter-spacing: 1px;
+    border-radius: 0px;
+    box-shadow: 0px 0px 0px;
+}
+
+.td-drop {
+    background-color: #8DAAA6;
 }
