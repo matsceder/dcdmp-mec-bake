@@ -145,6 +145,13 @@ main {
     }
 }
 
+@media (min-width: 602px) {
+    .content {
+        overflow-y: auto;
+        height: 75vh;
+    }
+}
+
 /*    --------   Footer   --------    */
 
 .page-footer {
@@ -208,6 +215,13 @@ main {
     margin-top: 9px;
 }
 
+@media (min-width: 601px) {
+    .db-row {
+        margin-bottom: 0px !important;
+        margin-top: 36px;
+    }
+}
+
 .button-container {
     width: auto !important;
     margin: 0px 9px !important;
@@ -222,6 +236,12 @@ main {
     letter-spacing: 1px;
     border-radius: 0px;
     box-shadow: 0px 0px 0px;
+}
+
+@media (max-width: 601px) {
+    .td-btn {
+        float: right !important;
+    }
 }
 
 .td-drop {
