@@ -59,97 +59,138 @@
 
     {% block content %}
 
-    <div class="row">
-        <ul class="collapsible" data-collapsible="accordion">
-
-        {% for rec in recipe %}
-            {% if rtype and rdiff is defined %}
-
-                {% if rtype.rec_type == '0' and rec.rec_diff == rdiff.rec_diff %}
-                    <li>
-                        <div class="collapsible-header">
-                            <div class="col s3">
-                                <i class="material-icons">expand_more</i>
-                                <a href="{{ url_for('update_recipe', recipe_id=rec._id)}}" class="waves-effect waves-light btn btn_small blue">Edit</a>
-                                <a href="{{ url_for('delete_recipe', recipe_id=rec._id)}}" class="waves-effect waves-light btn btn_small blue">Delete Recipe</a>
-                            </div>
-                            <div class="col s9">
-                                <a href="{{ url_for('recipe_view', recipe_id=rec._id)}}"><strong>{{rec.rec_name}}</strong></a>
-                            </div>
-                        </div>
-                        <div class="collapsible-body">
-                            <span>{{rec.rec_diff}}</span>
-                            <span>{{rec.rec_type}}</span>
-                            <span>{{rec.rec_time_h}}</span>
-                            <span>{{rec.rec_time_m}}</span>
-                        </div>
-                    </li>
-
-                {% elif rdiff.rec_diff == '0' and rec.rec_type == rtype.rec_type %}
-                    <li>
-                        <div class="collapsible-header">
-                            <div class="col s3">
-                                <i class="material-icons">expand_more</i>
-                                <a href="{{ url_for('update_recipe', recipe_id=rec._id)}}" class="waves-effect waves-light btn btn_small blue">Edit</a>
-                                <a href="{{ url_for('delete_recipe', recipe_id=rec._id)}}" class="waves-effect waves-light btn btn_small blue">Delete Recipe</a>
-                            </div>
-                            <div class="col s9">
-                                <a href="{{ url_for('recipe_view', recipe_id=rec._id)}}"><strong>{{rec.rec_name}}</strong></a>
-                            </div>
-                        </div>
-                        <div class="collapsible-body">
-                            <span>{{rec.rec_diff}}</span>
-                            <span>{{rec.rec_type}}</span>
-                            <span>{{rec.rec_time_h}}</span>
-                            <span>{{rec.rec_time_m}}</span>
-                        </div>
-                    </li>
-
-                {% elif rec.rec_type == rtype.rec_type and rec.rec_diff == rdiff.rec_diff %}
-                    <li>
-                        <div class="collapsible-header">
-                            <div class="col s3">
-                                <i class="material-icons">expand_more</i>
-                                <a href="{{ url_for('update_recipe', recipe_id=rec._id)}}" class="waves-effect waves-light btn btn_small blue">Edit</a>
-                                <a href="{{ url_for('delete_recipe', recipe_id=rec._id)}}" class="waves-effect waves-light btn btn_small blue">Delete Recipe</a>
-                            </div>
-                            <div class="col s9">
-                                <a href="{{ url_for('recipe_view', recipe_id=rec._id)}}"><strong>{{rec.rec_name}}</strong></a>
-                            </div>
-                        </div>
-                        <div class="collapsible-body">
-                            <span>{{rec.rec_diff}}</span>
-                            <span>{{rec.rec_type}}</span>
-                            <span>{{rec.rec_time_h}}</span>
-                            <span>{{rec.rec_time_m}}</span>
-                        </div>
-                    </li>
-
-                {% endif %}
-
-            {% else %}
-                <li>
-                    <div class="collapsible-header">
-                        <div class="col s3">
-                            <i class="material-icons">expand_more</i>
-                            <a href="{{ url_for('update_recipe', recipe_id=rec._id)}}" class="waves-effect waves-light btn btn_small blue">Edit</a>
-                            <a href="{{ url_for('delete_recipe', recipe_id=rec._id)}}" class="waves-effect waves-light btn btn_small blue">Delete Recipe</a>
-                        </div>
-                        <div class="col s9">
-                            <a href="{{ url_for('recipe_view', recipe_id=rec._id)}}"><strong>{{rec.rec_name}}</strong></a>
-                        </div>
-                    </div>
-                    <div class="collapsible-body">
-                        <span>{{rec.rec_diff}}</span>
-                        <span>{{rec.rec_type}}</span>
-                        <span>{{rec.rec_time_h}}</span>
-                        <span>{{rec.rec_time_m}}</span>
-                    </div>
-                </li>
-            {% endif %}
-        {% endfor %}
-
-        </ul>
+    <div class="block-headban headban-db">
+        <h6 class="headban-head">Select recipe from the list below</h6>
     </div>
+
+    {% for rec in recipe %}
+
+        {% if rtype and rdiff is defined %}
+
+            {% if rtype.rec_type == '0' and rec.rec_diff == rdiff.rec_diff %}
+
+            <a href="{{ url_for('recipe_view', recipe_id=rec._id)}}">
+                <div class="col s12 db-list-item">
+                    <h5 class="db-recipe-name">{{rec.rec_name}}</h5>
+                    <div class="col s8 left db-recipe-spec">
+                        Difficulty
+                        {% if rec.rec_diff == 'Easy' %}
+                        <i class="material-icons db-recipe-item">radio_button_checked</i>
+                        <i class="material-icons db-recipe-item">radio_button_unchecked</i>
+                        <i class="material-icons db-recipe-item">radio_button_unchecked</i>
+                        {% endif %}
+                        {% if rec.rec_diff == 'Medium' %}
+                        <i class="material-icons db-recipe-item">radio_button_checked</i>
+                        <i class="material-icons db-recipe-item">radio_button_checked</i>
+                        <i class="material-icons db-recipe-item">radio_button_unchecked</i>
+                        {% endif %}
+                        {% if rec.rec_diff == 'Hard' %}
+                        <i class="material-icons db-recipe-item">radio_button_checked</i>
+                        <i class="material-icons db-recipe-item">radio_button_checked</i>
+                        <i class="material-icons db-recipe-item">radio_button_checked</i>
+                        {% endif %}
+                    </div>
+                    <div class="col s4 right db-recipe-spec">
+                        <i class="material-icons db-recipe-item">timer</i>
+                        {{rec.rec_time_h}}h {{rec.rec_time_m}}min
+                    </div>
+                </div>
+            </a>
+
+            {% elif rdiff.rec_diff == '0' and rec.rec_type == rtype.rec_type %}
+
+            <a href="{{ url_for('recipe_view', recipe_id=rec._id)}}">
+                <div class="col s12 db-list-item">
+                    <h5 class="db-recipe-name">{{rec.rec_name}}</h5>
+                    <div class="col s8 left db-recipe-spec">
+                        Difficulty
+                        {% if rec.rec_diff == 'Easy' %}
+                        <i class="material-icons db-recipe-item">radio_button_checked</i>
+                        <i class="material-icons db-recipe-item">radio_button_unchecked</i>
+                        <i class="material-icons db-recipe-item">radio_button_unchecked</i>
+                        {% endif %}
+                        {% if rec.rec_diff == 'Medium' %}
+                        <i class="material-icons db-recipe-item">radio_button_checked</i>
+                        <i class="material-icons db-recipe-item">radio_button_checked</i>
+                        <i class="material-icons db-recipe-item">radio_button_unchecked</i>
+                        {% endif %}
+                        {% if rec.rec_diff == 'Hard' %}
+                        <i class="material-icons db-recipe-item">radio_button_checked</i>
+                        <i class="material-icons db-recipe-item">radio_button_checked</i>
+                        <i class="material-icons db-recipe-item">radio_button_checked</i>
+                        {% endif %}
+                    </div>
+                    <div class="col s4 right db-recipe-spec">
+                        <i class="material-icons db-recipe-item">timer</i>
+                        {{rec.rec_time_h}}h {{rec.rec_time_m}}min
+                    </div>
+                </div>
+            </a>
+
+            {% elif rec.rec_type == rtype.rec_type and rec.rec_diff == rdiff.rec_diff %}
+
+            <a href="{{ url_for('recipe_view', recipe_id=rec._id)}}">
+                <div class="col s12 db-list-item">
+                    <h5 class="db-recipe-name">{{rec.rec_name}}</h5>
+                    <div class="col s8 left db-recipe-spec">
+                        Difficulty
+                        {% if rec.rec_diff == 'Easy' %}
+                        <i class="material-icons db-recipe-item">radio_button_checked</i>
+                        <i class="material-icons db-recipe-item">radio_button_unchecked</i>
+                        <i class="material-icons db-recipe-item">radio_button_unchecked</i>
+                        {% endif %}
+                        {% if rec.rec_diff == 'Medium' %}
+                        <i class="material-icons db-recipe-item">radio_button_checked</i>
+                        <i class="material-icons db-recipe-item">radio_button_checked</i>
+                        <i class="material-icons db-recipe-item">radio_button_unchecked</i>
+                        {% endif %}
+                        {% if rec.rec_diff == 'Hard' %}
+                        <i class="material-icons db-recipe-item">radio_button_checked</i>
+                        <i class="material-icons db-recipe-item">radio_button_checked</i>
+                        <i class="material-icons db-recipe-item">radio_button_checked</i>
+                        {% endif %}
+                    </div>
+                    <div class="col s4 right db-recipe-spec">
+                        <i class="material-icons db-recipe-item">timer</i>
+                        {{rec.rec_time_h}}h {{rec.rec_time_m}}min
+                    </div>
+                </div>
+            </a>
+
+            {% endif %}
+
+        {% else %}
+
+        <a href="{{ url_for('recipe_view', recipe_id=rec._id)}}">
+            <div class="col s12 db-list-item">
+                <h5 class="db-recipe-name">{{rec.rec_name}}</h5>
+                <div class="col s8 left db-recipe-spec">
+                    Difficulty
+                    {% if rec.rec_diff == 'Easy' %}
+                    <i class="material-icons db-recipe-item">radio_button_checked</i>
+                    <i class="material-icons db-recipe-item">radio_button_unchecked</i>
+                    <i class="material-icons db-recipe-item">radio_button_unchecked</i>
+                    {% endif %}
+                    {% if rec.rec_diff == 'Medium' %}
+                    <i class="material-icons db-recipe-item">radio_button_checked</i>
+                    <i class="material-icons db-recipe-item">radio_button_checked</i>
+                    <i class="material-icons db-recipe-item">radio_button_unchecked</i>
+                    {% endif %}
+                    {% if rec.rec_diff == 'Hard' %}
+                    <i class="material-icons db-recipe-item">radio_button_checked</i>
+                    <i class="material-icons db-recipe-item">radio_button_checked</i>
+                    <i class="material-icons db-recipe-item">radio_button_checked</i>
+                    {% endif %}
+                </div>
+                <div class="col s4 right db-recipe-spec">
+                    <i class="material-icons db-recipe-item">timer</i>
+                    {{rec.rec_time_h}}h {{rec.rec_time_m}}min
+                </div>
+            </div>
+        </a>
+
+        {% endif %}
+
+    {% endfor %}
 
     {% endblock %}

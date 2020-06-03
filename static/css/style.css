@@ -79,7 +79,7 @@ ul li .left:hover {
     }
 }
 nav ul a:hover {
-    background-color: #F67E69 !important;
+    background-color: transparent !important;
 }
 
 .dropdown-content li:hover {
@@ -111,14 +111,12 @@ main {
     margin-top: 0;
     margin-bottom: 8px;
     width: 100%;
-    font-size: 1.8em;
+    font-size: 1.7em;
 }
 
 .block-headban {
     background-color: #8DAAA6;
     width: 100%;
-    margin-top: 4px;
-    margin-bottom: 4px;
 }
 
 .headban-head {
@@ -126,8 +124,9 @@ main {
     text-align: center;
     color: #F7F3E0;
     font-size: 1.3em;
-    margin: 0;
+    letter-spacing: 1px;
     padding: 4px;
+    margin: 0;
 }
 
 .content {
@@ -165,15 +164,36 @@ main {
 
 /*    --------    Index    --------    */
 
+.index-row {
+    margin-bottom: 27px !important;
+    margin-top: 27px;
+}
+
+@media (min-width: 602px) {
+    .index-row {
+        margin-bottom: 18px !important;
+        margin-top: 27px;
+    }
+}
+
 .index-head {
     text-align: center;
     width: 100vw;
     padding: 24px;
 }
 
+.headban-index {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
 .index-p {
     margin: 0px;
     text-align: justify;
+}
+
+#index-bread-img {
+    padding: 0px;
 }
 
 /*    --------    Recipe Database    --------    */
@@ -207,3 +227,42 @@ main {
 .td-drop {
     background-color: #8DAAA6;
 }
+
+.headban-db {
+    margin: 0px;
+}
+
+.s12 .db-list-item {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    padding-bottom: 4px;
+    border-bottom: solid 2px #8DAAA6;
+}
+
+.db-recipe-name {
+    font-family: 'Anton', sans-serif;
+    color: #8DAAA6;
+    margin-top: 7px;
+    margin-bottom: 0px;
+}
+
+.db-recipe-spec {
+    padding: 0 !important;
+    font-size: 16px;
+    color: #424242;
+}
+
+.db-recipe-item {
+    transform: translateY(6px);
+}
+
+.right.db-recipe-spec {
+    text-align: right;
+}
+
+
+
+
+
+
+

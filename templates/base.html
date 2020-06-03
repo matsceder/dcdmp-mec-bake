@@ -21,8 +21,8 @@
     <header>
         <ul id="dropdown1" class="dropdown-content navdrop">
             <li><a href="{{ url_for('index') }}">Home</a></li>
-            <li><a href="{{ url_for('recipe_db') }}">Bread Recipes</a></li>
-            <li><a href="{{ url_for('recipe_db') }}">Cake Recipes</a></li>
+            <li><a href="{{ url_for('recipe_db_t_d', type_r='Bread', diff_r='0') }}">Bread Recipes</a></li>
+            <li><a href="{{ url_for('recipe_db_t_d', type_r='Cake', diff_r='0') }}">Cake Recipes</a></li>
         </ul>
         <nav>
             <div class="nav-wrapper">
