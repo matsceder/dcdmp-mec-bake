@@ -260,6 +260,19 @@ main {
     }
 }
 
+.td-btn:hover,
+.td-btn:active,
+.td-btn:focus {
+    background-color: #8DAAA6;
+    color: #F7F3E0;
+    font-family: 'Anton', sans-serif;
+    font-size: 20px;
+    text-transform: none;
+    letter-spacing: 1px;
+    border-radius: 0px;
+    box-shadow: 0px 0px 0px;
+}
+
 .td-drop {
     background-color: #8DAAA6;
 }
