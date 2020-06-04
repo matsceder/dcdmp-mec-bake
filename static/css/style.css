@@ -307,6 +307,20 @@ a:active, a:hover>div>h5 {
     margin-bottom: 5px;
 }
 
+.rec-view-info>.col {
+    padding: 0px 0px !important;
+}
+
+.rv-info-col {
+    text-align: right;
+}
+
+.type-icon {
+    font-size: xx-large;
+    transform: translateY(15%);
+    color: rgba(0,0,0,0.2);
+}
+
 .collapse-view {
     margin: 0px !important;
     border: 0 !important;

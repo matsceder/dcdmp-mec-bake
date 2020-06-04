@@ -48,6 +48,19 @@
             <i class="material-icons db-recipe-item">timer</i>
             {{recipe.rec_time_h}}h {{recipe.rec_time_m}}min
         </div>
+        <div class="rec-view-info">
+            <div class="col s6">
+                Author: {{recipe.rec_aut}}<br>
+                Servings: {{recipe.rec_serve}}
+            </div>
+            <div class="col s6 rv-info-col">
+                {% if recipe.rec_type == 'Bread' %}
+                    <i class="fas fa-bread-slice type-icon"></i>
+                {% elif recipe.rec_type == 'Cake' %}
+                    <i class="fas fa-cheese type-icon"></i>
+                {% endif %}
+            </div>
+        </div>
     </div>
 
     <ul class="collapsible collapse-view" data-collapsible="accordion">
@@ -251,98 +264,6 @@
         </li>
         {% endif %}
     </ul>
-
-
-    {{recipe.rec_name}}
-
-    {{recipe.rec_aut}}
-    
-    {{recipe.rec_type}}
-    
-    {{recipe.rec_diff}}
-    
-    {{recipe.rec_time_h}}
-    {{recipe.rec_time_m}}
-    
-    {{recipe.rec_serve}}
-
-    {{recipe.rec_ing_n1}}
-    {{recipe.rec_ing_a1}}
-    {{recipe.rec_ing_u1}}
-    
-    {{recipe.rec_ing_n2}}
-    {{recipe.rec_ing_a2}}
-    {{recipe.rec_ing_u2}}
-    
-    {{recipe.rec_ing_n3}}
-    {{recipe.rec_ing_a3}}
-    {{recipe.rec_ing_u3}}
-    
-    {{recipe.rec_ing_n4}}
-    {{recipe.rec_ing_a4}}
-    {{recipe.rec_ing_u4}}
-    
-    {{recipe.rec_ing_n5}}
-    {{recipe.rec_ing_a5}}
-    {{recipe.rec_ing_u5}}
-    
-    {{recipe.rec_ing_n6}}
-    {{recipe.rec_ing_a6}}
-    {{recipe.rec_ing_u6}}
-    
-    {{recipe.rec_ing_n7}}
-    {{recipe.rec_ing_a7}}
-    {{recipe.rec_ing_u7}}
-    
-    {{recipe.rec_ing_n8}}
-    {{recipe.rec_ing_a8}}
-    {{recipe.rec_ing_u8}}
-    
-    {{recipe.rec_ing_n9}}
-    {{recipe.rec_ing_a9}}
-    {{recipe.rec_ing_u9}}
-    
-    {{recipe.rec_ing_n10}}
-    {{recipe.rec_ing_a10}}
-    {{recipe.rec_ing_u10}}
-    
-    {{recipe.rec_ing_n11}}
-    {{recipe.rec_ing_a11}}
-    {{recipe.rec_ing_u11}}
-    
-    {{recipe.rec_ing_n12}}
-    {{recipe.rec_ing_a12}}
-    {{recipe.rec_ing_u12}}
-            
-    {{recipe.rec_ing_n13}}
-    {{recipe.rec_ing_a13}}
-    {{recipe.rec_ing_u13}}
-
-    {{recipe.rec_ing_n14}}
-    {{recipe.rec_ing_a14}}
-    {{recipe.rec_ing_u14}}        
-    
-    {{recipe.rec_ing_n15}}
-    {{recipe.rec_ing_a15}}
-    {{recipe.rec_ing_u15}}
-
-    {{recipe.rec_step1}}
-    {{recipe.rec_step2}}
-    {{recipe.rec_step3}}
-    {{recipe.rec_step4}}
-    {{recipe.rec_step5}}
-    {{recipe.rec_step6}}
-    {{recipe.rec_step7}}
-    {{recipe.rec_step8}}
-    {{recipe.rec_step9}}
-    {{recipe.rec_step10}}
-    {{recipe.rec_step11}}
-    {{recipe.rec_step12}}
-    {{recipe.rec_step13}}
-    {{recipe.rec_step14}}
-    {{recipe.rec_step15}}
-
-    {{recipe.rec_pic}}
 
 {% endblock %}
 
