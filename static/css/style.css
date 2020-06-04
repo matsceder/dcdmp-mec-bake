@@ -141,7 +141,9 @@ main {
 
 @media (max-width: 600px) {
     .content {
-        width: auto !important;
+        width: -moz-available !important;
+        width: -webkit-fill-available !important;
+        width: fill-available !important;
         margin: 0px 9px !important;
         height: 65vh;
     }
@@ -218,11 +220,12 @@ main {
 }
 
 .db-row {
-    margin: 9px !important;
+    margin: 27px 9px 9px !important;
 }
 
 .head-col {
     padding: 0 !important;
+    width: fill-available !important;
 }
 
 @media (min-width: 601px) {
