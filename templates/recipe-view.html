@@ -135,22 +135,121 @@
         </li>
         <li id="view-steps">
             <div class="collapsible-header collaps-head-view">
-                <span class="col s11">Steps</span>
+                <span class="col s11">Instructions</span>
                 <i class="material-icons col s1">arrow_drop_down</i>
             </div>
             <div class="collapsible-body collaps-body-view">
-                <span>Lorem ipsum dolor sit amet.</span>
+            <table>
+                {% if recipe.rec_step1 != "" %}
+                <tr class="col s12">
+                    <td class="col s12 step-num">- Step 1 -</td>
+                    <td class="col s12 step-ins">{{recipe.rec_step1}}</td>
+                </tr>
+                {% endif %}
+                {% if recipe.rec_step2 != "" %}
+                <tr class="col s12">
+                    <td class="col s12 step-num">- Step 2 -</td>
+                    <td class="col s12 step-ins">{{recipe.rec_step2}}</td>
+                </tr>
+                {% endif %}
+                {% if recipe.rec_step3 != "" %}
+                <tr class="col s12">
+                    <td class="col s12 step-num">- Step 3 -</td>
+                    <td class="col s12 step-ins">{{recipe.rec_step3}}</td>
+                </tr>
+                {% endif %}
+                {% if recipe.rec_step4 != "" %}
+                <tr class="col s12">
+                    <td class="col s12 step-num">- Step 4 -</td>
+                    <td class="col s12 step-ins">{{recipe.rec_step4}}</td>
+                </tr>
+                {% endif %}
+                {% if recipe.rec_step5 != "" %}
+                <tr class="col s12">
+                    <td class="col s12 step-num">- Step 5 -</td>
+                    <td class="col s12 step-ins">{{recipe.rec_step5}}</td>
+                </tr>
+                {% endif %}
+                {% if recipe.rec_step6 != "" %}
+                <tr class="col s12">
+                    <td class="col s12 step-num">- Step 6 -</td>
+                    <td class="col s12 step-ins">{{recipe.rec_step6}}</td>
+                </tr>
+                {% endif %}
+                {% if recipe.rec_step7 != "" %}
+                <tr class="col s12">
+                    <td class="col s12 step-num">- Step 7 -</td>
+                    <td class="col s12 step-ins">{{recipe.rec_step7}}</td>
+                </tr>
+                {% endif %}
+                {% if recipe.rec_step8 != "" %}
+                <tr class="col s12">
+                    <td class="col s12 step-num">- Step 8 -</td>
+                    <td class="col s12 step-ins">{{recipe.rec_step8}}</td>
+                </tr>
+                {% endif %}
+                {% if recipe.rec_step9 != "" %}
+                <tr class="col s12">
+                    <td class="col s12 step-num">- Step 9 -</td>
+                    <td class="col s12 step-ins">{{recipe.rec_step9}}</td>
+                </tr>
+                {% endif %}
+                {% if recipe.rec_step10 != "" %}
+                <tr class="col s12">
+                    <td class="col s12 step-num">- Step 10 -</td>
+                    <td class="col s12 step-ins">{{recipe.rec_step10}}</td>
+                </tr>
+                {% endif %}
+                {% if recipe.rec_step11 != "" %}
+                <tr class="col s12">
+                    <td class="col s12 step-num">- Step 11 -</td>
+                    <td class="col s12 step-ins">{{recipe.rec_step11}}</td>
+                </tr>
+                {% endif %}
+                {% if recipe.rec_step12 != "" %}
+                <tr class="col s12">
+                    <td class="col s12 step-num">- Step 12 -</td>
+                    <td class="col s12 step-ins">{{recipe.rec_step12}}</td>
+                </tr>
+                {% endif %}
+                {% if recipe.rec_step13 != "" %}
+                <tr class="col s12">
+                    <td class="col s12 step-num">- Step 13 -</td>
+                    <td class="col s12 step-ins">{{recipe.rec_step13}}</td>
+                </tr>
+                {% endif %}
+                {% if recipe.rec_step14 != "" %}
+                <tr class="col s12">
+                    <td class="col s12 step-num">- Step 14 -</td>
+                    <td class="col s12 step-ins">{{recipe.rec_step14}}</td>
+                </tr>
+                {% endif %}
+                {% if recipe.rec_step15 != "" %}
+                <tr class="col s12">
+                    <td class="col s12 step-num">- Step 15 -</td>
+                    <td class="col s12 step-ins">{{recipe.rec_step15}}</td>
+                </tr>
+                {% endif %}
+            </table>
             </div>
         </li>
+        {% if recipe.rec_pic != "" %}
         <li id="view-image">
             <div class="collapsible-header collaps-head-view">
                 <span class="col s11">Image</span>
                 <i class="material-icons col s1">arrow_drop_down</i>
             </div>
             <div class="collapsible-body collaps-body-view">
-                <span>Lorem ipsum dolor sit amet.</span>
+                <table>
+                    <tr>
+                        <td class="col s12 view-img-td">
+                            <img class="view-img" src="{{recipe.rec_pic}}" alt="{{recipe.rec_name}}">
+                        </td>
+                    </tr>
+                </table>
             </div>
         </li>
+        {% endif %}
     </ul>
 
 

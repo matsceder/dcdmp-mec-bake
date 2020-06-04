@@ -300,7 +300,7 @@ a:active, a:hover>div>h5 {
     color: #424242;
 }
 
-/*    --------    Recipe Database    --------    */
+/*    --------    Recipe View    --------    */
 
 .rec-item {
     padding: 0 !important;
@@ -352,4 +352,27 @@ a:active, a:hover>div>h5 {
 td {
     font-size: 16px;
     color: #424242;
+}
+
+.step-num {
+    border-bottom: solid 2px #8DAAA6;
+    margin-bottom: 4px;
+    padding-top: 2px;
+    padding-left: 0px !important;
+    font-weight: bold;
+}
+
+.step-ins {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    text-align: justify;
+}
+
+.view-img-td {
+    padding: 8px 9px 0px 9px !important;
+}
+
+.view-img {
+    padding: 0px;
+    width: inherit;
 }
