@@ -304,15 +304,20 @@ a:active, a:hover>div>h5 {
 
 .rec-item {
     padding: 0 !important;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
 }
 
-.rec-view-info>.col {
+.rec-view-info {
     padding: 0px 0px !important;
+    font-size: 16px;
 }
 
 .rv-info-col {
     text-align: right;
+}
+
+.rvi-serve {
+    transform: translateY(-10px);
 }
 
 .type-icon {
@@ -328,6 +333,10 @@ a:active, a:hover>div>h5 {
     box-shadow: 0 0px 0px 0px rgba(0,0,0,0.0) !important; 
 }
 
+.collapse-view>li {
+    margin-bottom: 9px;
+}
+
 .collaps-head-view {
     background-color: #8DAAA6;
     color: #F7F3E0;
@@ -336,12 +345,18 @@ a:active, a:hover>div>h5 {
     text-transform: none;
     letter-spacing: 1px;
     padding: 4px;
-    margin-top: 5px;
+    margin-top: 0px;
     border: 0px;
 }
 
 .collaps-head-view>i {
-    transform: translateY(2px);
+    transform: translateY(4px);
+}
+
+@media (min-width: 601px) {
+    .collaps-head-view>i {
+        margin-right: -7px;
+    }
 }
 
 .active>i {
@@ -390,3 +405,33 @@ td {
     padding: 0px;
     width: inherit;
 }
+
+.ed-btn {
+    background-color: #F7F3E0;
+    color: #8DAAA6;
+    font-family: 'Anton', sans-serif;
+    font-size: 20px;
+    text-transform: none;
+    letter-spacing: 1px;
+    border: solid 2px #8DAAA6;
+    border-radius: 0px;
+    box-shadow: 0px 0px 0px;
+    width: 48%;
+}
+
+.e-btn {
+    margin-right: 4px;
+}
+
+.d-btn {
+    margin-left: 4px;
+}
+
+.ed-icon {
+    margin-left: 5px;
+    transform: translateY(-2px)
+}
+
+
+
+

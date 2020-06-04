@@ -48,18 +48,18 @@
             <i class="material-icons db-recipe-item">timer</i>
             {{recipe.rec_time_h}}h {{recipe.rec_time_m}}min
         </div>
-        <div class="rec-view-info">
-            <div class="col s6">
-                Author: {{recipe.rec_aut}}<br>
-                Servings: {{recipe.rec_serve}}
-            </div>
-            <div class="col s6 rv-info-col">
-                {% if recipe.rec_type == 'Bread' %}
-                    <i class="fas fa-bread-slice type-icon"></i>
-                {% elif recipe.rec_type == 'Cake' %}
-                    <i class="fas fa-cheese type-icon"></i>
-                {% endif %}
-            </div>
+        <div class="col s6 rec-view-info">
+            Author: {{recipe.rec_aut}}
+        </div>
+        <div class="col s6 rec-view-info rv-info-col">
+            {% if recipe.rec_type == 'Bread' %}
+                <i class="fas fa-bread-slice type-icon"></i>
+            {% elif recipe.rec_type == 'Cake' %}
+                <i class="fas fa-cheese type-icon"></i>
+            {% endif %}
+        </div>
+        <div class="col s6 rec-view-info rvi-serve">
+            Servings: {{recipe.rec_serve}}
         </div>
     </div>
 
@@ -73,74 +73,74 @@
                 <table>
                     {% if recipe.rec_ing_n1 != "" %}
                     <tr>
-                        <td class="col s3 td-amount">{{recipe.rec_ing_a1}}&nbsp;{{recipe.rec_ing_u1}}&nbsp;&nbsp;-</td>
-                        <td class="col s9 td-ing">{{recipe.rec_ing_n1}}</td>
+                        <td class="col s3 m2 td-amount">{{recipe.rec_ing_a1}}&nbsp;{{recipe.rec_ing_u1}}&nbsp;&nbsp;-</td>
+                        <td class="col s9 m4 td-ing">{{recipe.rec_ing_n1}}</td>
                     </tr>
                     {% endif %}
                     {% if recipe.rec_ing_n2 != "" %}
                     <tr>
-                        <td class="col s3 td-amount">{{recipe.rec_ing_a2}}&nbsp;{{recipe.rec_ing_u2}}&nbsp;&nbsp;-</td>
-                        <td class="col s9 td-ing">{{recipe.rec_ing_n2}}</td>
+                        <td class="col s3 m2 td-amount">{{recipe.rec_ing_a2}}&nbsp;{{recipe.rec_ing_u2}}&nbsp;&nbsp;-</td>
+                        <td class="col s9 m4 td-ing">{{recipe.rec_ing_n2}}</td>
                     </tr>
                     {% endif %}
                     {% if recipe.rec_ing_n3 != "" %}
                     <tr>
-                        <td class="col s3 td-amount">{{recipe.rec_ing_a3}}&nbsp;{{recipe.rec_ing_u3}}&nbsp;&nbsp;-</td>
-                        <td class="col s9 td-ing">{{recipe.rec_ing_n3}}</td>
+                        <td class="col s3 m2 td-amount">{{recipe.rec_ing_a3}}&nbsp;{{recipe.rec_ing_u3}}&nbsp;&nbsp;-</td>
+                        <td class="col s9 m4 td-ing">{{recipe.rec_ing_n3}}</td>
                     </tr>
                     {% endif %}
                     {% if recipe.rec_ing_n4 != "" %}
                     <tr>
-                        <td class="col s3 td-amount">{{recipe.rec_ing_a4}}&nbsp;{{recipe.rec_ing_u4}}&nbsp;&nbsp;-</td>
-                        <td class="col s9 td-ing">{{recipe.rec_ing_n4}}</td>
+                        <td class="col s3 m2 td-amount">{{recipe.rec_ing_a4}}&nbsp;{{recipe.rec_ing_u4}}&nbsp;&nbsp;-</td>
+                        <td class="col s9 m4 td-ing">{{recipe.rec_ing_n4}}</td>
                     </tr>
                     {% endif %}
                     {% if recipe.rec_ing_n5 != "" %}
                     <tr>
-                        <td class="col s3 td-amount">{{recipe.rec_ing_a5}}&nbsp;{{recipe.rec_ing_u5}}&nbsp;&nbsp;-</td>
-                        <td class="col s9 td-ing">{{recipe.rec_ing_n5}}</td>
+                        <td class="col s3 m2 td-amount">{{recipe.rec_ing_a5}}&nbsp;{{recipe.rec_ing_u5}}&nbsp;&nbsp;-</td>
+                        <td class="col s9 m4 td-ing">{{recipe.rec_ing_n5}}</td>
                     </tr>
                     {% endif %}
                     {% if recipe.rec_ing_n6 != "" %}
                     <tr>
-                        <td class="col s3 td-amount">{{recipe.rec_ing_a6}}&nbsp;{{recipe.rec_ing_u6}}&nbsp;&nbsp;-</td>
-                        <td class="col s9 td-ing">{{recipe.rec_ing_n6}}</td>
+                        <td class="col s3 m2 td-amount">{{recipe.rec_ing_a6}}&nbsp;{{recipe.rec_ing_u6}}&nbsp;&nbsp;-</td>
+                        <td class="col s9 m4 td-ing">{{recipe.rec_ing_n6}}</td>
                     </tr>
                     {% endif %}
                     {% if recipe.rec_ing_n7 != "" %}
                     <tr>
-                        <td class="col s3 td-amount">{{recipe.rec_ing_a7}}&nbsp;{{recipe.rec_ing_u7}}&nbsp;&nbsp;-</td>
-                        <td class="col s9 td-ing">{{recipe.rec_ing_n7}}</td>
+                        <td class="col s3 m2 td-amount">{{recipe.rec_ing_a7}}&nbsp;{{recipe.rec_ing_u7}}&nbsp;&nbsp;-</td>
+                        <td class="col s9 m4 td-ing">{{recipe.rec_ing_n7}}</td>
                     </tr>
                     {% endif %}
                     {% if recipe.rec_ing_n8 != "" %}
                     <tr>
-                        <td class="col s3 td-amount">{{recipe.rec_ing_a8}}&nbsp;{{recipe.rec_ing_u8}}&nbsp;&nbsp;-</td>
-                        <td class="col s9 td-ing">{{recipe.rec_ing_n8}}</td>
+                        <td class="col s3 m2 td-amount">{{recipe.rec_ing_a8}}&nbsp;{{recipe.rec_ing_u8}}&nbsp;&nbsp;-</td>
+                        <td class="col s9 m4 td-ing">{{recipe.rec_ing_n8}}</td>
                     </tr>
                     {% endif %}
                     {% if recipe.rec_ing_n9 != "" %}
                     <tr>
-                        <td class="col s3 td-amount">{{recipe.rec_ing_a9}}&nbsp;{{recipe.rec_ing_u9}}&nbsp;&nbsp;-</td>
-                        <td class="col s9 td-ing">{{recipe.rec_ing_n9}}</td>
+                        <td class="col s3 m2 td-amount">{{recipe.rec_ing_a9}}&nbsp;{{recipe.rec_ing_u9}}&nbsp;&nbsp;-</td>
+                        <td class="col s9 m4 td-ing">{{recipe.rec_ing_n9}}</td>
                     </tr>
                     {% endif %}
                     {% if recipe.rec_ing_n10 != "" %}
                     <tr>
-                        <td class="col s3 td-amount">{{recipe.rec_ing_a10}}&nbsp;{{recipe.rec_ing_u10}}&nbsp;&nbsp;-</td>
-                        <td class="col s9 td-ing">{{recipe.rec_ing_n10}}</td>
+                        <td class="col s3 m2 td-amount">{{recipe.rec_ing_a10}}&nbsp;{{recipe.rec_ing_u10}}&nbsp;&nbsp;-</td>
+                        <td class="col s9 m4 td-ing">{{recipe.rec_ing_n10}}</td>
                     </tr>
                     {% endif %}
                     {% if recipe.rec_ing_n11 != "" %}
                     <tr>
-                        <td class="col s3 td-amount">{{recipe.rec_ing_a11}}&nbsp;{{recipe.rec_ing_u11}}&nbsp;&nbsp;-</td>
-                        <td class="col s9 td-ing">{{recipe.rec_ing_n11}}</td>
+                        <td class="col s3 m2 td-amount">{{recipe.rec_ing_a11}}&nbsp;{{recipe.rec_ing_u11}}&nbsp;&nbsp;-</td>
+                        <td class="col s9 m4 td-ing">{{recipe.rec_ing_n11}}</td>
                     </tr>
                     {% endif %}
                     {% if recipe.rec_ing_n12 != "" %}
                     <tr>
-                        <td class="col s3 td-amount">{{recipe.rec_ing_a12}}&nbsp;{{recipe.rec_ing_u12}}&nbsp;&nbsp;-</td>
-                        <td class="col s9 td-ing">{{recipe.rec_ing_n12}}</td>
+                        <td class="col s3 m2 td-amount">{{recipe.rec_ing_a12}}&nbsp;{{recipe.rec_ing_u12}}&nbsp;&nbsp;-</td>
+                        <td class="col s9 m4 td-ing">{{recipe.rec_ing_n12}}</td>
                     </tr>
                     {% endif %}
                 </table>
@@ -264,6 +264,9 @@
         </li>
         {% endif %}
     </ul>
+
+    <a class="ed-btn e-btn btn col m3 l3" href="#!" >Edit<i class="ed-icon far fa-edit"></i></a>
+    <a class="ed-btn d-btn btn col m3 l3 right" href="#!" >Delete<i class="ed-icon far fa-trash-alt"></i></a>
 
 {% endblock %}
 
