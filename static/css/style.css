@@ -136,19 +136,26 @@ main {
     box-sizing: border-box;
     align-self: center;
     padding: 10px !important;
+    overflow-y: auto;
 }
 
-@media (max-width: 601px) {
+@media (max-width: 600px) {
     .content {
         width: auto !important;
         margin: 0px 9px !important;
+        height: 65vh;
     }
 }
 
-@media (min-width: 602px) {
+@media (min-width: 601px) {
     .content {
-        overflow-y: auto;
         height: 75vh;
+    }
+}
+
+@media (min-width: 993px) {
+    .content {
+        height: 65vh;
     }
 }
 
@@ -176,7 +183,7 @@ main {
     margin-top: 27px;
 }
 
-@media (min-width: 602px) {
+@media (min-width: 601px) {
     .index-row {
         margin-bottom: 18px !important;
         margin-top: 27px;
@@ -206,25 +213,30 @@ main {
 /*    --------    Recipe Database    --------    */
 
 .bread-head {
-    margin-left: 9px;
-    margin-right: 9px;
+    margin: 0px;
+    padding: 0px !important;
 }
 
 .db-row {
-    margin-bottom: 9px !important;
-    margin-top: 9px;
+    margin: 9px !important;
+}
+
+.head-col {
+    padding: 0 !important;
 }
 
 @media (min-width: 601px) {
+    .bread-head {
+        padding: 0 !important;
+    }
     .db-row {
-        margin-bottom: 0px !important;
-        margin-top: 36px;
+        margin: 36px 0px 0px 0px !important;
     }
 }
 
 .button-container {
     width: auto !important;
-    margin: 0px 9px !important;
+    margin: 0 !important;
 }
 
 .td-btn {
@@ -236,11 +248,12 @@ main {
     letter-spacing: 1px;
     border-radius: 0px;
     box-shadow: 0px 0px 0px;
+    float: right !important;
 }
 
-@media (max-width: 601px) {
+@media only screen and (min-width: 993px) {
     .td-btn {
-        float: right !important;
+        margin-left: 9px !important;
     }
 }
 
@@ -280,7 +293,9 @@ main {
     text-align: right;
 }
 
-
+a:active, a:hover>div>h5 {
+    color: #424242;
+}
 
 
 
