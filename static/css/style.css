@@ -423,6 +423,12 @@ td {
     margin-right: 4px;
 }
 
+@media {
+    .e-btn {
+        margin-right: 9px;
+    }
+}
+
 .d-btn {
     margin-left: 4px;
 }

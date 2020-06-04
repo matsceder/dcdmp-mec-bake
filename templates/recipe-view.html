@@ -15,9 +15,11 @@
 
 <div class="row db-row">
     <div class="head-col col s12 m10 offset-m1 l8 offset-l2">
-        <div class="bread-head col s12 m10 l8">
+        <div class="bread-head col s12 m5 l4">
             <h4 class="page-head">{{recipe.rec_name}}</h4>
         </div>
+        <a class="ed-btn d-btn btn col m2 right" href="{{ url_for('delete_recipe', recipe_id=recipe._id)}}" >Delete<i class="ed-icon far fa-trash-alt"></i></a>
+        <a class="ed-btn e-btn btn col m2 right" href="{{ url_for('update_recipe', recipe_id=recipe._id)}}" >Edit<i class="ed-icon far fa-edit"></i></a>
     </div>
 </div>
 
@@ -265,8 +267,8 @@
         {% endif %}
     </ul>
 
-    <a class="ed-btn e-btn btn col m3 l3" href="#!" >Edit<i class="ed-icon far fa-edit"></i></a>
-    <a class="ed-btn d-btn btn col m3 l3 right" href="#!" >Delete<i class="ed-icon far fa-trash-alt"></i></a>
+    <a class="ed-btn e-btn btn col hide-on-med-and-up" href="{{ url_for('update_recipe', recipe_id=recipe._id)}}" >Edit<i class="ed-icon far fa-edit"></i></a>
+    <a class="ed-btn d-btn btn col hide-on-med-and-up right" href="{{ url_for('delete_recipe', recipe_id=recipe._id)}}" >Delete<i class="ed-icon far fa-trash-alt"></i></a>
 
 {% endblock %}
 
