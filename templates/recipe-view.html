@@ -1,110 +1,250 @@
 {% extends 'base.html' %}
 
-    {% block head %}
-    {% endblock %}
+{% block head %}
+{% endblock %}
 
-    {% block title %}
-        Recipe view
-    {% endblock %}
+{% block title %}
+{{recipe.rec_name}}
+{% endblock %}
 
-    {% block navback %}
-    <a href="#" onclick="history.go(-1)" class="left hide-on-med-and-down"><i class="material-icons">arrow_back</i></a>
-    {% endblock %}
+{% block navback %}
+<li><a href="#" onclick="history.go(-1)" class="left"><i class="material-icons">arrow_back</i></a></li>
+{% endblock %}
 
-    {% block content %}
+{% block mainhead %}
+
+<div class="row db-row">
+    <div class="head-col col s12 m10 offset-m1 l8 offset-l2">
+        <div class="bread-head col s12 m10 l8">
+            <h4 class="page-head">{{recipe.rec_name}}</h4>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="col s12 rec-item">
+        <div class="col s8 left db-recipe-spec">
+            Difficulty
+            {% if recipe.rec_diff == 'Easy' %}
+            <i class="material-icons db-recipe-item">radio_button_checked</i>
+            <i class="material-icons db-recipe-item">radio_button_unchecked</i>
+            <i class="material-icons db-recipe-item">radio_button_unchecked</i>
+            {% endif %}
+            {% if recipe.rec_diff == 'Medium' %}
+            <i class="material-icons db-recipe-item">radio_button_checked</i>
+            <i class="material-icons db-recipe-item">radio_button_checked</i>
+            <i class="material-icons db-recipe-item">radio_button_unchecked</i>
+            {% endif %}
+            {% if recipe.rec_diff == 'Hard' %}
+            <i class="material-icons db-recipe-item">radio_button_checked</i>
+            <i class="material-icons db-recipe-item">radio_button_checked</i>
+            <i class="material-icons db-recipe-item">radio_button_checked</i>
+            {% endif %}
+        </div>
+        <div class="col s4 right db-recipe-spec">
+            <i class="material-icons db-recipe-item">timer</i>
+            {{recipe.rec_time_h}}h {{recipe.rec_time_m}}min
+        </div>
+    </div>
+
+    <ul class="collapsible collapse-view" data-collapsible="accordion">
+        <li id="view-ingredients">
+            <div class="collapsible-header collaps-head-view active">
+                <span class="col s11">Ingredients</span>
+                <i class="material-icons arrow-d col s1">arrow_drop_down</i>
+            </div>
+            <div class="collapsible-body collaps-body-view">
+                <table>
+                    {% if recipe.rec_ing_n1 != "" %}
+                    <tr>
+                        <td class="col s3 td-amount">{{recipe.rec_ing_a1}}&nbsp;{{recipe.rec_ing_u1}}&nbsp;&nbsp;-</td>
+                        <td class="col s9 td-ing">{{recipe.rec_ing_n1}}</td>
+                    </tr>
+                    {% endif %}
+                    {% if recipe.rec_ing_n2 != "" %}
+                    <tr>
+                        <td class="col s3 td-amount">{{recipe.rec_ing_a2}}&nbsp;{{recipe.rec_ing_u2}}&nbsp;&nbsp;-</td>
+                        <td class="col s9 td-ing">{{recipe.rec_ing_n2}}</td>
+                    </tr>
+                    {% endif %}
+                    {% if recipe.rec_ing_n3 != "" %}
+                    <tr>
+                        <td class="col s3 td-amount">{{recipe.rec_ing_a3}}&nbsp;{{recipe.rec_ing_u3}}&nbsp;&nbsp;-</td>
+                        <td class="col s9 td-ing">{{recipe.rec_ing_n3}}</td>
+                    </tr>
+                    {% endif %}
+                    {% if recipe.rec_ing_n4 != "" %}
+                    <tr>
+                        <td class="col s3 td-amount">{{recipe.rec_ing_a4}}&nbsp;{{recipe.rec_ing_u4}}&nbsp;&nbsp;-</td>
+                        <td class="col s9 td-ing">{{recipe.rec_ing_n4}}</td>
+                    </tr>
+                    {% endif %}
+                    {% if recipe.rec_ing_n5 != "" %}
+                    <tr>
+                        <td class="col s3 td-amount">{{recipe.rec_ing_a5}}&nbsp;{{recipe.rec_ing_u5}}&nbsp;&nbsp;-</td>
+                        <td class="col s9 td-ing">{{recipe.rec_ing_n5}}</td>
+                    </tr>
+                    {% endif %}
+                    {% if recipe.rec_ing_n6 != "" %}
+                    <tr>
+                        <td class="col s3 td-amount">{{recipe.rec_ing_a6}}&nbsp;{{recipe.rec_ing_u6}}&nbsp;&nbsp;-</td>
+                        <td class="col s9 td-ing">{{recipe.rec_ing_n6}}</td>
+                    </tr>
+                    {% endif %}
+                    {% if recipe.rec_ing_n7 != "" %}
+                    <tr>
+                        <td class="col s3 td-amount">{{recipe.rec_ing_a7}}&nbsp;{{recipe.rec_ing_u7}}&nbsp;&nbsp;-</td>
+                        <td class="col s9 td-ing">{{recipe.rec_ing_n7}}</td>
+                    </tr>
+                    {% endif %}
+                    {% if recipe.rec_ing_n8 != "" %}
+                    <tr>
+                        <td class="col s3 td-amount">{{recipe.rec_ing_a8}}&nbsp;{{recipe.rec_ing_u8}}&nbsp;&nbsp;-</td>
+                        <td class="col s9 td-ing">{{recipe.rec_ing_n8}}</td>
+                    </tr>
+                    {% endif %}
+                    {% if recipe.rec_ing_n9 != "" %}
+                    <tr>
+                        <td class="col s3 td-amount">{{recipe.rec_ing_a9}}&nbsp;{{recipe.rec_ing_u9}}&nbsp;&nbsp;-</td>
+                        <td class="col s9 td-ing">{{recipe.rec_ing_n9}}</td>
+                    </tr>
+                    {% endif %}
+                    {% if recipe.rec_ing_n10 != "" %}
+                    <tr>
+                        <td class="col s3 td-amount">{{recipe.rec_ing_a10}}&nbsp;{{recipe.rec_ing_u10}}&nbsp;&nbsp;-</td>
+                        <td class="col s9 td-ing">{{recipe.rec_ing_n10}}</td>
+                    </tr>
+                    {% endif %}
+                    {% if recipe.rec_ing_n11 != "" %}
+                    <tr>
+                        <td class="col s3 td-amount">{{recipe.rec_ing_a11}}&nbsp;{{recipe.rec_ing_u11}}&nbsp;&nbsp;-</td>
+                        <td class="col s9 td-ing">{{recipe.rec_ing_n11}}</td>
+                    </tr>
+                    {% endif %}
+                    {% if recipe.rec_ing_n12 != "" %}
+                    <tr>
+                        <td class="col s3 td-amount">{{recipe.rec_ing_a12}}&nbsp;{{recipe.rec_ing_u12}}&nbsp;&nbsp;-</td>
+                        <td class="col s9 td-ing">{{recipe.rec_ing_n12}}</td>
+                    </tr>
+                    {% endif %}
+                </table>
+            </div>
+        </li>
+        <li id="view-steps">
+            <div class="collapsible-header collaps-head-view">
+                <span class="col s11">Steps</span>
+                <i class="material-icons col s1">arrow_drop_down</i>
+            </div>
+            <div class="collapsible-body collaps-body-view">
+                <span>Lorem ipsum dolor sit amet.</span>
+            </div>
+        </li>
+        <li id="view-image">
+            <div class="collapsible-header collaps-head-view">
+                <span class="col s11">Image</span>
+                <i class="material-icons col s1">arrow_drop_down</i>
+            </div>
+            <div class="collapsible-body collaps-body-view">
+                <span>Lorem ipsum dolor sit amet.</span>
+            </div>
+        </li>
+    </ul>
 
 
-        {{recipe.rec_name}}
+    {{recipe.rec_name}}
 
-        {{recipe.rec_aut}}
-        
-        {{recipe.rec_type}}
-        
-        {{recipe.rec_diff}}
-        
-        {{recipe.rec_time_h}}
-        {{recipe.rec_time_m}}
-        
-        {{recipe.rec_serve}}
+    {{recipe.rec_aut}}
+    
+    {{recipe.rec_type}}
+    
+    {{recipe.rec_diff}}
+    
+    {{recipe.rec_time_h}}
+    {{recipe.rec_time_m}}
+    
+    {{recipe.rec_serve}}
 
-        {{recipe.rec_ing_n1}}
-        {{recipe.rec_ing_a1}}
-        {{recipe.rec_ing_u1}}
-        
-        {{recipe.rec_ing_n2}}
-        {{recipe.rec_ing_a2}}
-        {{recipe.rec_ing_u2}}
-        
-        {{recipe.rec_ing_n3}}
-        {{recipe.rec_ing_a3}}
-        {{recipe.rec_ing_u3}}
-        
-        {{recipe.rec_ing_n4}}
-        {{recipe.rec_ing_a4}}
-        {{recipe.rec_ing_u4}}
-        
-        {{recipe.rec_ing_n5}}
-        {{recipe.rec_ing_a5}}
-        {{recipe.rec_ing_u5}}
-        
-        {{recipe.rec_ing_n6}}
-        {{recipe.rec_ing_a6}}
-        {{recipe.rec_ing_u6}}
-        
-        {{recipe.rec_ing_n7}}
-        {{recipe.rec_ing_a7}}
-        {{recipe.rec_ing_u7}}
-        
-        {{recipe.rec_ing_n8}}
-        {{recipe.rec_ing_a8}}
-        {{recipe.rec_ing_u8}}
-        
-        {{recipe.rec_ing_n9}}
-        {{recipe.rec_ing_a9}}
-        {{recipe.rec_ing_u9}}
-        
-        {{recipe.rec_ing_n10}}
-        {{recipe.rec_ing_a10}}
-        {{recipe.rec_ing_u10}}
-        
-        {{recipe.rec_ing_n11}}
-        {{recipe.rec_ing_a11}}
-        {{recipe.rec_ing_u11}}
-        
-        {{recipe.rec_ing_n12}}
-        {{recipe.rec_ing_a12}}
-        {{recipe.rec_ing_u12}}
-                
-        {{recipe.rec_ing_n13}}
-        {{recipe.rec_ing_a13}}
-        {{recipe.rec_ing_u13}}
+    {{recipe.rec_ing_n1}}
+    {{recipe.rec_ing_a1}}
+    {{recipe.rec_ing_u1}}
+    
+    {{recipe.rec_ing_n2}}
+    {{recipe.rec_ing_a2}}
+    {{recipe.rec_ing_u2}}
+    
+    {{recipe.rec_ing_n3}}
+    {{recipe.rec_ing_a3}}
+    {{recipe.rec_ing_u3}}
+    
+    {{recipe.rec_ing_n4}}
+    {{recipe.rec_ing_a4}}
+    {{recipe.rec_ing_u4}}
+    
+    {{recipe.rec_ing_n5}}
+    {{recipe.rec_ing_a5}}
+    {{recipe.rec_ing_u5}}
+    
+    {{recipe.rec_ing_n6}}
+    {{recipe.rec_ing_a6}}
+    {{recipe.rec_ing_u6}}
+    
+    {{recipe.rec_ing_n7}}
+    {{recipe.rec_ing_a7}}
+    {{recipe.rec_ing_u7}}
+    
+    {{recipe.rec_ing_n8}}
+    {{recipe.rec_ing_a8}}
+    {{recipe.rec_ing_u8}}
+    
+    {{recipe.rec_ing_n9}}
+    {{recipe.rec_ing_a9}}
+    {{recipe.rec_ing_u9}}
+    
+    {{recipe.rec_ing_n10}}
+    {{recipe.rec_ing_a10}}
+    {{recipe.rec_ing_u10}}
+    
+    {{recipe.rec_ing_n11}}
+    {{recipe.rec_ing_a11}}
+    {{recipe.rec_ing_u11}}
+    
+    {{recipe.rec_ing_n12}}
+    {{recipe.rec_ing_a12}}
+    {{recipe.rec_ing_u12}}
+            
+    {{recipe.rec_ing_n13}}
+    {{recipe.rec_ing_a13}}
+    {{recipe.rec_ing_u13}}
 
-        {{recipe.rec_ing_n14}}
-        {{recipe.rec_ing_a14}}
-        {{recipe.rec_ing_u14}}        
-        
-        {{recipe.rec_ing_n15}}
-        {{recipe.rec_ing_a15}}
-        {{recipe.rec_ing_u15}}
+    {{recipe.rec_ing_n14}}
+    {{recipe.rec_ing_a14}}
+    {{recipe.rec_ing_u14}}        
+    
+    {{recipe.rec_ing_n15}}
+    {{recipe.rec_ing_a15}}
+    {{recipe.rec_ing_u15}}
 
-        {{recipe.rec_step1}}
-        {{recipe.rec_step2}}
-        {{recipe.rec_step3}}
-        {{recipe.rec_step4}}
-        {{recipe.rec_step5}}
-        {{recipe.rec_step6}}
-        {{recipe.rec_step7}}
-        {{recipe.rec_step8}}
-        {{recipe.rec_step9}}
-        {{recipe.rec_step10}}
-        {{recipe.rec_step11}}
-        {{recipe.rec_step12}}
-        {{recipe.rec_step13}}
-        {{recipe.rec_step14}}
-        {{recipe.rec_step15}}
+    {{recipe.rec_step1}}
+    {{recipe.rec_step2}}
+    {{recipe.rec_step3}}
+    {{recipe.rec_step4}}
+    {{recipe.rec_step5}}
+    {{recipe.rec_step6}}
+    {{recipe.rec_step7}}
+    {{recipe.rec_step8}}
+    {{recipe.rec_step9}}
+    {{recipe.rec_step10}}
+    {{recipe.rec_step11}}
+    {{recipe.rec_step12}}
+    {{recipe.rec_step13}}
+    {{recipe.rec_step14}}
+    {{recipe.rec_step15}}
 
-        {{recipe.rec_pic}}
+    {{recipe.rec_pic}}
+
+{% endblock %}
 
 
-    {% endblock %}
- 

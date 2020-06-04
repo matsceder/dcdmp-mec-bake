@@ -300,7 +300,56 @@ a:active, a:hover>div>h5 {
     color: #424242;
 }
 
+/*    --------    Recipe Database    --------    */
 
+.rec-item {
+    padding: 0 !important;
+    margin-bottom: 5px;
+}
 
+.collapse-view {
+    margin: 0px !important;
+    border: 0 !important;
+    -webkit-box-shadow: 0 0px 0px 0px rgba(0,0,0,0.0) !important;
+    box-shadow: 0 0px 0px 0px rgba(0,0,0,0.0) !important; 
+}
 
+.collaps-head-view {
+    background-color: #8DAAA6;
+    color: #F7F3E0;
+    font-family: 'Anton', sans-serif;
+    font-size: 20px;
+    text-transform: none;
+    letter-spacing: 1px;
+    padding: 4px;
+    margin-top: 5px;
+    border: 0px;
+}
 
+.collaps-head-view>i {
+    transform: translateY(2px);
+}
+
+.active>i {
+    transform: rotateX(180deg) translateY(4px);
+}
+
+.collaps-body-view {
+    border: solid 2px #8DAAA6;
+    transform: translateY(-1px);
+    padding: 4px 1px 4px 1px;
+}
+
+.td-ing {
+    padding: 0px 4px !important;
+}
+
+.td-amount {
+    padding: 0px 2px 0px 0px !important;
+    text-align: right;
+}
+
+td {
+    font-size: 16px;
+    color: #424242;
+}
