@@ -451,6 +451,52 @@ td {
     transform: translateY(-2px)
 }
 
+/*    --------    Recipe New    --------    */
 
+.new-form {
+    padding: 0px !important;
+}
 
+#new-init-info {
+    margin-bottom: 0px !important;
+}
 
+.new-f-field {
+    margin: 0px;
+}
+
+input {
+    margin-bottom: 0px !important;
+}
+
+.input-field {
+    padding: 5px 0px !important;
+}
+
+.input-field>input {
+    margin-bottom: 10px !important;
+}
+
+.input-field>.select-wrapper {
+    margin-right: 4px !important;
+    margin-left: 4px !important;
+}
+
+.time-serve,
+td.input-field {
+    border: solid 4px #F7F3E0;
+}
+
+.new-ing-am {
+    left: 0 !important;
+}
+
+.collaps-instruction-view {
+    border: solid 2px #8DAAA6;
+    transform: translateY(-1px);
+    padding: 4px 1px 4px 1px;
+}
+
+td.input-field.step-ins {
+    border: 0;
+}
