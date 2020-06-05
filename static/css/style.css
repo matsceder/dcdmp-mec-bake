@@ -15,6 +15,7 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    color: #424242;
 }
 
 header {
@@ -31,6 +32,10 @@ p {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     color: #424242;
+}
+
+.caret {
+    color: #424242 !important;
 }
 
 /*    --------    Nav    --------    */
@@ -104,6 +109,10 @@ main {
     margin-bottom: 6px !important;
 }
 
+.content-row {
+    margin: 0px 9px !important;
+}
+
 .block-head {
     font-family: 'Anton', sans-serif;
     text-align: center;
@@ -130,7 +139,7 @@ main {
 }
 
 .content {
-    margin: 9px;
+    margin: 0px;
     background-color: #F7F3E0;
     border: 2px solid #8DAAA6;
     box-sizing: border-box;
@@ -144,14 +153,13 @@ main {
         width: -moz-available !important;
         width: -webkit-fill-available !important;
         width: fill-available !important;
-        margin: 0px 9px !important;
         height: 65vh;
     }
 }
 
 @media (min-width: 601px) {
     .content {
-        height: 75vh;
+        height: 75vh; 
     }
 }
 
@@ -233,7 +241,7 @@ main {
         padding: 0 !important;
     }
     .db-row {
-        margin: 36px 0px 0px 0px !important;
+        margin: 36px 9px 9px 9px !important;
     }
 }
 
@@ -277,6 +285,10 @@ main {
     background-color: #8DAAA6;
 }
 
+.td-drop>li>a:hover {
+    background-color: #7D9591 !important;
+}
+
 .headban-db {
     margin: 0px;
 }
@@ -311,6 +323,10 @@ main {
 
 a:active, a:hover>div>h5 {
     color: #424242;
+}
+
+.addnew-icon {
+    line-height: 0em !important;
 }
 
 /*    --------    Recipe View    --------    */
@@ -432,6 +448,12 @@ td {
     width: 48%;
 }
 
+.ed-btn:hover,
+.ed-btn:focus {
+    background-color: #8DAAA6 !important;
+    color: #F7F3E0 !important;
+}
+
 .e-btn {
     margin-right: 4px;
 }
@@ -467,11 +489,36 @@ td {
 
 input {
     margin-bottom: 0px !important;
+    font-size: 16px !important;
+}
+
+input:focus,
+input.valid {
+    border-bottom: 1px solid #9E9E9E !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+
+label.active {
+    color: rgba(0,0,0,0.2) !important;
 }
 
 .input-field {
     padding: 5px 0px !important;
     margin-top: 0;
+}
+
+@media (min-width: 601px) {
+    #new-init-info>.input-field {
+        padding-left: 4px !important;
+        padding-right: 4px !important;
+    }
+
+    #new-init-info>.input-field>.select-wrapper {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
 }
 
 .input-field>input {
@@ -483,13 +530,27 @@ input {
     margin-left: 4px !important;
 }
 
+.input-select>.select-wrapper>.dropdown-content {
+    background-color: #F7F3E0 !important;
+}
+
+.input-select>.select-wrapper>.dropdown-content>li>span {
+    color: #424242 !important;
+}
+
+.input-select>.select-wrapper>.dropdown-content>li>span:hover {
+    background-color: #F7F3E0 !important;
+    color: #8DAAA6 !important;
+}
+
 .time-serve,
 td.input-field {
-    border: solid 4px #F7F3E0;
+    border: solid 4px #;
 }
 
 .new-ing-am {
     left: 0 !important;
+    border: 0px 3px solid #F7F4E0
 }
 
 .collaps-instruction-view {
@@ -501,3 +562,13 @@ td.input-field {
 td.input-field.step-ins {
     border: 0;
 }
+
+.input-field>input.rec-pic {
+    margin-bottom: 0px !important;
+}
+
+.addnew-row {
+    margin: 9px !important;
+}
+
+

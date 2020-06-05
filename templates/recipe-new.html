@@ -28,15 +28,15 @@ New Recipe
 <form class="col s12 new-form" action="{{ url_for('send_new') }}" method="POST">
     <div id="new-init-info" class="row">
         <div class="input-field new-f-field col s12 m6">
-            <input id="rec_name" name="rec_name" type="text" class="validate">
+            <input id="rec_name" name="rec_name" type="text" class="validate" required>
             <label for="icon_prefix">Recipe Name</label>
         </div>
         <div class="input-field new-f-field col s12 m6">
-            <input id="rec_aut" name="rec_aut" type="text" class="validate">
+            <input id="rec_aut" name="rec_aut" type="text" class="validate" required>
             <label for="icon_prefix">Author Name</label>
         </div>
-        <div class="input-field col s6 m3">
-            <select id="rec_type" name="rec_type">
+        <div class="input-field input-select col s6 m3">
+            <select id="rec_type" name="rec_type" required>
                 <option value="" disabled selected>Types</option>
                 {% for type in recipe_type %}
                     {% if type.rec_type == '0' %}
@@ -47,8 +47,8 @@ New Recipe
             </select>
             <label>Recipe Type</label>
         </div>
-        <div class="input-field col s6 m3">
-            <select id="rec_diff" name="rec_diff">
+        <div class="input-field input-select col s6 m3">
+            <select id="rec_diff" name="rec_diff" required>
                 <option value="" disabled selected>Difficulty</option>
                 {% for diff in recipe_diff %}
                     {% if diff.rec_diff == '0' %}
@@ -59,16 +59,16 @@ New Recipe
             </select>
             <label>Difficulty level</label>
         </div>
-        <div class="input-field time-serve col s4 m2">
-            <input id="rec_time_h" name="rec_time_h" type="number" class="validate">
+        <div class="input-field input-select time-serve col s4 m2">
+            <input id="rec_time_h" name="rec_time_h" type="number" class="validate" required>
             <label for="icon_prefix">Hours</label>
         </div>
-        <div class="input-field time-serve col s4 m2">
-            <input id="rec_time_m" name="rec_time_m" type="number" min="0" max="59" class="validate">
+        <div class="input-field input-select time-serve col s4 m2">
+            <input id="rec_time_m" name="rec_time_m" type="number" min="0" max="59" class="validate" required>
             <label for="icon_prefix">Minutes</label>
         </div>
-        <div class="input-field time-serve col s4 m2">
-            <input id="rec_serve" name="rec_serve" type="number" min="0" max="59" class="validate">
+        <div class="input-field input-select time-serve col s4 m2">
+            <input id="rec_serve" name="rec_serve" type="number" min="0" max="59" class="validate" required>
             <label for="icon_prefix">Servings</label>
         </div>
     </div>
@@ -124,25 +124,23 @@ New Recipe
                     <tr class="col s12">
                         <td class="col s12 step-num">- Step {{loop.index}} -</td>
                         <td class="input-field col s12 step-ins">
-                            <input id="step{{loop.index}}" name="rec_step{{loop.index}}" type="text" placeholder="Describe step" class="validate step-text-line">
+                            <input id="step{{loop.index}}" name="rec_step{{loop.index}}" type="text" placeholder="Describe step" class="validate">
                         </td>
                     </tr>
                 {% endfor %}
                 </table>
             </div>
         </li>
-
-
         <li id="view-image">
-            <div class="collapsible-header collaps-head-view">
+            <div class="collapsible-header collaps-head-view collaps-img">
                 <span class="col s11">Image</span>
                 <i class="material-icons col s1">arrow_drop_down</i>
             </div>
             <div class="collapsible-body collaps-body-view">
                 <table>
-                    <tr>
-                        <td class="col s12 view-img-td input-field">
-                            <input id="rec_pic" name="rec_pic" type="text" class="validate">
+                    <tr class="col s12">
+                        <td class="input-field col s12 step-ins">
+                            <input id="rec_pic" name="rec_pic" type="text" class="validate rec-pic">
                             <label for="icon_prefix">Link to image</label>
                         </td>
                     </tr>
@@ -156,9 +154,7 @@ New Recipe
 <!--    Button for disabling submit from enter key press    -->
 <button type="submit" disabled style="display: none" aria-hidden="true"></button>
 
-<button class="ed-btn btn col s6 offset-s3" type="submit" name="action">Send</i>
-
-</button>
+<button class="ed-btn btn col s6 offset-s3" type="submit" name="action">Send</button>
 
 </form>
 

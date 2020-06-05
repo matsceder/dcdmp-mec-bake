@@ -196,3 +196,15 @@ Recipe Database
 {% endfor %}
 
 {% endblock %}
+
+{% block addbtn %}
+
+<div class="row addnew-row">
+    <div class="col s12">
+        <a class="ed-btn btn col s8 offset-s2 m4 offset-m4" href="{{ url_for('recipe_new') }}">Add a new recipe<i class="material-icons addnew-icon">subject</i></a>
+    </div>
+</div>
+
+{% endblock %}
+
+

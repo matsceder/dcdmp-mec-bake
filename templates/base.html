@@ -13,7 +13,7 @@
     {% block head %}
     {% endblock %}
 
-    <title>{% block title %}Index{% endblock %}</title>
+    <title>{% block title %}{% endblock %}</title>
 
 </head>
 
@@ -29,7 +29,8 @@
             <div class="nav-wrapper">
                 <a href="{{ url_for('index') }}" class="brand-logo center">Online Baking</a>
                 <ul class="left">
-                {% block navback %}{% endblock %}
+                {% block navback %}
+                {% endblock %}
                 </ul>
                 <ul class="right">
                     <li><a href="{{ url_for('recipe_db') }}" class="right hide-on-med-and-down">GO TO RECIPES</a></li>
@@ -42,18 +43,19 @@
     <main>
 
     {% block mainhead %}
-
     {% endblock %}
 
-    <div class="row">
+    <div class="row content-row">
     <div class="content col s12 m10 offset-m1 l8 offset-l2">
 
     {% block content %}
-    
     {% endblock %}
 
     </div>
     </div>
+
+    {% block addbtn %}
+    {% endblock %}
 
     </main>
 
