@@ -543,6 +543,19 @@ label.active {
     color: #8DAAA6 !important;
 }
 
+td.select-unit>.select-wrapper>.dropdown-content {
+    background-color: #F7F3E0 !important;
+}
+
+td.select-unit>.select-wrapper>.dropdown-content>li>span {
+    color: #424242 !important;
+}
+
+td.select-unit>.select-wrapper>.dropdown-content>li>span:hover {
+    background-color: #F7F3E0 !important;
+    color: #8DAAA6 !important;
+}
+
 .time-serve,
 td.input-field {
     border: solid 4px #;

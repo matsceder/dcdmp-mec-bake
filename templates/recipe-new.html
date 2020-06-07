@@ -45,7 +45,6 @@ New Recipe
                     {% endif %}
                 {% endfor %}
             </select>
-            <label>Recipe Type</label>
         </div>
         <div class="input-field input-select col s6 m3">
             <select id="rec_diff" name="rec_diff" required>
@@ -57,7 +56,6 @@ New Recipe
                     {% endif %}
                 {% endfor %}
             </select>
-            <label>Difficulty level</label>
         </div>
         <div class="input-field input-select time-serve col s4 m2">
             <input id="rec_time_h" name="rec_time_h" type="number" class="validate" required>
@@ -94,7 +92,7 @@ New Recipe
                             <input id="rec_ing_a{{loop.index}}" name="rec_ing_a{{loop.index}}" type="text" class="validate">
                             <label class="new-ing-am" for="icon_prefix">Amount</label>
                         </td>
-                        <td class="input-field col s2">
+                        <td class="input-field select-unit col s2">
                             <select id="rec_ing_u{{loop.index}}" name="rec_ing_u{{loop.index}}">
                                 <option value="" disabled selected>Unit</option>
                                 <option value="g">g</option>

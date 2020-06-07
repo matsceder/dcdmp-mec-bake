@@ -71,10 +71,12 @@ def update_recipe(recipe_id):
     the_recipe = mongo.db.recipe.find_one({"_id": ObjectId(recipe_id)})
     all_types = mongo.db.recipe_type.find()
     all_diffs = mongo.db.recipe_diff.find()
+    ing_units = mongo.db.ingredient_units.find()
     return render_template('recipe-update.html',
                             recipe=the_recipe,
                             recipe_type=all_types,
-                            recipe_diff=all_diffs)
+                            recipe_diff=all_diffs,
+                            all_units=ing_units)
 
 
 @app.route('/send_update/<recipe_id>', methods=['POST'])
