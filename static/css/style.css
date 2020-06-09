@@ -16,6 +16,7 @@ body {
     min-height: 100vh;
     flex-direction: column;
     color: #424242;
+    min-width: 375px;
 }
 
 header {
@@ -175,6 +176,15 @@ main {
     padding-top: 0px;
     background-color: #8DAAA6;
     margin-top: 9px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+@media (max-width: 375px) {
+    .page-footer {
+        position: fixed;
+    }
 }
 
 .footer {
@@ -263,7 +273,7 @@ main {
     float: right !important;
 }
 
-@media only screen and (min-width: 993px) {
+@media only screen and (min-width: 601px) {
     .td-btn {
         margin-left: 9px !important;
     }
@@ -455,6 +465,28 @@ td {
     color: #F7F3E0 !important;
 }
 
+.add-new-btn {
+    background-color: #F67E69;
+    color: #F7F3E0;
+    font-family: 'Anton', sans-serif;
+    font-size: 20px;
+    text-transform: none;
+    letter-spacing: 1px;
+    border: solid 2px #8DAAA6;
+    border-radius: 0px;
+    box-shadow: 0px 0px 0px;
+}
+
+.add-big {
+    float: center;
+}
+
+.add-new-btn:hover,
+.add-new-btn:focus {
+    background-color: #8DAAA6 !important;
+    color: #F7F3E0 !important;
+}
+
 .e-btn {
     margin-right: 4px;
 }
@@ -472,6 +504,50 @@ td {
 .ed-icon {
     margin-left: 5px;
     transform: translateY(-2px)
+}
+
+/*    --------    Modal    --------    */
+
+#delete-modal {
+    background-color: #F7F3E0;
+    top: 20% !important;
+}
+
+.modal-content {
+    text-align: center;
+    padding: 60px 24px 60px 24px !important;
+}
+
+.modal-content>h4 {
+    font-family: 'Anton', sans-serif;
+}
+
+.modal-content>a {
+    font-family: 'Anton', sans-serif;
+    font-size: 20px;
+    text-transform: none;
+    letter-spacing: 1px;
+    border: solid 2px #8DAAA6;
+    border-radius: 0px;
+    box-shadow: 0px 0px 0px;
+    margin: 0px 5px 5px 5px;
+}
+
+@media (max-width: 600px) {
+    .modal-content>a {
+        width: 45%;
+        padding: 0px 10px 0px 10px;
+    }
+}
+
+.modal-c-btn {
+    background-color: #F7F3E0;
+    color: #8DAAA6;    
+}
+
+.modal-d-btn {
+    background-color: #F67E69;
+    color: #F7F3E0;
 }
 
 /*    --------    Recipe New    --------    */
@@ -499,7 +575,6 @@ input.valid {
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
 }
-
 
 label.active {
     color: rgba(0,0,0,0.2) !important;

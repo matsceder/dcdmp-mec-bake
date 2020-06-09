@@ -52,7 +52,8 @@ Recipe Database
         </ul>
         <div class="button-container">
             <a class="dropdown-button td-btn btn col hide-on-med-and-down l3" href="#!" data-activates="dropdowntype">Type<i class="material-icons right">arrow_drop_down</i></a>
-            <a class="dropdown-button td-btn btn col s6 offset-m2 m3 l3" href="#!" data-activates="dropdowndiff">Difficulty<i class="material-icons right">arrow_drop_down</i></a>
+            <a class="dropdown-button td-btn btn col s6 m3 l3 right" href="#!" data-activates="dropdowndiff">Difficulty<i class="material-icons right">arrow_drop_down</i></a>
+            <a class="add-new-btn btn col right hide-on-small-only" href="{{ url_for('recipe_new') }}">Add<i class="material-icons addnew-icon add-icon">subject</i></a>
         </div>
     </div>
 </div>
@@ -201,7 +202,7 @@ Recipe Database
 
 <div class="row addnew-row">
     <div class="col s12">
-        <a class="ed-btn btn col s8 offset-s2 m4 offset-m4" href="{{ url_for('recipe_new') }}">Add a new recipe<i class="material-icons addnew-icon">subject</i></a>
+        <a class="add-new-btn add-big btn col s8 offset-s2 m4 offset-m4" href="{{ url_for('recipe_new') }}">Add a new recipe<i class="material-icons addnew-icon">subject</i></a>
     </div>
 </div>
 

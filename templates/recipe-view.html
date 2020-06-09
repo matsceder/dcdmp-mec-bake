@@ -18,15 +18,14 @@
         <div class="bread-head col s12 m7 l7">
             <h4 class="page-head">{{recipe.rec_name}}</h4>
         </div>
-        <a class="ed-btn d-btn btn col m2 right" href="#" >Delete<i class="ed-icon far fa-trash-alt"></i></a>
-        <a class="ed-btn e-btn btn col m2 right" href="{{ url_for('update_recipe', recipe_id=recipe._id)}}" >Edit<i class="ed-icon far fa-edit"></i></a>
+        <a class="ed-btn d-btn btn col m2 right hide-on-small-only modal-trigger" href="#delete-modal">Delete<i class="ed-icon far fa-trash-alt"></i></a>
+        <a class="ed-btn e-btn btn col m2 right hide-on-small-only" href="{{ url_for('update_recipe', recipe_id=recipe._id)}}" >Edit<i class="ed-icon far fa-edit"></i></a>
     </div>
 </div>
 
 {% endblock %}
 
 {% block content %}
-
     <div class="col s12 rec-item">
         <div class="col s8 left db-recipe-spec">
             Difficulty
@@ -268,7 +267,7 @@
     </ul>
 
     <a class="ed-btn e-btn btn col hide-on-med-and-up" href="{{ url_for('update_recipe', recipe_id=recipe._id)}}" >Edit<i class="ed-icon far fa-edit"></i></a>
-    <a class="ed-btn d-btn btn col hide-on-med-and-up right" href="{{ url_for('delete_recipe', recipe_id=recipe._id)}}" >Delete<i class="ed-icon far fa-trash-alt"></i></a>
+    <a class="ed-btn d-btn btn col hide-on-med-and-up right modal-trigger" href="#delete-modal">Delete<i class="ed-icon far fa-trash-alt"></i></a>
 
 {% endblock %}
 
