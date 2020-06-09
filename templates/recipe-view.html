@@ -26,6 +26,18 @@
 {% endblock %}
 
 {% block content %}
+
+<div class="row content-row">
+    <div id="delete-modal" class="modal">
+        <div class="modal-content">
+            <h4>Are you sure you want to delete this recipe?</h4>
+            <p>When the recipe has been deleted there is no way to get it back</p>
+            <a href="#!" class="modal-close modal-c-btn btn">Back <i class="material-icons">clear</i></a>
+            <a href="{{ url_for('delete_recipe', recipe_id=recipe._id)}}" class="modal-close modal-d-btn btn">Delete <i class="ed-icon far fa-trash-alt"></i></a>
+        </div>
+    </div>
+<div class="content content-of col s12 m10 offset-m1 l8 offset-l2">
+
     <div class="col s12 rec-item">
         <div class="col s8 left db-recipe-spec">
             Difficulty
@@ -269,6 +281,7 @@
     <a class="ed-btn e-btn btn col hide-on-med-and-up" href="{{ url_for('update_recipe', recipe_id=recipe._id)}}" >Edit<i class="ed-icon far fa-edit"></i></a>
     <a class="ed-btn d-btn btn col hide-on-med-and-up right modal-trigger" href="#delete-modal">Delete<i class="ed-icon far fa-trash-alt"></i></a>
 
+</div>
+</div>
+
 {% endblock %}
-
-

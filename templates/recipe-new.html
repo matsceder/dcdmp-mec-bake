@@ -25,6 +25,9 @@ New Recipe
 
 {% block content %}
 
+<div class="row content-row">
+<div class="content content-of col s12 m10 offset-m1 l8 offset-l2">
+
 <form class="col s12 new-form" action="{{ url_for('send_new') }}" method="POST">
     <div id="new-init-info" class="row">
         <div class="input-field new-f-field col s12 m6">
@@ -165,5 +168,8 @@ New Recipe
 </form>
 
 <!--    ----    -->
+
+</div>
+</div>
 
 {% endblock %}

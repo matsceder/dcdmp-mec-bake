@@ -23,6 +23,9 @@
 
 {% block content %}
 
+<div class="row content-row">
+<div class="content content-of col s12 m10 offset-m1 l8 offset-l2">
+
 <form class="col s12 new-form" action="{{ url_for('send_update', recipe_id=recipe._id) }}" method="POST">
     
     <div id="new-init-info" class="row">
@@ -37,6 +40,7 @@
         <div class="input-field input-select col s6 m3">
             <select id="rec_type" name="rec_type" required>
                 {% for type in recipe_type %}
+                    {% if type.rec_type == '0' %}
                     {% if type.rec_type == recipe.rec_type %}
                         <option value="{{type.rec_type}}" selected>{{type.rec_type}}</option>
                     {% else %}
@@ -48,6 +52,7 @@
         <div class="input-field input-select col s6 m3">
             <select id="rec_diff" name="rec_diff" required>
                 {% for diff in recipe_diff %}
+                    {% if diff.rec_diff == '0' %}
                     {% if diff.rec_diff == recipe.rec_diff %}
                         <option value="{{diff.rec_diff}}" selected>{{diff.rec_diff}}</option>
                     {% else %}
@@ -682,5 +687,8 @@
 <button class="ed-btn btn col s6 offset-s3" type="submit" name="action">Send Update</button>
 
 </form>
+
+</div>
+</div>
 
 {% endblock %}

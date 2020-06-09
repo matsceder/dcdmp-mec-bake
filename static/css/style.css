@@ -146,7 +146,6 @@ main {
     box-sizing: border-box;
     align-self: center;
     padding: 10px !important;
-    overflow-y: auto;
 }
 
 @media (max-width: 600px) {
@@ -154,20 +153,26 @@ main {
         width: -moz-available !important;
         width: -webkit-fill-available !important;
         width: fill-available !important;
+    }
+    .content-of {
         height: 65vh;
     }
 }
 
 @media (min-width: 601px) {
-    .content {
+    .content-of {
         height: 75vh; 
     }
 }
 
 @media (min-width: 993px) {
-    .content {
+    .content-of {
         height: 65vh;
     }
+}
+
+.content-of {
+    overflow-y: auto;
 }
 
 /*    --------   Footer   --------    */
