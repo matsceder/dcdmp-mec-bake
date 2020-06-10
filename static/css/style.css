@@ -1,12 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Lobster&family=Roboto&family=Roboto+Mono&display=swap');
 
-/*
-font-family: 'Anton', sans-serif;
-font-family: 'Lobster', cursive;
-font-family: 'Roboto', sans-serif;
-font-family: 'Roboto Mono', monospace;
-*/
+/* - Unfortunatly I wasn't familiar enough with Materializecss to know how to override built in css, which I realized after using it on the whole page and also really liking the simplicity and functionality of it. So when it was time for styling I had to figure out how to pass ut, after a quick search on google I got the tip to use !important endings to override the css. That was fine in the beginning, until it just became more and more of them. So they are unfortunatly used excessively throughout the css. Creating a better solution for this will be part of my planned added features and improvements. - */
 
+/* - An overview of css blocks and where they're located - 
+   - :hover, :active, :focus and @media will be bellow related css for same targets -
+   - Base, row 9 - Nav, row 40 - Main, row 102 - Footer, row 182 - Index, row 210 - DB, row 244 - View, row 353 - Modal, row 519 - New, row 563 - */
 
 /*    --------    Base    --------    */
 
@@ -71,6 +69,7 @@ nav .brand-logo {
     left: 0 !important;
     margin: 0px !important;
 }
+
 nav ul {
     margin: 4px !important;
 }
@@ -84,6 +83,7 @@ ul li .left:hover {
         line-height: 56px !important;
     }
 }
+
 nav ul a:hover {
     background-color: transparent !important;
 }
@@ -257,10 +257,16 @@ main {
     width: fill-available !important;
 }
 
-@media (min-width: 601px) {
+
+@media only screen and (min-width: 601px) {
+    .td-btn {
+        margin-left: 9px !important;
+    }
+
     .bread-head {
         padding: 0 !important;
     }
+
     .db-row {
         margin: 36px 9px 9px 9px !important;
     }
@@ -281,12 +287,6 @@ main {
     border-radius: 0px;
     box-shadow: 0px 0px 0px;
     float: right !important;
-}
-
-@media only screen and (min-width: 601px) {
-    .td-btn {
-        margin-left: 9px !important;
-    }
 }
 
 .td-btn:hover,
@@ -501,7 +501,7 @@ td {
     margin-right: 4px;
 }
 
-@media {
+@media (min-width: 601px) {
     .e-btn {
         margin-right: 9px;
     }
@@ -657,10 +657,6 @@ td.select-unit>.select-wrapper>.dropdown-content>li>span:hover {
     }
 }
 
-td.input-field {
-    border: solid 4px #;
-}
-
 .new-ing-am {
     left: 0 !important;
     border: 0px 3px solid #F7F4E0
@@ -683,5 +679,3 @@ td.input-field.step-ins {
 .addnew-row {
     margin: 9px !important;
 }
-
-
