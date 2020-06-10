@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
 
-<!--    --------    Title    --------    -->
+<!--    ========    Title    ========    -->
 
-{% block title %}
-Recipe Database
-{% endblock %}
+{% block title %} Recipe Database {% endblock %}
 
-<!--    --------    Header and Navigation    --------    -->
+<!--    ========    Header and Navigation    ========    -->
 
 <!-- Added back/return button for all pages except index -->
 {% block navback %}
-<li><a href="#" onclick="history.go(-1)" class="left"><i class="material-icons">arrow_back</i></a></li>
+<li>
+    <a href="#" onclick="history.go(-1)" class="left"><i class="material-icons">arrow_back</i></a>
+</li>
 {% endblock %}
 
-<!--    --------    Individual Page Header    --------    -->
+<!--    ========    Individual Page Header    ========    -->
 
 {% block mainhead %}
 <div class="row db-row">
@@ -21,38 +21,24 @@ Recipe Database
         <div class="bread-head col s5 m5 l3">
             <h4 class="page-head">Recipes</h4>
         </div>
-<!-- Dropdown lists and buttons for filtering out options in database display -->
+        <!-- Dropdown lists and buttons for filtering out options in database display -->
         <ul id="dropdowntype" class="dropdown-content td-drop">
-            {% for type in recipe_type %}
-                {% if rdiff is defined %}
-                    {% if type.rec_type == '0' %}
-                    <li><a href="{{ url_for('recipe_db_t_d', type_r=type.rec_type, diff_r=rdiff.rec_diff) }}">All</a></li>
-                    {% else %}
-                    <li><a href="{{ url_for('recipe_db_t_d', type_r=type.rec_type, diff_r=rdiff.rec_diff) }}">{{type.rec_type}}</a></li>
-                    {% endif %}
-                {% else %}
-                    {% if type.rec_type == '0' %}
-                    {% else %}
-                    <li><a href="{{ url_for('recipe_db_t_d', type_r=type.rec_type, diff_r='0') }}">{{type.rec_type}}</a></li>
-                    {% endif %}
-                {% endif %}
-            {% endfor %}
+            {% for type in recipe_type %} {% if rdiff is defined %} {% if type.rec_type == '0' %}
+            <li><a href="{{ url_for('recipe_db_t_d', type_r=type.rec_type, diff_r=rdiff.rec_diff) }}">All</a></li>
+            {% else %}
+            <li><a href="{{ url_for('recipe_db_t_d', type_r=type.rec_type, diff_r=rdiff.rec_diff) }}">{{type.rec_type}}</a></li>
+            {% endif %} {% else %} {% if type.rec_type == '0' %} {% else %}
+            <li><a href="{{ url_for('recipe_db_t_d', type_r=type.rec_type, diff_r='0') }}">{{type.rec_type}}</a></li>
+            {% endif %} {% endif %} {% endfor %}
         </ul>
         <ul id="dropdowndiff" class="dropdown-content td-drop">
-            {% for diff in recipe_diff %}
-                {% if rtype is defined %}
-                    {% if diff.rec_diff == '0' %}
-                    <li><a href="{{ url_for('recipe_db_t_d', type_r=rtype.rec_type, diff_r=diff.rec_diff) }}">All</a></li>
-                    {% else %}
-                    <li><a href="{{ url_for('recipe_db_t_d', type_r=rtype.rec_type, diff_r=diff.rec_diff) }}">{{diff.rec_diff}}</a></li>
-                    {% endif %}
-                {% else %}
-                    {% if diff.rec_diff == '0' %}
-                    {% else %}
-                    <li><a href="{{ url_for('recipe_db_t_d', type_r='0', diff_r=diff.rec_diff) }}">{{diff.rec_diff}}</a></li>
-                    {% endif %}
-                {% endif %}
-            {% endfor %}
+            {% for diff in recipe_diff %} {% if rtype is defined %} {% if diff.rec_diff == '0' %}
+            <li><a href="{{ url_for('recipe_db_t_d', type_r=rtype.rec_type, diff_r=diff.rec_diff) }}">All</a></li>
+            {% else %}
+            <li><a href="{{ url_for('recipe_db_t_d', type_r=rtype.rec_type, diff_r=diff.rec_diff) }}">{{diff.rec_diff}}</a></li>
+            {% endif %} {% else %} {% if diff.rec_diff == '0' %} {% else %}
+            <li><a href="{{ url_for('recipe_db_t_d', type_r='0', diff_r=diff.rec_diff) }}">{{diff.rec_diff}}</a></li>
+            {% endif %} {% endif %} {% endfor %}
         </ul>
         <div class="button-container">
             <a class="dropdown-button td-btn btn col hide-on-med-and-down l3" href="#!" data-activates="dropdowntype">Type<i class="material-icons right">arrow_drop_down</i></a>
@@ -63,44 +49,40 @@ Recipe Database
 </div>
 {% endblock %}
 
-<!--    --------    Main Content    --------    -->
+<!--    ========    Main Content    ========    -->
 
 <!-- All main content goes after this tag bellow -->
 {% block content %}
 
 <!-- Border box container wrapps the content -->
 <div class="row content-row">
-<div class="content content-of col s12 m10 offset-m1 l8 offset-l2">
+    <div class="content content-of col s12 m10 offset-m1 l8 offset-l2">
+        <!-- Content headers -->
+        <div class="block-headban headban-db">
+            <h6 class="headban-head">Select recipe from the list below</h6>
+        </div>
 
-<!-- Content headers -->
-<div class="block-headban headban-db">
-    <h6 class="headban-head">Select recipe from the list below</h6>
-</div>
+        <!-- Content -->
 
-<!-- Content -->
-
-<!-- Using a Jinja for loop iterating and displaying recipes with some of the info attached. Displaying different options depending on user selectiong. Also hiding choice '0' that represents all recipes -->
-{% for rec in recipe %}
-<!-- Checking if there has been a selection for narrowing down recipes displayed -->
-    {% if rtype and rdiff is defined %}
-<!-- All types and a specific difficulty level -->
+        <!-- Using a Jinja for loop iterating and displaying recipes with some of the info attached. Displaying different options depending on user selectiong. Also hiding choice '0' that represents all recipes -->
+        {% for rec in recipe %}
+        <!-- Checking if there has been a selection for narrowing down recipes displayed -->
+        {% if rtype and rdiff is defined %}
+        <!-- All types and a specific difficulty level -->
         {% if rtype.rec_type == '0' and rec.rec_diff == rdiff.rec_diff %}
         <a href="{{ url_for('recipe_view', recipe_id=rec._id)}}">
             <div class="col s12 db-list-item">
                 <h5 class="db-recipe-name">{{rec.rec_name}}</h5>
                 <div class="col s7 left db-recipe-spec">
-                    Difficulty
-                    {% if rec.rec_diff == 'Easy' %}
+                    Difficulty {% if rec.rec_diff == 'Easy' %}
                     <i class="material-icons db-recipe-item">radio_button_checked</i>
                     <i class="material-icons db-recipe-item">radio_button_unchecked</i>
                     <i class="material-icons db-recipe-item">radio_button_unchecked</i>
-                    {% endif %}
-                    {% if rec.rec_diff == 'Medium' %}
+                    {% endif %} {% if rec.rec_diff == 'Medium' %}
                     <i class="material-icons db-recipe-item">radio_button_checked</i>
                     <i class="material-icons db-recipe-item">radio_button_checked</i>
                     <i class="material-icons db-recipe-item">radio_button_unchecked</i>
-                    {% endif %}
-                    {% if rec.rec_diff == 'Hard' %}
+                    {% endif %} {% if rec.rec_diff == 'Hard' %}
                     <i class="material-icons db-recipe-item">radio_button_checked</i>
                     <i class="material-icons db-recipe-item">radio_button_checked</i>
                     <i class="material-icons db-recipe-item">radio_button_checked</i>
@@ -112,24 +94,21 @@ Recipe Database
                 </div>
             </div>
         </a>
-<!-- All difficulty levels and a specific type -->
+        <!-- All difficulty levels and a specific type -->
         {% elif rdiff.rec_diff == '0' and rec.rec_type == rtype.rec_type %}
         <a href="{{ url_for('recipe_view', recipe_id=rec._id)}}">
             <div class="col s12 db-list-item">
                 <h5 class="db-recipe-name">{{rec.rec_name}}</h5>
                 <div class="col s7 left db-recipe-spec">
-                    Difficulty
-                    {% if rec.rec_diff == 'Easy' %}
+                    Difficulty {% if rec.rec_diff == 'Easy' %}
                     <i class="material-icons db-recipe-item">radio_button_checked</i>
                     <i class="material-icons db-recipe-item">radio_button_unchecked</i>
                     <i class="material-icons db-recipe-item">radio_button_unchecked</i>
-                    {% endif %}
-                    {% if rec.rec_diff == 'Medium' %}
+                    {% endif %} {% if rec.rec_diff == 'Medium' %}
                     <i class="material-icons db-recipe-item">radio_button_checked</i>
                     <i class="material-icons db-recipe-item">radio_button_checked</i>
                     <i class="material-icons db-recipe-item">radio_button_unchecked</i>
-                    {% endif %}
-                    {% if rec.rec_diff == 'Hard' %}
+                    {% endif %} {% if rec.rec_diff == 'Hard' %}
                     <i class="material-icons db-recipe-item">radio_button_checked</i>
                     <i class="material-icons db-recipe-item">radio_button_checked</i>
                     <i class="material-icons db-recipe-item">radio_button_checked</i>
@@ -141,24 +120,21 @@ Recipe Database
                 </div>
             </div>
         </a>
-<!-- Both selected difficulty and type -->
+        <!-- Both selected difficulty and type -->
         {% elif rec.rec_type == rtype.rec_type and rec.rec_diff == rdiff.rec_diff %}
         <a href="{{ url_for('recipe_view', recipe_id=rec._id)}}">
             <div class="col s12 db-list-item">
                 <h5 class="db-recipe-name">{{rec.rec_name}}</h5>
                 <div class="col s7 left db-recipe-spec">
-                    Difficulty
-                    {% if rec.rec_diff == 'Easy' %}
+                    Difficulty {% if rec.rec_diff == 'Easy' %}
                     <i class="material-icons db-recipe-item">radio_button_checked</i>
                     <i class="material-icons db-recipe-item">radio_button_unchecked</i>
                     <i class="material-icons db-recipe-item">radio_button_unchecked</i>
-                    {% endif %}
-                    {% if rec.rec_diff == 'Medium' %}
+                    {% endif %} {% if rec.rec_diff == 'Medium' %}
                     <i class="material-icons db-recipe-item">radio_button_checked</i>
                     <i class="material-icons db-recipe-item">radio_button_checked</i>
                     <i class="material-icons db-recipe-item">radio_button_unchecked</i>
-                    {% endif %}
-                    {% if rec.rec_diff == 'Hard' %}
+                    {% endif %} {% if rec.rec_diff == 'Hard' %}
                     <i class="material-icons db-recipe-item">radio_button_checked</i>
                     <i class="material-icons db-recipe-item">radio_button_checked</i>
                     <i class="material-icons db-recipe-item">radio_button_checked</i>
@@ -171,41 +147,37 @@ Recipe Database
             </div>
         </a>
         {% endif %}
-<!-- Nothing selected, all are displayed -->
-    {% else %}
-    <a href="{{ url_for('recipe_view', recipe_id=rec._id)}}">
-        <div class="col s12 db-list-item">
-            <h5 class="db-recipe-name">{{rec.rec_name}}</h5>
-            <div class="col s7 left db-recipe-spec">
-                Difficulty
-                {% if rec.rec_diff == 'Easy' %}
-                <i class="material-icons db-recipe-item">radio_button_checked</i>
-                <i class="material-icons db-recipe-item">radio_button_unchecked</i>
-                <i class="material-icons db-recipe-item">radio_button_unchecked</i>
-                {% endif %}
-                {% if rec.rec_diff == 'Medium' %}
-                <i class="material-icons db-recipe-item">radio_button_checked</i>
-                <i class="material-icons db-recipe-item">radio_button_checked</i>
-                <i class="material-icons db-recipe-item">radio_button_unchecked</i>
-                {% endif %}
-                {% if rec.rec_diff == 'Hard' %}
-                <i class="material-icons db-recipe-item">radio_button_checked</i>
-                <i class="material-icons db-recipe-item">radio_button_checked</i>
-                <i class="material-icons db-recipe-item">radio_button_checked</i>
-                {% endif %}
+        <!-- Nothing selected, all are displayed -->
+        {% else %}
+        <a href="{{ url_for('recipe_view', recipe_id=rec._id)}}">
+            <div class="col s12 db-list-item">
+                <h5 class="db-recipe-name">{{rec.rec_name}}</h5>
+                <div class="col s7 left db-recipe-spec">
+                    Difficulty {% if rec.rec_diff == 'Easy' %}
+                    <i class="material-icons db-recipe-item">radio_button_checked</i>
+                    <i class="material-icons db-recipe-item">radio_button_unchecked</i>
+                    <i class="material-icons db-recipe-item">radio_button_unchecked</i>
+                    {% endif %} {% if rec.rec_diff == 'Medium' %}
+                    <i class="material-icons db-recipe-item">radio_button_checked</i>
+                    <i class="material-icons db-recipe-item">radio_button_checked</i>
+                    <i class="material-icons db-recipe-item">radio_button_unchecked</i>
+                    {% endif %} {% if rec.rec_diff == 'Hard' %}
+                    <i class="material-icons db-recipe-item">radio_button_checked</i>
+                    <i class="material-icons db-recipe-item">radio_button_checked</i>
+                    <i class="material-icons db-recipe-item">radio_button_checked</i>
+                    {% endif %}
+                </div>
+                <div class="col s5 right db-recipe-spec">
+                    <i class="material-icons db-recipe-item">timer</i>
+                    {{rec.rec_time_h}}h {{rec.rec_time_m}}min
+                </div>
             </div>
-            <div class="col s5 right db-recipe-spec">
-                <i class="material-icons db-recipe-item">timer</i>
-                {{rec.rec_time_h}}h {{rec.rec_time_m}}min
-            </div>
-        </div>
-    </a>
-    {% endif %}
-{% endfor %}
-</div>
+        </a>
+        {% endif %} {% endfor %}
+    </div>
 </div>
 
-<!--    --------    Outside border box container    --------    -->
+<!--    ========    Outside border box container    ========    -->
 
 <!-- "Add new recipe"-button goes here, for database-page only -->
 <div class="row addnew-row">

@@ -1,12 +1,10 @@
 {% extends 'base.html' %}
 
-<!--    --------    Title    --------    -->
+<!--    ========    Title    ========    -->
 
-{% block title %}
-Online Baking
-{% endblock %}
+{% block title %} Online Baking {% endblock %}
 
-<!--    --------    Individual Page Header    --------    -->
+<!--    ========    Individual Page Header    ========    -->
 
 {% block mainhead %}
 <div class="row index-row">
@@ -16,27 +14,28 @@ Online Baking
 </div>
 {% endblock %}
 
-<!--    --------    Main Content    --------    -->
+<!--    ========    Main Content    ========    -->
 
 <!-- All main content goes after this tag bellow -->
 {% block content %}
 
 <!-- Border box container wrapps the contetn -->
 <div class="row content-row-index">
-<div class="content col s12 m10 offset-m1 l8 offset-l2">
+    <div class="content col s12 m10 offset-m1 l8 offset-l2">
+        <!-- Content headers -->
+        <h5 class="block-head">What do you want to bake today?</h5>
+        <div class="block-headban headban-index">
+            <h6 class="headban-head">All baking recipes in one place!</h6>
+        </div>
 
-<!-- Content headers -->
-<h5 class="block-head">What do you want to bake today?</h5>
-<div class="block-headban headban-index">
-    <h6 class="headban-head">All baking recipes in one place!</h6>
-</div>
+        <!-- Content -->
+        <p class="index-p">
+            Hi! And welcome to my recipe collection. This page is meant to be a usefull tool for everyone who wants to bake bread, cakes or desserts, no matter what your previous experience is. This is also a place for sharing recipes for
+            that great bread or dessert you just know that other people would also like to make. I hope this will inspire and encourage more baking, and that you will love it just as much as I do.
+        </p>
 
-<!-- Content -->
-<p class="index-p">Hi! And welcome to my recipe collection. This page is meant to be a usefull tool for everyone who wants to bake bread, cakes or desserts, no matter what your previous experience is. This is also a place for sharing recipes for that great bread or dessert you just know that other people would also like to make. I hope this will inspire and encourage more baking, and that you will love it just as much as I do. </p>
-
-<img id="index-bread-img" class="col s12 m12 l8 offset-l2" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/sourdough-bread-horizontal-466-1548048509.jpg" alt="Fresh baked bread">
-
-</div>
+        <img id="index-bread-img" class="col s12 m12 l8 offset-l2" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/sourdough-bread-horizontal-466-1548048509.jpg" alt="Fresh baked bread" />
+    </div>
 </div>
 
 {% endblock %}

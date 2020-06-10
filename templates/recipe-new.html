@@ -1,19 +1,17 @@
 {% extends 'base.html' %}
 
-<!--    --------    Title    --------    -->
+<!--    ========    Title    ========    -->
 
-{% block title %}
-New Recipe
-{% endblock %}
+{% block title %} New Recipe {% endblock %}
 
-<!--    --------    Header and Navigation    --------    -->
+<!--    ========    Header and Navigation    ========    -->
 
 <!-- Added back/return button for all pages except index -->
 {% block navback %}
 <a href="#" onclick="history.go(-1)" class="left"><i class="material-icons">arrow_back</i></a>
 {% endblock %}
 
-<!--    --------    Individual Page Header    --------    -->
+<!--    ========    Individual Page Header    ========    -->
 
 {% block mainhead %}
 <div class="row db-row">
@@ -23,155 +21,147 @@ New Recipe
 </div>
 {% endblock %}
 
-<!--    --------    Main Content    --------    -->
+<!--    ========    Main Content    ========    -->
 
 <!-- All main content goes after this tag bellow -->
 {% block content %}
 
 <!-- Border box container wrapps the content -->
 <div class="row content-row">
-<div class="content content-of col s12 m10 offset-m1 l8 offset-l2">
-
-<!-- New Recipe Form. For selectors where you have to choose from an option those values are colledted from MongoDB -->
-<form class="col s12 new-form" action="{{ url_for('send_new') }}" method="POST">
-<!-- Initial info - all required -->
-    <div id="new-init-info" class="row">
-        <div class="input-field new-f-field col s12 m6">
-            <input id="rec_name" name="rec_name" type="text" class="validate" required>
-            <label for="icon_prefix">Recipe Name</label>
-        </div>
-        <div class="input-field new-f-field col s12 m6">
-            <input id="rec_aut" name="rec_aut" type="text" class="validate" required>
-            <label for="icon_prefix">Author Name</label>
-        </div>
-        <div class="input-field input-select col s6 m3">
-            <select id="rec_type" name="rec_type" required>
-                <option value="" disabled selected>Select</option>
-                {% for type in recipe_type %}
-                    {% if type.rec_type == '0' %}
-                    {% else %}
+    <div class="content content-of col s12 m10 offset-m1 l8 offset-l2">
+        <!-- New Recipe Form. For selectors where you have to choose from an option those values are colledted from MongoDB -->
+        <form class="col s12 new-form" action="{{ url_for('send_new') }}" method="POST">
+            <!-- Initial info - all required -->
+            <div id="new-init-info" class="row">
+                <div class="input-field new-f-field col s12 m6">
+                    <input id="rec_name" name="rec_name" type="text" class="validate" required />
+                    <label for="icon_prefix">Recipe Name</label>
+                </div>
+                <div class="input-field new-f-field col s12 m6">
+                    <input id="rec_aut" name="rec_aut" type="text" class="validate" required />
+                    <label for="icon_prefix">Author Name</label>
+                </div>
+                <div class="input-field input-select col s6 m3">
+                    <select id="rec_type" name="rec_type" required>
+                        <option value="" disabled selected>Select</option>
+                        {% for type in recipe_type %} {% if type.rec_type == '0' %} {% else %}
                         <option value="{{type.rec_type}}">{{type.rec_type}}</option>
-                    {% endif %}
-                {% endfor %}
-            </select>
-            <label class="opt-label">Type</label>
-        </div>
-        <div class="input-field input-select col s6 m3">
-            <select id="rec_diff" name="rec_diff" required>
-                <option value="" disabled selected>Select</option>
-                {% for diff in recipe_diff %}
-                    {% if diff.rec_diff == '0' %}
-                    {% else %}
+                        {% endif %} {% endfor %}
+                    </select>
+                    <label class="opt-label">Type</label>
+                </div>
+                <div class="input-field input-select col s6 m3">
+                    <select id="rec_diff" name="rec_diff" required>
+                        <option value="" disabled selected>Select</option>
+                        {% for diff in recipe_diff %} {% if diff.rec_diff == '0' %} {% else %}
                         <option value="{{diff.rec_diff}}">{{diff.rec_diff}}</option>
-                    {% endif %}
-                {% endfor %}
-            </select>
-            <label class="opt-label">Difficulty</label>
-        </div>
-        <div class="input-field input-select time-serve col s4 m2">
-            <input id="rec_time_h" name="rec_time_h" type="number" class="validate" required>
-            <label for="icon_prefix">Hours</label>
-        </div>
-        <div class="input-field input-select time-serve col s4 m2">
-            <input id="rec_time_m" name="rec_time_m" type="number" min="0" max="59" class="validate" required>
-            <label for="icon_prefix">Minutes</label>
-        </div>
-        <div class="input-field input-select time-serve col s4 m2">
-            <input id="rec_serve" name="rec_serve" type="number" min="0" max="59" class="validate" required>
-            <label for="icon_prefix">Servings</label>
-        </div>
+                        {% endif %} {% endfor %}
+                    </select>
+                    <label class="opt-label">Difficulty</label>
+                </div>
+                <div class="input-field input-select time-serve col s4 m2">
+                    <input id="rec_time_h" name="rec_time_h" type="number" class="validate" required />
+                    <label for="icon_prefix">Hours</label>
+                </div>
+                <div class="input-field input-select time-serve col s4 m2">
+                    <input id="rec_time_m" name="rec_time_m" type="number" min="0" max="59" class="validate" required />
+                    <label for="icon_prefix">Minutes</label>
+                </div>
+                <div class="input-field input-select time-serve col s4 m2">
+                    <input id="rec_serve" name="rec_serve" type="number" min="0" max="59" class="validate" required />
+                    <label for="icon_prefix">Servings</label>
+                </div>
+            </div>
+
+            <!-- Ingredients part -->
+            <ul class="collapsible collapse-view" data-collapsible="accordion">
+                <li id="view-ingredients">
+                    <div class="collapsible-header collaps-head-view">
+                        <span class="col s11">Ingredients</span>
+                        <i class="material-icons arrow-d col s1">arrow_drop_down</i>
+                    </div>
+                    <div class="collapsible-body collaps-body-view">
+                        <table>
+                            {% for i in range(15) %}
+                            <tr>
+                                <td class="input-field col s1">
+                                    <label id="rec_ing{{loop.index}}">{{loop.index}}</label>
+                                </td>
+                                <td class="input-field col s7">
+                                    <input id="rec_ing_n{{loop.index}}" name="rec_ing_n{{loop.index}}" type="text" class="validate" />
+                                    <label for="icon_prefix">Ingredient</label>
+                                </td>
+                                <td class="input-field col s2">
+                                    <input id="rec_ing_a{{loop.index}}" name="rec_ing_a{{loop.index}}" type="text" class="validate" />
+                                    <label class="new-ing-am" for="icon_prefix">Amount</label>
+                                </td>
+                                <td class="input-field select-unit col s2">
+                                    <select id="rec_ing_u{{loop.index}}" name="rec_ing_u{{loop.index}}">
+                                        <option value="" disabled selected>Unit</option>
+                                        <option value="g">g</option>
+                                        <option value="hg">hg</option>
+                                        <option value="kg">kg</option>
+                                        <option value="cl">cl</option>
+                                        <option value="dl">dl</option>
+                                        <option value="l">l</option>
+                                        <option value="tsp">tsp</option>
+                                        <option value="tbsp">tbsp</option>
+                                        <option value="x">x</option>
+                                    </select>
+                                    <label class="opt-label">Unit</label>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </li>
+
+                <!-- Directions part -->
+                <li id="view-steps">
+                    <div class="collapsible-header collaps-head-view">
+                        <span class="col s11">Instructions</span>
+                        <i class="material-icons col s1">arrow_drop_down</i>
+                    </div>
+                    <div class="collapsible-body collaps-instruction-view">
+                        <table>
+                            {% for i in range(15) %}
+                            <tr class="col s12">
+                                <td class="col s12 step-num">- Step {{loop.index}} -</td>
+                                <td class="input-field col s12 step-ins">
+                                    <input id="step{{loop.index}}" name="rec_step{{loop.index}}" type="text" placeholder="Describe step" class="validate" />
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </li>
+
+                <!-- Image part -->
+                <li id="view-image">
+                    <div class="collapsible-header collaps-head-view collaps-img">
+                        <span class="col s11">Image</span>
+                        <i class="material-icons col s1">arrow_drop_down</i>
+                    </div>
+                    <div class="collapsible-body collaps-body-view">
+                        <table>
+                            <tr class="col s12">
+                                <td class="input-field col s12 step-ins">
+                                    <input id="rec_pic" name="rec_pic" type="text" class="validate rec-pic" />
+                                    <label for="icon_prefix">Link to image</label>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </li>
+            </ul>
+
+            <!-- Button dummy for disabling submit from enter key press -->
+            <button type="submit" disabled style="display: none;" aria-hidden="true"></button>
+
+            <!-- Actual submit-button -->
+            <button class="ed-btn btn col s6 offset-s3" type="submit" name="action">Send</button>
+        </form>
     </div>
-
-<!-- Ingredients part -->
-    <ul class="collapsible collapse-view" data-collapsible="accordion">
-        <li id="view-ingredients">
-            <div class="collapsible-header collaps-head-view">
-                <span class="col s11">Ingredients</span>
-                <i class="material-icons arrow-d col s1">arrow_drop_down</i>
-            </div>
-            <div class="collapsible-body collaps-body-view">
-                <table>
-                    {% for i in range(15) %}
-                    <tr>
-                        <td class="input-field col s1">
-                            <label id="rec_ing{{loop.index}}">{{loop.index}}</label>
-                        </td>
-                        <td class="input-field col s7">
-                            <input id="rec_ing_n{{loop.index}}" name="rec_ing_n{{loop.index}}" type="text" class="validate">
-                            <label for="icon_prefix">Ingredient</label>
-                        </td>
-                        <td class="input-field col s2">
-                            <input id="rec_ing_a{{loop.index}}" name="rec_ing_a{{loop.index}}" type="text" class="validate">
-                            <label class="new-ing-am" for="icon_prefix">Amount</label>
-                        </td>
-                        <td class="input-field select-unit col s2">
-                            <select id="rec_ing_u{{loop.index}}" name="rec_ing_u{{loop.index}}">
-                                <option value="" disabled selected>Unit</option>
-                                <option value="g">g</option>
-                                <option value="hg">hg</option>
-                                <option value="kg">kg</option>
-                                <option value="cl">cl</option>
-                                <option value="dl">dl</option>
-                                <option value="l">l</option>
-                                <option value="tsp">tsp</option>
-                                <option value="tbsp">tbsp</option>
-                                <option value="x">x</option>
-                            </select>
-                            <label class="opt-label">Unit</label>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </table>
-            </div>
-        </li>
-
-<!-- Directions part -->
-        <li id="view-steps">
-            <div class="collapsible-header collaps-head-view">
-                <span class="col s11">Instructions</span>
-                <i class="material-icons col s1">arrow_drop_down</i>
-            </div>
-            <div class="collapsible-body collaps-instruction-view">
-                <table>
-                {% for i in range(15) %}
-                    <tr class="col s12">
-                        <td class="col s12 step-num">- Step {{loop.index}} -</td>
-                        <td class="input-field col s12 step-ins">
-                            <input id="step{{loop.index}}" name="rec_step{{loop.index}}" type="text" placeholder="Describe step" class="validate">
-                        </td>
-                    </tr>
-                {% endfor %}
-                </table>
-            </div>
-        </li>
-
-<!-- Image part -->
-        <li id="view-image">
-            <div class="collapsible-header collaps-head-view collaps-img">
-                <span class="col s11">Image</span>
-                <i class="material-icons col s1">arrow_drop_down</i>
-            </div>
-            <div class="collapsible-body collaps-body-view">
-                <table>
-                    <tr class="col s12">
-                        <td class="input-field col s12 step-ins">
-                            <input id="rec_pic" name="rec_pic" type="text" class="validate rec-pic">
-                            <label for="icon_prefix">Link to image</label>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </li>
-    </ul>
-
-<!-- Button dummy for disabling submit from enter key press -->
-<button type="submit" disabled style="display: none" aria-hidden="true"></button>
-
-<!-- Actual submit-button -->
-<button class="ed-btn btn col s6 offset-s3" type="submit" name="action">Send</button>
-</form>
-
-</div>
 </div>
 
 {% endblock %}

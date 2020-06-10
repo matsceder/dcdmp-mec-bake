@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
 
-<!--    --------    Title    --------    -->
+<!--    ========    Title    ========    -->
 
-{% block title %}
-{{recipe.rec_name}}
-{% endblock %}
+{% block title %} {{recipe.rec_name}} {% endblock %}
 
-<!--    --------    Header and Navigation    --------    -->
+<!--    ========    Header and Navigation    ========    -->
 
 <!-- Added back/return button for all pages except index -->
 {% block navback %}
-<li><a href="#" onclick="history.go(-1)" class="left"><i class="material-icons">arrow_back</i></a></li>
+<li>
+    <a href="#" onclick="history.go(-1)" class="left"><i class="material-icons">arrow_back</i></a>
+</li>
 {% endblock %}
 
-<!--    --------    Individual Page Header    --------    -->
+<!--    ========    Individual Page Header    ========    -->
 
 {% block mainhead %}
 <div class="row db-row">
@@ -21,22 +21,21 @@
         <div class="bread-head col s12 m7 l7">
             <h4 class="page-head">{{recipe.rec_name}}</h4>
         </div>
-<!-- Buttons for Edit and Delete the viewed recipe. Not visible on mobile-devices -->
+        <!-- Buttons for Edit and Delete the viewed recipe. Not visible on mobile-devices -->
         <a class="ed-btn d-btn btn col m2 right hide-on-small-only modal-trigger" href="#delete-modal">Delete<i class="ed-icon far fa-trash-alt"></i></a>
-        <a class="ed-btn e-btn btn col m2 right hide-on-small-only" href="{{ url_for('update_recipe', recipe_id=recipe._id)}}" >Edit<i class="ed-icon far fa-edit"></i></a>
+        <a class="ed-btn e-btn btn col m2 right hide-on-small-only" href="{{ url_for('update_recipe', recipe_id=recipe._id)}}">Edit<i class="ed-icon far fa-edit"></i></a>
     </div>
 </div>
 {% endblock %}
 
-<!--    --------    Main Content    --------    -->
+<!--    ========    Main Content    ========    -->
 
 <!-- All main content goes after this tag bellow -->
 {% block content %}
 
 <!-- Border box container wrapps the content -->
 <div class="row content-row">
-
-<!-- Modal for delete prompt -->
+    <!-- Modal for delete prompt -->
     <div id="delete-modal" class="modal">
         <div class="modal-content">
             <h4>Are you sure you want to delete this recipe?</h4>
@@ -46,259 +45,229 @@
         </div>
     </div>
 
-<div class="content content-of col s12 m10 offset-m1 l8 offset-l2">
-
-<!-- Initiall info about the selected recipe -->
-    <div class="col s12 rec-item">
-        <div class="col s7 left db-recipe-spec">
-            Difficulty
-            {% if recipe.rec_diff == 'Easy' %}
-            <i class="material-icons db-recipe-item">radio_button_checked</i>
-            <i class="material-icons db-recipe-item">radio_button_unchecked</i>
-            <i class="material-icons db-recipe-item">radio_button_unchecked</i>
-            {% endif %}
-            {% if recipe.rec_diff == 'Medium' %}
-            <i class="material-icons db-recipe-item">radio_button_checked</i>
-            <i class="material-icons db-recipe-item">radio_button_checked</i>
-            <i class="material-icons db-recipe-item">radio_button_unchecked</i>
-            {% endif %}
-            {% if recipe.rec_diff == 'Hard' %}
-            <i class="material-icons db-recipe-item">radio_button_checked</i>
-            <i class="material-icons db-recipe-item">radio_button_checked</i>
-            <i class="material-icons db-recipe-item">radio_button_checked</i>
-            {% endif %}
-        </div>
-        <div class="col s5 right db-recipe-spec">
-            <i class="material-icons db-recipe-item">timer</i>
-            {{recipe.rec_time_h}}h {{recipe.rec_time_m}}min
-        </div>
-        <div class="col s7 rec-view-info">
-            Author: {{recipe.rec_aut}}
-        </div>
-        <div class="col hide-on-small-only m5 rec-view-info rv-info-col">
-            {% if recipe.rec_type == 'Bread' %}
+    <div class="content content-of col s12 m10 offset-m1 l8 offset-l2">
+        <!-- Initiall info about the selected recipe -->
+        <div class="col s12 rec-item">
+            <div class="col s7 left db-recipe-spec">
+                Difficulty {% if recipe.rec_diff == 'Easy' %}
+                <i class="material-icons db-recipe-item">radio_button_checked</i>
+                <i class="material-icons db-recipe-item">radio_button_unchecked</i>
+                <i class="material-icons db-recipe-item">radio_button_unchecked</i>
+                {% endif %} {% if recipe.rec_diff == 'Medium' %}
+                <i class="material-icons db-recipe-item">radio_button_checked</i>
+                <i class="material-icons db-recipe-item">radio_button_checked</i>
+                <i class="material-icons db-recipe-item">radio_button_unchecked</i>
+                {% endif %} {% if recipe.rec_diff == 'Hard' %}
+                <i class="material-icons db-recipe-item">radio_button_checked</i>
+                <i class="material-icons db-recipe-item">radio_button_checked</i>
+                <i class="material-icons db-recipe-item">radio_button_checked</i>
+                {% endif %}
+            </div>
+            <div class="col s5 right db-recipe-spec">
+                <i class="material-icons db-recipe-item">timer</i>
+                {{recipe.rec_time_h}}h {{recipe.rec_time_m}}min
+            </div>
+            <div class="col s7 rec-view-info">
+                Author: {{recipe.rec_aut}}
+            </div>
+            <div class="col hide-on-small-only m5 rec-view-info rv-info-col">
+                {% if recipe.rec_type == 'Bread' %}
                 <i class="fas fa-bread-slice type-icon"></i>
-            {% elif recipe.rec_type == 'Cake' %}
+                {% elif recipe.rec_type == 'Cake' %}
                 <i class="fas fa-cheese type-icon"></i>
+                {% endif %}
+            </div>
+            <div class="col s5 rec-view-info rvi-serve">
+                Servings: {{recipe.rec_serve}}
+            </div>
+        </div>
+
+        <!-- Ingredients part for selected recipe -->
+        <ul class="collapsible collapse-view" data-collapsible="accordion">
+            <li id="view-ingredients">
+                <div class="collapsible-header collaps-head-view active">
+                    <span class="col s11">Ingredients</span>
+                    <i class="material-icons arrow-d col s1">arrow_drop_down</i>
+                </div>
+                <div class="collapsible-body collaps-body-view">
+                    <table>
+                        {% if recipe.rec_ing_n1 != "" %}
+                        <tr>
+                            <td class="col s3 m2 td-amount">{{recipe.rec_ing_a1}}&nbsp;{{recipe.rec_ing_u1}}&nbsp;&nbsp;-</td>
+                            <td class="col s9 m4 td-ing">{{recipe.rec_ing_n1}}</td>
+                        </tr>
+                        {% endif %} {% if recipe.rec_ing_n2 != "" %}
+                        <tr>
+                            <td class="col s3 m2 td-amount">{{recipe.rec_ing_a2}}&nbsp;{{recipe.rec_ing_u2}}&nbsp;&nbsp;-</td>
+                            <td class="col s9 m4 td-ing">{{recipe.rec_ing_n2}}</td>
+                        </tr>
+                        {% endif %} {% if recipe.rec_ing_n3 != "" %}
+                        <tr>
+                            <td class="col s3 m2 td-amount">{{recipe.rec_ing_a3}}&nbsp;{{recipe.rec_ing_u3}}&nbsp;&nbsp;-</td>
+                            <td class="col s9 m4 td-ing">{{recipe.rec_ing_n3}}</td>
+                        </tr>
+                        {% endif %} {% if recipe.rec_ing_n4 != "" %}
+                        <tr>
+                            <td class="col s3 m2 td-amount">{{recipe.rec_ing_a4}}&nbsp;{{recipe.rec_ing_u4}}&nbsp;&nbsp;-</td>
+                            <td class="col s9 m4 td-ing">{{recipe.rec_ing_n4}}</td>
+                        </tr>
+                        {% endif %} {% if recipe.rec_ing_n5 != "" %}
+                        <tr>
+                            <td class="col s3 m2 td-amount">{{recipe.rec_ing_a5}}&nbsp;{{recipe.rec_ing_u5}}&nbsp;&nbsp;-</td>
+                            <td class="col s9 m4 td-ing">{{recipe.rec_ing_n5}}</td>
+                        </tr>
+                        {% endif %} {% if recipe.rec_ing_n6 != "" %}
+                        <tr>
+                            <td class="col s3 m2 td-amount">{{recipe.rec_ing_a6}}&nbsp;{{recipe.rec_ing_u6}}&nbsp;&nbsp;-</td>
+                            <td class="col s9 m4 td-ing">{{recipe.rec_ing_n6}}</td>
+                        </tr>
+                        {% endif %} {% if recipe.rec_ing_n7 != "" %}
+                        <tr>
+                            <td class="col s3 m2 td-amount">{{recipe.rec_ing_a7}}&nbsp;{{recipe.rec_ing_u7}}&nbsp;&nbsp;-</td>
+                            <td class="col s9 m4 td-ing">{{recipe.rec_ing_n7}}</td>
+                        </tr>
+                        {% endif %} {% if recipe.rec_ing_n8 != "" %}
+                        <tr>
+                            <td class="col s3 m2 td-amount">{{recipe.rec_ing_a8}}&nbsp;{{recipe.rec_ing_u8}}&nbsp;&nbsp;-</td>
+                            <td class="col s9 m4 td-ing">{{recipe.rec_ing_n8}}</td>
+                        </tr>
+                        {% endif %} {% if recipe.rec_ing_n9 != "" %}
+                        <tr>
+                            <td class="col s3 m2 td-amount">{{recipe.rec_ing_a9}}&nbsp;{{recipe.rec_ing_u9}}&nbsp;&nbsp;-</td>
+                            <td class="col s9 m4 td-ing">{{recipe.rec_ing_n9}}</td>
+                        </tr>
+                        {% endif %} {% if recipe.rec_ing_n10 != "" %}
+                        <tr>
+                            <td class="col s3 m2 td-amount">{{recipe.rec_ing_a10}}&nbsp;{{recipe.rec_ing_u10}}&nbsp;&nbsp;-</td>
+                            <td class="col s9 m4 td-ing">{{recipe.rec_ing_n10}}</td>
+                        </tr>
+                        {% endif %} {% if recipe.rec_ing_n11 != "" %}
+                        <tr>
+                            <td class="col s3 m2 td-amount">{{recipe.rec_ing_a11}}&nbsp;{{recipe.rec_ing_u11}}&nbsp;&nbsp;-</td>
+                            <td class="col s9 m4 td-ing">{{recipe.rec_ing_n11}}</td>
+                        </tr>
+                        {% endif %} {% if recipe.rec_ing_n12 != "" %}
+                        <tr>
+                            <td class="col s3 m2 td-amount">{{recipe.rec_ing_a12}}&nbsp;{{recipe.rec_ing_u12}}&nbsp;&nbsp;-</td>
+                            <td class="col s9 m4 td-ing">{{recipe.rec_ing_n12}}</td>
+                        </tr>
+                        {% endif %}
+                    </table>
+                </div>
+            </li>
+
+            <!-- Steps part for selected recipe -->
+            <li id="view-steps">
+                <div class="collapsible-header collaps-head-view">
+                    <span class="col s11">Instructions</span>
+                    <i class="material-icons col s1">arrow_drop_down</i>
+                </div>
+                <div class="collapsible-body collaps-body-view">
+                    <table>
+                        {% if recipe.rec_step1 != "" %}
+                        <tr class="col s12">
+                            <td class="col s12 step-num">- Step 1 -</td>
+                            <td class="col s12 step-ins">{{recipe.rec_step1}}</td>
+                        </tr>
+                        {% endif %} {% if recipe.rec_step2 != "" %}
+                        <tr class="col s12">
+                            <td class="col s12 step-num">- Step 2 -</td>
+                            <td class="col s12 step-ins">{{recipe.rec_step2}}</td>
+                        </tr>
+                        {% endif %} {% if recipe.rec_step3 != "" %}
+                        <tr class="col s12">
+                            <td class="col s12 step-num">- Step 3 -</td>
+                            <td class="col s12 step-ins">{{recipe.rec_step3}}</td>
+                        </tr>
+                        {% endif %} {% if recipe.rec_step4 != "" %}
+                        <tr class="col s12">
+                            <td class="col s12 step-num">- Step 4 -</td>
+                            <td class="col s12 step-ins">{{recipe.rec_step4}}</td>
+                        </tr>
+                        {% endif %} {% if recipe.rec_step5 != "" %}
+                        <tr class="col s12">
+                            <td class="col s12 step-num">- Step 5 -</td>
+                            <td class="col s12 step-ins">{{recipe.rec_step5}}</td>
+                        </tr>
+                        {% endif %} {% if recipe.rec_step6 != "" %}
+                        <tr class="col s12">
+                            <td class="col s12 step-num">- Step 6 -</td>
+                            <td class="col s12 step-ins">{{recipe.rec_step6}}</td>
+                        </tr>
+                        {% endif %} {% if recipe.rec_step7 != "" %}
+                        <tr class="col s12">
+                            <td class="col s12 step-num">- Step 7 -</td>
+                            <td class="col s12 step-ins">{{recipe.rec_step7}}</td>
+                        </tr>
+                        {% endif %} {% if recipe.rec_step8 != "" %}
+                        <tr class="col s12">
+                            <td class="col s12 step-num">- Step 8 -</td>
+                            <td class="col s12 step-ins">{{recipe.rec_step8}}</td>
+                        </tr>
+                        {% endif %} {% if recipe.rec_step9 != "" %}
+                        <tr class="col s12">
+                            <td class="col s12 step-num">- Step 9 -</td>
+                            <td class="col s12 step-ins">{{recipe.rec_step9}}</td>
+                        </tr>
+                        {% endif %} {% if recipe.rec_step10 != "" %}
+                        <tr class="col s12">
+                            <td class="col s12 step-num">- Step 10 -</td>
+                            <td class="col s12 step-ins">{{recipe.rec_step10}}</td>
+                        </tr>
+                        {% endif %} {% if recipe.rec_step11 != "" %}
+                        <tr class="col s12">
+                            <td class="col s12 step-num">- Step 11 -</td>
+                            <td class="col s12 step-ins">{{recipe.rec_step11}}</td>
+                        </tr>
+                        {% endif %} {% if recipe.rec_step12 != "" %}
+                        <tr class="col s12">
+                            <td class="col s12 step-num">- Step 12 -</td>
+                            <td class="col s12 step-ins">{{recipe.rec_step12}}</td>
+                        </tr>
+                        {% endif %} {% if recipe.rec_step13 != "" %}
+                        <tr class="col s12">
+                            <td class="col s12 step-num">- Step 13 -</td>
+                            <td class="col s12 step-ins">{{recipe.rec_step13}}</td>
+                        </tr>
+                        {% endif %} {% if recipe.rec_step14 != "" %}
+                        <tr class="col s12">
+                            <td class="col s12 step-num">- Step 14 -</td>
+                            <td class="col s12 step-ins">{{recipe.rec_step14}}</td>
+                        </tr>
+                        {% endif %} {% if recipe.rec_step15 != "" %}
+                        <tr class="col s12">
+                            <td class="col s12 step-num">- Step 15 -</td>
+                            <td class="col s12 step-ins">{{recipe.rec_step15}}</td>
+                        </tr>
+                        {% endif %}
+                    </table>
+                </div>
+            </li>
+
+            <!-- Image part for specific recipe. Only displayed if there's an image url provided -->
+            {% if recipe.rec_pic != "" %}
+            <li id="view-image">
+                <div class="collapsible-header collaps-head-view">
+                    <span class="col s11">Image</span>
+                    <i class="material-icons col s1">arrow_drop_down</i>
+                </div>
+                <div class="collapsible-body collaps-body-view">
+                    <table>
+                        <tr>
+                            <td class="col s12 view-img-td">
+                                <img class="view-img" src="{{recipe.rec_pic}}" alt="{{recipe.rec_name}}" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </li>
             {% endif %}
-        </div>
-        <div class="col s5 rec-view-info rvi-serve">
-            Servings: {{recipe.rec_serve}}
-        </div>
+        </ul>
+
+        <!-- Buttons for Edit and Delete the viewed recipe. Only displayed on mobile devices -->
+        <a class="ed-btn e-btn btn col hide-on-med-and-up" href="{{ url_for('update_recipe', recipe_id=recipe._id)}}">Edit<i class="ed-icon far fa-edit"></i></a>
+        <a class="ed-btn d-btn btn col hide-on-med-and-up right modal-trigger" href="#delete-modal">Delete<i class="ed-icon far fa-trash-alt"></i></a>
     </div>
-
-<!-- Ingredients part for selected recipe -->
-    <ul class="collapsible collapse-view" data-collapsible="accordion">
-        <li id="view-ingredients">
-            <div class="collapsible-header collaps-head-view active">
-                <span class="col s11">Ingredients</span>
-                <i class="material-icons arrow-d col s1">arrow_drop_down</i>
-            </div>
-            <div class="collapsible-body collaps-body-view">
-                <table>
-                    {% if recipe.rec_ing_n1 != "" %}
-                    <tr>
-                        <td class="col s3 m2 td-amount">{{recipe.rec_ing_a1}}&nbsp;{{recipe.rec_ing_u1}}&nbsp;&nbsp;-</td>
-                        <td class="col s9 m4 td-ing">{{recipe.rec_ing_n1}}</td>
-                    </tr>
-                    {% endif %}
-                    {% if recipe.rec_ing_n2 != "" %}
-                    <tr>
-                        <td class="col s3 m2 td-amount">{{recipe.rec_ing_a2}}&nbsp;{{recipe.rec_ing_u2}}&nbsp;&nbsp;-</td>
-                        <td class="col s9 m4 td-ing">{{recipe.rec_ing_n2}}</td>
-                    </tr>
-                    {% endif %}
-                    {% if recipe.rec_ing_n3 != "" %}
-                    <tr>
-                        <td class="col s3 m2 td-amount">{{recipe.rec_ing_a3}}&nbsp;{{recipe.rec_ing_u3}}&nbsp;&nbsp;-</td>
-                        <td class="col s9 m4 td-ing">{{recipe.rec_ing_n3}}</td>
-                    </tr>
-                    {% endif %}
-                    {% if recipe.rec_ing_n4 != "" %}
-                    <tr>
-                        <td class="col s3 m2 td-amount">{{recipe.rec_ing_a4}}&nbsp;{{recipe.rec_ing_u4}}&nbsp;&nbsp;-</td>
-                        <td class="col s9 m4 td-ing">{{recipe.rec_ing_n4}}</td>
-                    </tr>
-                    {% endif %}
-                    {% if recipe.rec_ing_n5 != "" %}
-                    <tr>
-                        <td class="col s3 m2 td-amount">{{recipe.rec_ing_a5}}&nbsp;{{recipe.rec_ing_u5}}&nbsp;&nbsp;-</td>
-                        <td class="col s9 m4 td-ing">{{recipe.rec_ing_n5}}</td>
-                    </tr>
-                    {% endif %}
-                    {% if recipe.rec_ing_n6 != "" %}
-                    <tr>
-                        <td class="col s3 m2 td-amount">{{recipe.rec_ing_a6}}&nbsp;{{recipe.rec_ing_u6}}&nbsp;&nbsp;-</td>
-                        <td class="col s9 m4 td-ing">{{recipe.rec_ing_n6}}</td>
-                    </tr>
-                    {% endif %}
-                    {% if recipe.rec_ing_n7 != "" %}
-                    <tr>
-                        <td class="col s3 m2 td-amount">{{recipe.rec_ing_a7}}&nbsp;{{recipe.rec_ing_u7}}&nbsp;&nbsp;-</td>
-                        <td class="col s9 m4 td-ing">{{recipe.rec_ing_n7}}</td>
-                    </tr>
-                    {% endif %}
-                    {% if recipe.rec_ing_n8 != "" %}
-                    <tr>
-                        <td class="col s3 m2 td-amount">{{recipe.rec_ing_a8}}&nbsp;{{recipe.rec_ing_u8}}&nbsp;&nbsp;-</td>
-                        <td class="col s9 m4 td-ing">{{recipe.rec_ing_n8}}</td>
-                    </tr>
-                    {% endif %}
-                    {% if recipe.rec_ing_n9 != "" %}
-                    <tr>
-                        <td class="col s3 m2 td-amount">{{recipe.rec_ing_a9}}&nbsp;{{recipe.rec_ing_u9}}&nbsp;&nbsp;-</td>
-                        <td class="col s9 m4 td-ing">{{recipe.rec_ing_n9}}</td>
-                    </tr>
-                    {% endif %}
-                    {% if recipe.rec_ing_n10 != "" %}
-                    <tr>
-                        <td class="col s3 m2 td-amount">{{recipe.rec_ing_a10}}&nbsp;{{recipe.rec_ing_u10}}&nbsp;&nbsp;-</td>
-                        <td class="col s9 m4 td-ing">{{recipe.rec_ing_n10}}</td>
-                    </tr>
-                    {% endif %}
-                    {% if recipe.rec_ing_n11 != "" %}
-                    <tr>
-                        <td class="col s3 m2 td-amount">{{recipe.rec_ing_a11}}&nbsp;{{recipe.rec_ing_u11}}&nbsp;&nbsp;-</td>
-                        <td class="col s9 m4 td-ing">{{recipe.rec_ing_n11}}</td>
-                    </tr>
-                    {% endif %}
-                    {% if recipe.rec_ing_n12 != "" %}
-                    <tr>
-                        <td class="col s3 m2 td-amount">{{recipe.rec_ing_a12}}&nbsp;{{recipe.rec_ing_u12}}&nbsp;&nbsp;-</td>
-                        <td class="col s9 m4 td-ing">{{recipe.rec_ing_n12}}</td>
-                    </tr>
-                    {% endif %}
-                </table>
-            </div>
-        </li>
-
-<!-- Steps part for selected recipe -->
-        <li id="view-steps">
-            <div class="collapsible-header collaps-head-view">
-                <span class="col s11">Instructions</span>
-                <i class="material-icons col s1">arrow_drop_down</i>
-            </div>
-            <div class="collapsible-body collaps-body-view">
-            <table>
-                {% if recipe.rec_step1 != "" %}
-                <tr class="col s12">
-                    <td class="col s12 step-num">- Step 1 -</td>
-                    <td class="col s12 step-ins">{{recipe.rec_step1}}</td>
-                </tr>
-                {% endif %}
-                {% if recipe.rec_step2 != "" %}
-                <tr class="col s12">
-                    <td class="col s12 step-num">- Step 2 -</td>
-                    <td class="col s12 step-ins">{{recipe.rec_step2}}</td>
-                </tr>
-                {% endif %}
-                {% if recipe.rec_step3 != "" %}
-                <tr class="col s12">
-                    <td class="col s12 step-num">- Step 3 -</td>
-                    <td class="col s12 step-ins">{{recipe.rec_step3}}</td>
-                </tr>
-                {% endif %}
-                {% if recipe.rec_step4 != "" %}
-                <tr class="col s12">
-                    <td class="col s12 step-num">- Step 4 -</td>
-                    <td class="col s12 step-ins">{{recipe.rec_step4}}</td>
-                </tr>
-                {% endif %}
-                {% if recipe.rec_step5 != "" %}
-                <tr class="col s12">
-                    <td class="col s12 step-num">- Step 5 -</td>
-                    <td class="col s12 step-ins">{{recipe.rec_step5}}</td>
-                </tr>
-                {% endif %}
-                {% if recipe.rec_step6 != "" %}
-                <tr class="col s12">
-                    <td class="col s12 step-num">- Step 6 -</td>
-                    <td class="col s12 step-ins">{{recipe.rec_step6}}</td>
-                </tr>
-                {% endif %}
-                {% if recipe.rec_step7 != "" %}
-                <tr class="col s12">
-                    <td class="col s12 step-num">- Step 7 -</td>
-                    <td class="col s12 step-ins">{{recipe.rec_step7}}</td>
-                </tr>
-                {% endif %}
-                {% if recipe.rec_step8 != "" %}
-                <tr class="col s12">
-                    <td class="col s12 step-num">- Step 8 -</td>
-                    <td class="col s12 step-ins">{{recipe.rec_step8}}</td>
-                </tr>
-                {% endif %}
-                {% if recipe.rec_step9 != "" %}
-                <tr class="col s12">
-                    <td class="col s12 step-num">- Step 9 -</td>
-                    <td class="col s12 step-ins">{{recipe.rec_step9}}</td>
-                </tr>
-                {% endif %}
-                {% if recipe.rec_step10 != "" %}
-                <tr class="col s12">
-                    <td class="col s12 step-num">- Step 10 -</td>
-                    <td class="col s12 step-ins">{{recipe.rec_step10}}</td>
-                </tr>
-                {% endif %}
-                {% if recipe.rec_step11 != "" %}
-                <tr class="col s12">
-                    <td class="col s12 step-num">- Step 11 -</td>
-                    <td class="col s12 step-ins">{{recipe.rec_step11}}</td>
-                </tr>
-                {% endif %}
-                {% if recipe.rec_step12 != "" %}
-                <tr class="col s12">
-                    <td class="col s12 step-num">- Step 12 -</td>
-                    <td class="col s12 step-ins">{{recipe.rec_step12}}</td>
-                </tr>
-                {% endif %}
-                {% if recipe.rec_step13 != "" %}
-                <tr class="col s12">
-                    <td class="col s12 step-num">- Step 13 -</td>
-                    <td class="col s12 step-ins">{{recipe.rec_step13}}</td>
-                </tr>
-                {% endif %}
-                {% if recipe.rec_step14 != "" %}
-                <tr class="col s12">
-                    <td class="col s12 step-num">- Step 14 -</td>
-                    <td class="col s12 step-ins">{{recipe.rec_step14}}</td>
-                </tr>
-                {% endif %}
-                {% if recipe.rec_step15 != "" %}
-                <tr class="col s12">
-                    <td class="col s12 step-num">- Step 15 -</td>
-                    <td class="col s12 step-ins">{{recipe.rec_step15}}</td>
-                </tr>
-                {% endif %}
-            </table>
-            </div>
-        </li>
-
-<!-- Image part for specific recipe. Only displayed if there's an image url provided -->
-        {% if recipe.rec_pic != "" %}
-        <li id="view-image">
-            <div class="collapsible-header collaps-head-view">
-                <span class="col s11">Image</span>
-                <i class="material-icons col s1">arrow_drop_down</i>
-            </div>
-            <div class="collapsible-body collaps-body-view">
-                <table>
-                    <tr>
-                        <td class="col s12 view-img-td">
-                            <img class="view-img" src="{{recipe.rec_pic}}" alt="{{recipe.rec_name}}">
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </li>
-        {% endif %}
-    </ul>
-
-<!-- Buttons for Edit and Delete the viewed recipe. Only displayed on mobile devices -->
-    <a class="ed-btn e-btn btn col hide-on-med-and-up" href="{{ url_for('update_recipe', recipe_id=recipe._id)}}" >Edit<i class="ed-icon far fa-edit"></i></a>
-    <a class="ed-btn d-btn btn col hide-on-med-and-up right modal-trigger" href="#delete-modal">Delete<i class="ed-icon far fa-trash-alt"></i></a>
-
-</div>
 </div>
 
 {% endblock %}

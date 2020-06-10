@@ -1,100 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
-    <script src="https://kit.fontawesome.com/0fd421bbfb.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
+        <script src="https://kit.fontawesome.com/0fd421bbfb.js" crossorigin="anonymous"></script>
 
-<!--    --------    Title    --------    -->
+        <!--    ========    Title    ========    -->
 
-<!-- Filled in within block title on each template -->
-    <title>{% block title %}{% endblock %}</title>
+        <!-- Filled in within block title on each template -->
+        <title>{% block title %}{% endblock %}</title>
+    </head>
 
-</head>
+    <body>
+        <!--    ========    Header and Navigation    ========    -->
 
-<body>
+        <!-- Using Jinja expressions and Materializecss to create links and toggle if they should or should not display on different devices -->
+        <header>
+            <ul id="dropdown1" class="dropdown-content navdrop">
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li class="hide-on-med-and-up"><a href="{{ url_for('recipe_db') }}">All Recipes</a></li>
+                <li><a href="{{ url_for('recipe_db_t_d', type_r='Bread', diff_r='0') }}">Bread Recipes</a></li>
+                <li><a href="{{ url_for('recipe_db_t_d', type_r='Cake', diff_r='0') }}">Cake Recipes</a></li>
+                <li class="hide-on-med-and-up"><a href="{{ url_for('recipe_new') }}">Add Recipe</a></li>
+            </ul>
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="{{ url_for('index') }}" class="brand-logo center">Online Baking</a>
+                    <ul class="left">
+                        {% block navback %} {% endblock %}
+                    </ul>
+                    <ul class="right">
+                        <li><a href="{{ url_for('recipe_db') }}" class="right hide-on-med-and-down">GO TO RECIPES</a></li>
+                        <li>
+                            <a class="dropdown-button hide-on-large-only" href="#" data-activates="dropdown1"><i class="material-icons">menu</i></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
 
-<!--    --------    Header and Navigation    --------    -->
+        <main>
+            <!--    ========    Individual Page Headers    ========    -->
 
-<!-- Using Jinja expressions and Materializecss to create links and toggle if they should or should not display on different devices -->
-    <header>
-        <ul id="dropdown1" class="dropdown-content navdrop">
-            <li><a href="{{ url_for('index') }}">Home</a></li>
-            <li class="hide-on-med-and-up"><a href="{{ url_for('recipe_db') }}">All Recipes</a></li>
-            <li><a href="{{ url_for('recipe_db_t_d', type_r='Bread', diff_r='0') }}">Bread Recipes</a></li>
-            <li><a href="{{ url_for('recipe_db_t_d', type_r='Cake', diff_r='0') }}">Cake Recipes</a></li>
-            <li class="hide-on-med-and-up"><a href="{{ url_for('recipe_new') }}">Add Recipe</a></li>
-        </ul>
-        <nav>
-            <div class="nav-wrapper">
-                <a href="{{ url_for('index') }}" class="brand-logo center">Online Baking</a>
-                <ul class="left">
-                {% block navback %}
-                {% endblock %}
-                </ul>
-                <ul class="right">
-                    <li><a href="{{ url_for('recipe_db') }}" class="right hide-on-med-and-down">GO TO RECIPES</a></li>
-                    <li><a class="dropdown-button hide-on-large-only" href="#" data-activates="dropdown1"><i class="material-icons">menu</i></a></li>
-                </ul>
+            <!-- The headers go inbeween these folowing tags on each individual page -->
+            {% block mainhead %} {% endblock %}
+
+            <!--    ========    Main Content    ========    -->
+
+            <!-- Main content goes between these tags in all pages. All pages contain the same outer div to provide a nice view and structure, though it's added to the individual templates so it would be easy to allow scroll inside the divs depending on how I wanted the content to be displayed -->
+            {% block content %} {% endblock %}
+        </main>
+
+        <!--    ========    Footer    ========    -->
+
+        <footer class="page-footer">
+            <div class="footer row">
+                <div class="container">
+                    <p class="center footer-text">Online Baking - By Mats Ceder</p>
+                </div>
             </div>
-        </nav>        
-    </header>
+        </footer>
 
-    <main>
+        <!--    ========    Scripts    ========    -->
 
-<!--    --------    Individual Page Headers    --------    -->
+        <!-- Libraries -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <!-- Initializing Materializecss functions -->
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".collapsible").collapsible();
+                $("select").material_select();
+                $(".button-collapse").sideNav();
+                $(".dropdown-button").dropdown();
+                $(".modal").modal();
 
-<!-- The headers go inbeween these folowing tags on each individual page -->
-    {% block mainhead %}
-    {% endblock %}
-
-<!--    --------    Main Content    --------    -->
-
-<!-- Main content goes between these tags in all pages. All pages contain the same outer div to provide a nice view and structure, though it's added to the individual templates so it would be easy to allow scroll inside the divs depending on how I wanted the content to be displayed -->
-    {% block content %}
-    {% endblock %}
-
-    </main>
-
-<!--    --------    Footer    --------    -->
-
-    <footer class="page-footer">
-        <div class="footer row">
-            <div class="container">
-                <p class="center footer-text">Online Baking - By Mats Ceder</p>
-            </div>
-        </div>
-    </footer>
-
-<!--    --------    Scripts    --------    -->
-
-<!-- Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-<!-- Initializing Materializecss functions -->
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('.collapsible').collapsible();
-            $('select').material_select();
-            $(".button-collapse").sideNav();
-            $(".dropdown-button").dropdown();
-            $('.modal').modal();
-
-    // This following part found on codepen. Cred in README-file. 
-            $("select[required]").css({
-                display: "inline",
-                height: 0,
-                padding: 0,
-                width: 0
+                // This following part found on codepen. Cred in README-file.
+                $("select[required]").css({
+                    display: "inline",
+                    height: 0,
+                    padding: 0,
+                    width: 0,
+                });
             });
-        });
-    </script>
-
-</body>
-
+        </script>
+    </body>
 </html>
