@@ -1,30 +1,42 @@
 {% extends 'base.html' %}
 
+<!--    --------    Title    --------    -->
+
 {% block title %}
 {{recipe.rec_name}}
 {% endblock %}
 
+<!--    --------    Header and Navigation    --------    -->
+
+<!-- Added back/return button for all pages except index -->
 {% block navback %}
 <li><a href="#" onclick="history.go(-1)" class="left"><i class="material-icons">arrow_back</i></a></li>
 {% endblock %}
 
-{% block mainhead %}
+<!--    --------    Individual Page Header    --------    -->
 
+{% block mainhead %}
 <div class="row db-row">
     <div class="head-col col s12 m10 offset-m1 l8 offset-l2">
         <div class="bread-head col s12 m7 l7">
             <h4 class="page-head">{{recipe.rec_name}}</h4>
         </div>
+<!-- Buttons for Edit and Delete the viewed recipe. Not visible on mobile-devices -->
         <a class="ed-btn d-btn btn col m2 right hide-on-small-only modal-trigger" href="#delete-modal">Delete<i class="ed-icon far fa-trash-alt"></i></a>
         <a class="ed-btn e-btn btn col m2 right hide-on-small-only" href="{{ url_for('update_recipe', recipe_id=recipe._id)}}" >Edit<i class="ed-icon far fa-edit"></i></a>
     </div>
 </div>
-
 {% endblock %}
 
+<!--    --------    Main Content    --------    -->
+
+<!-- All main content goes after this tag bellow -->
 {% block content %}
 
+<!-- Border box container wrapps the content -->
 <div class="row content-row">
+
+<!-- Modal for delete prompt -->
     <div id="delete-modal" class="modal">
         <div class="modal-content">
             <h4>Are you sure you want to delete this recipe?</h4>
@@ -33,8 +45,10 @@
             <a href="{{ url_for('delete_recipe', recipe_id=recipe._id)}}" class="modal-close modal-d-btn btn">Delete <i class="ed-icon far fa-trash-alt"></i></a>
         </div>
     </div>
+
 <div class="content content-of col s12 m10 offset-m1 l8 offset-l2">
 
+<!-- Initiall info about the selected recipe -->
     <div class="col s12 rec-item">
         <div class="col s8 left db-recipe-spec">
             Difficulty
@@ -73,6 +87,7 @@
         </div>
     </div>
 
+<!-- Ingredients part for selected recipe -->
     <ul class="collapsible collapse-view" data-collapsible="accordion">
         <li id="view-ingredients">
             <div class="collapsible-header collaps-head-view active">
@@ -156,6 +171,8 @@
                 </table>
             </div>
         </li>
+
+<!-- Steps part for selected recipe -->
         <li id="view-steps">
             <div class="collapsible-header collaps-head-view">
                 <span class="col s11">Instructions</span>
@@ -256,6 +273,8 @@
             </table>
             </div>
         </li>
+
+<!-- Image part for specific recipe. Only displayed if there's an image url provided -->
         {% if recipe.rec_pic != "" %}
         <li id="view-image">
             <div class="collapsible-header collaps-head-view">
@@ -275,6 +294,7 @@
         {% endif %}
     </ul>
 
+<!-- Buttons for Edit and Delete the viewed recipe. Only displayed on mobile devices -->
     <a class="ed-btn e-btn btn col hide-on-med-and-up" href="{{ url_for('update_recipe', recipe_id=recipe._id)}}" >Edit<i class="ed-icon far fa-edit"></i></a>
     <a class="ed-btn d-btn btn col hide-on-med-and-up right modal-trigger" href="#delete-modal">Delete<i class="ed-icon far fa-trash-alt"></i></a>
 

@@ -1,30 +1,40 @@
 {% extends 'base.html' %}
 
+<!--    --------    Title    --------    -->
+
 {% block title %}
 Recipe Update
 {% endblock %}
 
+<!--    --------    Header and Navigation    --------    -->
+
+<!-- Added back/return button for all pages except index -->
 {% block navback %}
 <a href="#" onclick="history.go(-1)" class="left hide-on-med-and-down"><i class="material-icons">arrow_back</i></a>
 {% endblock %}
 
-{% block mainhead %}
+<!--    --------    Individual Page Header    --------    -->
 
+{% block mainhead %}
 <div class="row db-row">
     <div class="head-col col s12 m10 offset-m1 l8 offset-l2">
         <h4 class="page-head">Recipe Update</h4>
     </div>
 </div>
-
 {% endblock %}
 
+<!--    --------    Main Content    --------    -->
+
+<!-- All main content goes after this tag bellow -->
 {% block content %}
 
+<!-- Border box container wrapps the content -->
 <div class="row content-row">
 <div class="content content-of col s12 m10 offset-m1 l8 offset-l2">
 
+<!-- Update Form, basically a copy of New recipe with some diffrences to display the already added information attached to the specific recipe. -->
 <form class="col s12 new-form" action="{{ url_for('send_update', recipe_id=recipe._id) }}" method="POST">
-    
+<!-- Initial info - all required -->
     <div id="new-init-info" class="row">
         <div class="input-field new-f-field col s12 m6">
             <input id="rec_name" name="rec_name" type="text" class="validate" required value="{{recipe.rec_name}}">
@@ -74,10 +84,8 @@ Recipe Update
         </div>
     </div>
 
-<!--    --------    Ingredient part    --------    -->
-
+<!-- Ingredients part -->
     <ul class="collapsible collapse-view" data-collapsible="accordion">
-
         <li id="view-ingredients">
             <div class="collapsible-header collaps-head-view">
                 <span class="col s11">Ingredients</span>
@@ -569,8 +577,7 @@ Recipe Update
             </div>
         </li>
                 
-<!--    --------    Directions part    --------    -->
-
+<!-- Directions part -->
         <li id="view-steps">
             <div class="collapsible-header collaps-head-view">
                 <span class="col s11">Instructions</span>
@@ -578,7 +585,6 @@ Recipe Update
             </div>
             <div class="collapsible-body collaps-instruction-view">
                 <table>
-
                     <tr class="col s12">
                         <td class="col s12 step-num">- Step 1 -</td>
                         <td class="input-field col s12 step-ins">
@@ -673,8 +679,7 @@ Recipe Update
             </div>
         </li>
 
-<!--    --------    Image part    --------    -->
-
+<!-- Image part -->
         <li id="view-image">
             <div class="collapsible-header collaps-head-view collaps-img">
                 <span class="col s11">Image</span>
@@ -691,15 +696,13 @@ Recipe Update
                 </table>
             </div>
         </li>
-
     </ul>
 
-<!--    Button for disabling submit from enter key press    -->
-
+<!-- Button dummy for disabling submit from enter key press -->
 <button type="submit" disabled style="display: none" aria-hidden="true"></button>
 
+<!-- Actual submit-button -->
 <button class="ed-btn btn col s6 offset-s3" type="submit" name="action">Send Update</button>
-
 </form>
 
 </div>

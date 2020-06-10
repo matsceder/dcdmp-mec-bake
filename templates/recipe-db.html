@@ -1,20 +1,27 @@
 {% extends 'base.html' %}
 
+<!--    --------    Title    --------    -->
+
 {% block title %}
 Recipe Database
 {% endblock %}
 
+<!--    --------    Header and Navigation    --------    -->
+
+<!-- Added back/return button for all pages except index -->
 {% block navback %}
 <li><a href="#" onclick="history.go(-1)" class="left"><i class="material-icons">arrow_back</i></a></li>
 {% endblock %}
 
-{% block mainhead %}
+<!--    --------    Individual Page Header    --------    -->
 
+{% block mainhead %}
 <div class="row db-row">
     <div class="head-col col s12 m10 offset-m1 l8 offset-l2">
         <div class="bread-head col s5 m5 l3">
             <h4 class="page-head">Recipes</h4>
         </div>
+<!-- Dropdown lists and buttons for filtering out options in database display -->
         <ul id="dropdowntype" class="dropdown-content td-drop">
             {% for type in recipe_type %}
                 {% if rdiff is defined %}
@@ -54,24 +61,30 @@ Recipe Database
         </div>
     </div>
 </div>
-
 {% endblock %}
 
+<!--    --------    Main Content    --------    -->
+
+<!-- All main content goes after this tag bellow -->
 {% block content %}
 
+<!-- Border box container wrapps the content -->
 <div class="row content-row">
 <div class="content content-of col s12 m10 offset-m1 l8 offset-l2">
 
+<!-- Content headers -->
 <div class="block-headban headban-db">
     <h6 class="headban-head">Select recipe from the list below</h6>
 </div>
 
+<!-- Content -->
+
+<!-- Using a Jinja for loop iterating and displaying recipes with some of the info attached. Displaying different options depending on user selectiong. Also hiding choice '0' that represents all recipes -->
 {% for rec in recipe %}
-
+<!-- Checking if there has been a selection for narrowing down recipes displayed -->
     {% if rtype and rdiff is defined %}
-
+<!-- All types and a specific difficulty level -->
         {% if rtype.rec_type == '0' and rec.rec_diff == rdiff.rec_diff %}
-
         <a href="{{ url_for('recipe_view', recipe_id=rec._id)}}">
             <div class="col s12 db-list-item">
                 <h5 class="db-recipe-name">{{rec.rec_name}}</h5>
@@ -99,9 +112,8 @@ Recipe Database
                 </div>
             </div>
         </a>
-
+<!-- All difficulty levels and a specific type -->
         {% elif rdiff.rec_diff == '0' and rec.rec_type == rtype.rec_type %}
-
         <a href="{{ url_for('recipe_view', recipe_id=rec._id)}}">
             <div class="col s12 db-list-item">
                 <h5 class="db-recipe-name">{{rec.rec_name}}</h5>
@@ -129,9 +141,8 @@ Recipe Database
                 </div>
             </div>
         </a>
-
+<!-- Both selected difficulty and type -->
         {% elif rec.rec_type == rtype.rec_type and rec.rec_diff == rdiff.rec_diff %}
-
         <a href="{{ url_for('recipe_view', recipe_id=rec._id)}}">
             <div class="col s12 db-list-item">
                 <h5 class="db-recipe-name">{{rec.rec_name}}</h5>
@@ -159,11 +170,9 @@ Recipe Database
                 </div>
             </div>
         </a>
-
         {% endif %}
-
+<!-- Nothing selected, all are displayed -->
     {% else %}
-
     <a href="{{ url_for('recipe_view', recipe_id=rec._id)}}">
         <div class="col s12 db-list-item">
             <h5 class="db-recipe-name">{{rec.rec_name}}</h5>
@@ -191,14 +200,14 @@ Recipe Database
             </div>
         </div>
     </a>
-
     {% endif %}
-
 {% endfor %}
-
 </div>
 </div>
 
+<!--    --------    Outside border box container    --------    -->
+
+<!-- "Add new recipe"-button goes here, for database-page only -->
 <div class="row addnew-row">
     <div class="col s12">
         <a class="add-new-btn add-big btn col s8 offset-s2 m4 offset-m4" href="{{ url_for('recipe_new') }}">Add a new recipe<i class="material-icons addnew-icon">subject</i></a>
@@ -206,5 +215,3 @@ Recipe Database
 </div>
 
 {% endblock %}
-
-

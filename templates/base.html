@@ -10,12 +10,18 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
     <script src="https://kit.fontawesome.com/0fd421bbfb.js" crossorigin="anonymous"></script>
 
+<!--    --------    Title    --------    -->
+
+<!-- Filled in within block title on each template -->
     <title>{% block title %}{% endblock %}</title>
 
 </head>
 
 <body>
 
+<!--    --------    Header and Navigation    --------    -->
+
+<!-- Using Jinja expressions and Materializecss to create links and toggle if they should or should not display on different devices -->
     <header>
         <ul id="dropdown1" class="dropdown-content navdrop">
             <li><a href="{{ url_for('index') }}">Home</a></li>
@@ -41,13 +47,21 @@
 
     <main>
 
+<!--    --------    Individual Page Headers    --------    -->
+
+<!-- The headers go inbeween these folowing tags on each individual page -->
     {% block mainhead %}
     {% endblock %}
 
+<!--    --------    Main Content    --------    -->
+
+<!-- Main content goes between these tags in all pages. All pages contain the same outer div to provide a nice view and structure, though it's added to the individual templates so it would be easy to allow scroll inside the divs depending on how I wanted the content to be displayed -->
     {% block content %}
     {% endblock %}
 
     </main>
+
+<!--    --------    Footer    --------    -->
 
     <footer class="page-footer">
         <div class="footer row">
@@ -57,8 +71,12 @@
         </div>
     </footer>
 
+<!--    --------    Scripts    --------    -->
+
+<!-- Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<!-- Initializing Materializecss functions -->
     <script type="text/javascript">
         $(document).ready(function(){
             $('.collapsible').collapsible();
@@ -70,4 +88,5 @@
     </script>
 
 </body>
+
 </html>
