@@ -1,5 +1,10 @@
 from flask import request
 
+"""
+Function gathering all info from form and passing it on looking more clean
+and compressed.
+"""
+
 
 def clean_update(request_form):
     return {

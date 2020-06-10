@@ -14,22 +14,23 @@ app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 mongo = PyMongo(app)
 
 
+# Page index/home template
 @app.route('/')
 @app.route('/index')
 def index():
     return render_template("index.html")
 
 
-# DB INDEX
+# Database template with all recipes displayed
 @app.route('/recipe_db/0/0')
 def recipe_db():
     return render_template("recipe-db.html",
-                            recipe=mongo.db.recipe.find(),
-                            recipe_type=mongo.db.recipe_type.find(),
-                            recipe_diff=mongo.db.recipe_diff.find())
+                           recipe=mongo.db.recipe.find(),
+                           recipe_type=mongo.db.recipe_type.find(),
+                           recipe_diff=mongo.db.recipe_diff.find())
 
 
-# TYPE AND DIFF DEFINED
+# Database template with specified recipes displayed
 @app.route('/recipe_db/<type_r>/<diff_r>')
 def recipe_db_t_d(type_r, diff_r):
     recipes = mongo.db.recipe.find()
@@ -38,28 +39,31 @@ def recipe_db_t_d(type_r, diff_r):
     the_diff = mongo.db.recipe_diff.find_one({"rec_diff": diff_r})
     recipe_diffs = mongo.db.recipe_diff.find()
     return render_template("recipe-db.html",
-                            recipe=recipes,
-                            rtype=the_type,
-                            recipe_type=recipe_types,
-                            rdiff=the_diff,
-                            recipe_diff=recipe_diffs)
+                           recipe=recipes,
+                           rtype=the_type,
+                           recipe_type=recipe_types,
+                           rdiff=the_diff,
+                           recipe_diff=recipe_diffs)
 
 
+# Template for viewing specific recipe
 @app.route('/recipe_view/<recipe_id>')
 def recipe_view(recipe_id):
     the_recipe = mongo.db.recipe.find_one({"_id": ObjectId(recipe_id)})
     return render_template('recipe-view.html',
-                            recipe=the_recipe)
+                           recipe=the_recipe)
 
 
+# Template for making a new recipe
 @app.route('/recipe_new')
 def recipe_new():
     return render_template("recipe-new.html",
-                            recipe_type=mongo.db.recipe_type.find(),
-                            recipe_diff=mongo.db.recipe_diff.find(),
-                            recipe=mongo.db.recipe.find())
+                           recipe_type=mongo.db.recipe_type.find(),
+                           recipe_diff=mongo.db.recipe_diff.find(),
+                           recipe=mongo.db.recipe.find())
 
 
+# Sending in form for new recipe
 @app.route('/send_new', methods=['POST'])
 def send_new():
     recipe = mongo.db.recipe
@@ -67,6 +71,7 @@ def send_new():
     return redirect(url_for('recipe_db'))
 
 
+# Recipe update template
 @app.route('/update_recipe/<recipe_id>')
 def update_recipe(recipe_id):
     the_recipe = mongo.db.recipe.find_one({"_id": ObjectId(recipe_id)})
@@ -74,12 +79,13 @@ def update_recipe(recipe_id):
     all_diffs = mongo.db.recipe_diff.find()
     ing_units = mongo.db.ingredient_units.find()
     return render_template('recipe-update.html',
-                            recipe=the_recipe,
-                            recipe_type=all_types,
-                            recipe_diff=all_diffs,
-                            all_units=ing_units)
+                           recipe=the_recipe,
+                           recipe_type=all_types,
+                           recipe_diff=all_diffs,
+                           all_units=ing_units)
 
 
+# Posting update function
 @app.route('/send_update/<recipe_id>', methods=['POST'])
 def send_update(recipe_id):
     recipe = mongo.db.recipe
@@ -88,6 +94,7 @@ def send_update(recipe_id):
     return redirect(url_for('recipe_db'))
 
 
+# Deleting recipe function
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
     mongo.db.recipe.remove({'_id': ObjectId(recipe_id)})
