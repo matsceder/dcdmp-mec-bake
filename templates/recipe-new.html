@@ -1,8 +1,5 @@
 {% extends 'base.html' %}
 
-{% block head %}
-{% endblock %}
-
 {% block title %}
 New Recipe
 {% endblock %}
@@ -40,7 +37,7 @@ New Recipe
         </div>
         <div class="input-field input-select col s6 m3">
             <select id="rec_type" name="rec_type" required>
-                <option value="" disabled selected>Types</option>
+                <option value="" disabled selected>Select</option>
                 {% for type in recipe_type %}
                     {% if type.rec_type == '0' %}
                     {% else %}
@@ -48,10 +45,11 @@ New Recipe
                     {% endif %}
                 {% endfor %}
             </select>
+            <label class="opt-label">Type</label>
         </div>
         <div class="input-field input-select col s6 m3">
             <select id="rec_diff" name="rec_diff" required>
-                <option value="" disabled selected>Difficulty</option>
+                <option value="" disabled selected>Select</option>
                 {% for diff in recipe_diff %}
                     {% if diff.rec_diff == '0' %}
                     {% else %}
@@ -59,6 +57,7 @@ New Recipe
                     {% endif %}
                 {% endfor %}
             </select>
+            <label class="opt-label">Difficulty</label>
         </div>
         <div class="input-field input-select time-serve col s4 m2">
             <input id="rec_time_h" name="rec_time_h" type="number" class="validate" required>
@@ -110,6 +109,7 @@ New Recipe
                                 <option value="tbsp">tbsp</option>
                                 <option value="x">x</option>
                             </select>
+                            <label class="opt-label">Unit</label>
                         </td>
                     </tr>
                     {% endfor %}

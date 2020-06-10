@@ -10,9 +10,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
     <script src="https://kit.fontawesome.com/0fd421bbfb.js" crossorigin="anonymous"></script>
 
-    {% block head %}
-    {% endblock %}
-
     <title>{% block title %}{% endblock %}</title>
 
 </head>
@@ -22,6 +19,7 @@
     <header>
         <ul id="dropdown1" class="dropdown-content navdrop">
             <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li class="hide-on-med-and-up"><a href="{{ url_for('recipe_db') }}">All Recipes</a></li>
             <li><a href="{{ url_for('recipe_db_t_d', type_r='Bread', diff_r='0') }}">Bread Recipes</a></li>
             <li><a href="{{ url_for('recipe_db_t_d', type_r='Cake', diff_r='0') }}">Cake Recipes</a></li>
             <li class="hide-on-med-and-up"><a href="{{ url_for('recipe_new') }}">Add Recipe</a></li>
@@ -70,7 +68,6 @@
             $('.modal').modal();
         });
     </script>
-    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 
 </body>
 </html>

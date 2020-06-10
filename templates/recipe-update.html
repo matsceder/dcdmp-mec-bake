@@ -1,10 +1,7 @@
 {% extends 'base.html' %}
 
-{% block head %}
-{% endblock %}
-
 {% block title %}
-    Recipe Update
+Recipe Update
 {% endblock %}
 
 {% block navback %}
@@ -41,25 +38,27 @@
             <select id="rec_type" name="rec_type" required>
                 {% for type in recipe_type %}
                     {% if type.rec_type == '0' %}
-                    {% if type.rec_type == recipe.rec_type %}
+                    {% elif type.rec_type == recipe.rec_type %}
                         <option value="{{type.rec_type}}" selected>{{type.rec_type}}</option>
                     {% else %}
                         <option value="{{type.rec_type}}">{{type.rec_type}}</option>
                     {% endif %}
                 {% endfor %}
             </select>
+            <label class="opt-label">Type</label>
         </div>
         <div class="input-field input-select col s6 m3">
             <select id="rec_diff" name="rec_diff" required>
                 {% for diff in recipe_diff %}
                     {% if diff.rec_diff == '0' %}
-                    {% if diff.rec_diff == recipe.rec_diff %}
+                    {% elif diff.rec_diff == recipe.rec_diff %}
                         <option value="{{diff.rec_diff}}" selected>{{diff.rec_diff}}</option>
                     {% else %}
                         <option value="{{diff.rec_diff}}">{{diff.rec_diff}}</option>
                     {% endif %}
                 {% endfor %}
             </select>
+            <label class="opt-label">Difficulty</label>
         </div>
         <div class="input-field input-select time-serve col s4 m2">
             <input id="rec_time_h" name="rec_time_h" type="number" class="validate" required value="{{recipe.rec_time_h}}">
@@ -115,6 +114,7 @@
                                 <option value="tbsp">tbsp</option>
                                 <option value="x">x</option>
                             </select>
+                            <label class="opt-label">Unit</label>
                         </td>
                     </tr>
                     <tr>
@@ -146,6 +146,7 @@
                                 <option value="tbsp">tbsp</option>
                                 <option value="x">x</option>
                             </select>
+                            <label class="opt-label">Unit</label>
                         </td>
                     </tr>
                     <tr>
@@ -177,6 +178,7 @@
                                 <option value="tbsp">tbsp</option>
                                 <option value="x">x</option>
                             </select>
+                            <label class="opt-label">Unit</label>
                         </td>
                     </tr>
                     <tr>
@@ -208,6 +210,7 @@
                                 <option value="tbsp">tbsp</option>
                                 <option value="x">x</option>
                             </select>
+                            <label class="opt-label">Unit</label>
                         </td>
                     </tr>
                     <tr>
@@ -239,6 +242,7 @@
                                 <option value="tbsp">tbsp</option>
                                 <option value="x">x</option>
                             </select>
+                            <label class="opt-label">Unit</label>
                         </td>
                     </tr>
                     <tr>
@@ -270,6 +274,7 @@
                                 <option value="tbsp">tbsp</option>
                                 <option value="x">x</option>
                             </select>
+                            <label class="opt-label">Unit</label>
                         </td>
                     </tr>
                     <tr>
@@ -301,6 +306,7 @@
                                 <option value="tbsp">tbsp</option>
                                 <option value="x">x</option>
                             </select>
+                            <label class="opt-label">Unit</label>
                         </td>
                     </tr>
                     <tr>
@@ -332,6 +338,7 @@
                                 <option value="tbsp">tbsp</option>
                                 <option value="x">x</option>
                             </select>
+                            <label class="opt-label">Unit</label>
                         </td>
                     </tr>
                     <tr>
@@ -363,6 +370,7 @@
                                 <option value="tbsp">tbsp</option>
                                 <option value="x">x</option>
                             </select>
+                            <label class="opt-label">Unit</label>
                         </td>
                     </tr>
                     <tr>
@@ -394,6 +402,7 @@
                                 <option value="tbsp">tbsp</option>
                                 <option value="x">x</option>
                             </select>
+                            <label class="opt-label">Unit</label>
                         </td>
                     </tr>
                     <tr>
@@ -425,6 +434,7 @@
                                 <option value="tbsp">tbsp</option>
                                 <option value="x">x</option>
                             </select>
+                            <label class="opt-label">Unit</label>
                         </td>
                     </tr>
                     <tr>
@@ -456,6 +466,7 @@
                                 <option value="tbsp">tbsp</option>
                                 <option value="x">x</option>
                             </select>
+                            <label class="opt-label">Unit</label>
                         </td>
                     </tr>
                     <tr>
@@ -487,6 +498,7 @@
                                 <option value="tbsp">tbsp</option>
                                 <option value="x">x</option>
                             </select>
+                            <label class="opt-label">Unit</label>
                         </td>
                     </tr>
                     <tr>
@@ -518,6 +530,7 @@
                                 <option value="tbsp">tbsp</option>
                                 <option value="x">x</option>
                             </select>
+                            <label class="opt-label">Unit</label>
                         </td>
                     </tr>
                     <tr>
@@ -549,6 +562,7 @@
                                 <option value="tbsp">tbsp</option>
                                 <option value="x">x</option>
                             </select>
+                            <label class="opt-label">Unit</label>
                         </td>
                     </tr>
                 </table>
