@@ -50,7 +50,7 @@
 
 <!-- Initiall info about the selected recipe -->
     <div class="col s12 rec-item">
-        <div class="col s8 left db-recipe-spec">
+        <div class="col s7 left db-recipe-spec">
             Difficulty
             {% if recipe.rec_diff == 'Easy' %}
             <i class="material-icons db-recipe-item">radio_button_checked</i>
@@ -68,21 +68,21 @@
             <i class="material-icons db-recipe-item">radio_button_checked</i>
             {% endif %}
         </div>
-        <div class="col s4 right db-recipe-spec">
+        <div class="col s5 right db-recipe-spec">
             <i class="material-icons db-recipe-item">timer</i>
             {{recipe.rec_time_h}}h {{recipe.rec_time_m}}min
         </div>
-        <div class="col s6 rec-view-info">
+        <div class="col s7 rec-view-info">
             Author: {{recipe.rec_aut}}
         </div>
-        <div class="col s6 rec-view-info rv-info-col">
+        <div class="col hide-on-small-only m5 rec-view-info rv-info-col">
             {% if recipe.rec_type == 'Bread' %}
                 <i class="fas fa-bread-slice type-icon"></i>
             {% elif recipe.rec_type == 'Cake' %}
                 <i class="fas fa-cheese type-icon"></i>
             {% endif %}
         </div>
-        <div class="col s6 rec-view-info rvi-serve">
+        <div class="col s5 rec-view-info rvi-serve">
             Servings: {{recipe.rec_serve}}
         </div>
     </div>

@@ -14,17 +14,10 @@ body {
     min-height: 100vh;
     flex-direction: column;
     color: #424242;
-    min-width: 375px;
 }
 
 header {
     height: 64px;
-}
-
-.page-head {
-    font-family: 'Anton', sans-serif;
-    color: #424242;
-    margin: 0;
 }
 
 p {
@@ -50,6 +43,12 @@ nav .brand-logo {
     color: #F7F3E0;
     text-shadow: 0px 1px #424242;
     margin-top: 4px;
+}
+
+@media (max-width: 375px) {
+    nav .brand-logo {
+        font-size: 1.8rem;
+    }
 }
 
 .dropdown-content li {
@@ -100,6 +99,14 @@ nav ul a:hover {
 }
 
 /*    --------   Main   --------    */
+
+.page-head {
+    font-family: 'Anton', sans-serif;
+    color: #424242;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+}
 
 main {
     flex: 1 0 auto;
@@ -158,8 +165,15 @@ main {
         width: -webkit-fill-available !important;
         width: fill-available !important;
     }
+}
+
+.content-of {
+    height: 58vh;
+}
+
+@media (min-width: 350px) {
     .content-of {
-        height: 65vh;
+        height: 64vh;
     }
 }
 
@@ -326,6 +340,8 @@ main {
     color: #8DAAA6;
     margin-top: 7px;
     margin-bottom: 0px;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .db-recipe-spec {
@@ -367,7 +383,14 @@ a:active, a:hover>div>h5 {
 }
 
 .rvi-serve {
+    text-align: right;
+}
+
+@media (min-width: 601px) {
+    .rvi-serve {
     transform: translateY(-10px);
+    text-align: left;
+    }
 }
 
 .type-icon {
