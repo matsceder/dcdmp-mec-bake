@@ -31,6 +31,14 @@ def recipe_db():
 
 
 # Database template with specified recipes displayed
+""" Here I could have used a solution like find({'rec_type': 'type_r'})
+and pass in only recipes with specified type into the route, making less
+mess. Because right now I've worked with a lot of for loops using Jinja2,
+and even though it felt like I learned something from that too, it just
+is not as practical and makes it harder for someone else to read and
+work with the code. """
+
+
 @app.route('/recipe_db/<type_r>/<diff_r>')
 def recipe_db_t_d(type_r, diff_r):
     recipes = mongo.db.recipe.find()
@@ -104,4 +112,4 @@ def delete_recipe(recipe_id):
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
-            debug=True)
+            debug=False)
