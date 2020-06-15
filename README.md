@@ -16,8 +16,8 @@ The project is hosted on [Github](https://github.com/matsceder/dcdmp-mec-bake) a
 The design of this project is meant to be simple, with a palate of colors inspired by the cookbooks in the kitchen when I was a kid. It should be easy for anyone to find what they're looking for and navigate easily throughout the page. It's been made with responsive and defensive design in mind, built with mobile first approach. A mockup was made using Figma, where colors and fonts were selected from start, so it would be easier to avoid deviations from the intentions. From there it got even simpler as the page came alive and I wanted do keep down the amount of different colors even more. Frameworks, icons and other sources, is found further down in the document.
 
 #### Wireframes for the different devices: 
-- [Mobile](https://www.figma.com/file/iHfhgwJzJyhBJNbnp3ZE7Q/dcdmp-mec-online-baking?node-id=0%3A1),
-- [Tablet](https://www.figma.com/file/iHfhgwJzJyhBJNbnp3ZE7Q/dcdmp-mec-online-baking?node-id=2%3A2),
+- [Mobile](https://www.figma.com/file/iHfhgwJzJyhBJNbnp3ZE7Q/dcdmp-mec-online-baking?node-id=0%3A1)
+- [Tablet](https://www.figma.com/file/iHfhgwJzJyhBJNbnp3ZE7Q/dcdmp-mec-online-baking?node-id=2%3A2)
 - [Desktop](https://www.figma.com/file/iHfhgwJzJyhBJNbnp3ZE7Q/dcdmp-mec-online-baking?node-id=2%3A3)
 
 ### User Stories
