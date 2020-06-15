@@ -22,11 +22,13 @@ The design of this project is meant to be simple, with a palate of colors inspir
 
 ### User Stories
 
-The purpose of this is for it to be a simple and accessible database for users no matter what their level of skill might be. Examles of probable users.
+The purpose of this is for it to be a simple and accessible database for users no matter what their level of skill might be. Examles of users.
 
-- As a user with a limited experience from baking, I want to look for inspiration and be able to browse through recipes and sorting out those that are too hard. 
-- Aa a slightly more advanced user, I want to perfect that super delicious recipe. Seeing the recipe as a living thing, where small tweaks can be made and easily updated and documented. Getting closer to perfection, step by step.
+- As a user with a limited experience from baking, I want to look for inspiration and a clear and simple recipe to follow. The options of filtering displayed recipes depending on type and difficulty gives the user a simple way of attaining good content with minimal effort. 
+- Aa a slightly more advanced user, I want to perfect that super delicious recipe. Seeing the recipe as a living thing, where small tweaks can be made and recorded by updating the recipes easily. Getting closer to perfection, step by step.
 - A more experienced user who keeps the old family recipes in the memory. That user might be tired of having to write it down every time someone asks for that delicious pie recipe. So now they add the recipe one time, and then they just share the link with friends and family who ask. And with the added benefit that it wont be forgotten.
+- Seeing this as an open source project where everyone helps out. A user could easily edit and update other users recipes if they find obviuos mistakes in the recipes.
+- If a user finds to almost identical recipes, it's easy for that user to modify and delete so that there's only one recipe in the database to make it less messy.
 
 ## Features
 This is hopefuly just the beginning of this. I'm hoping this will expand over time, the goal is to maintain and improve the existing features, but also adding new features to make it more usefull and optimized.
@@ -42,7 +44,7 @@ This is hopefuly just the beginning of this. I'm hoping this will expand over ti
 
 ### Planned features and improvements
 - User accounts
-- Admin controll of removing data
+- Admin control of removing data
 - Commenting sections
 - Rating system
 - Personal comments and notes to recipes
@@ -69,10 +71,14 @@ This is hopefuly just the beginning of this. I'm hoping this will expand over ti
 ## Testing
 Keeping the app simple by using frameworks and not adding unnecessarily complicated functionality to the back-end part of the project, I don't see the use for automated or unittest testing. All the functionallity has been manually tested in 3 stages to ensure the project will not break when used by end user.
 
-### First Part - Manual testing using Chrome Dev tools
+### First Part - Manual testing
 
 - Responsiveness
-    - Working through templates one by one. Using Dev tools, testing the view for different devices, to make sure it doesn't break and keeps content presented nicely.
+    - Mobile - Using Google Chrome Dev tools, testing all the avaliable mobile views and going through page by page making sure it works as intended and elements don't move around. Elements that should only be displayed on a small screen shows as intended.
+    - Tablet - Using Google Chrome Dev tools, testing with tablet view for different sized tablets. Not 100% satisfied with how it all displayes on the high resolution tablets, the big upright orientation makes it feel like there should have been more content. Blowing up content size or adding something extra just for the purpose of filling the page did not feel like a good option and I'm ok with it not being as nice as the other device views for now.
+    - Desktop - Using Google Chrome Dev tools, checking all pages making sure it looks as intended. Navigation for desktop looks nice and the mobile and tablet dropdown is hidden as it should be. 
+    - Browsers first test - Using PowerMapper to scan the whole site and check for errors, accessibility, compatibility, search, standards and usability. A few minor errors there, that I'm willing to accept since it won't affect the outcome of this as a school project. But errors that I will avoid next time making a project.
+    - Browsers second test - Browsing the page in Chrome, Firefox, Safari and Brave. Just a quick check of all routes and that it does not look weird.
 - CSS Selectors
     - Using Materializecss' front-end framework for functionality benefits came with the downside of having to override or disable a lot of included CSS. So for testing I made sure that everything looks nice upon user interaction.
 - Navigation
@@ -114,6 +120,7 @@ Keeping the app simple by using frameworks and not adding unnecessarily complica
 - [SchemeColor](https://www.schemecolor.com/sneaky-peaky.php) - Color theme
 - [Figma](https://www.figma.com/) - Making of wireframes / mockups
 - [WebFormatter](https://webformatter.com/html) - Formatting code
+- [PowerMapper](https://www.powermapper.com) - Website testing
 
 ### Content
 - [CodePen user - Zzzian](https://codepen.io/zzzian/pen/LZbrOP?__cf_chl_jschl_tk__=9f40e82f349b34dced5fbc0b11a97f5969501ed9-1591793304-0-ASUvdpx3C2k4XIVdDrz1kTsYyLPZQPJvvsDZN_ftPSKxKo6JcIl-bBoWt8rwxjMJTTVPwLV0c-WrdfZ7jpVCIw6BfgaouE3pm8idfIavtCaKvmtfzfGTC_9UsVJQujnFgiDus_6E47c7zKqK29pR2YntDM2jfkgS_iHKfI0adPFCaBJrAPFaWZ2Dx_1iRkXewtETaBXxn-ghaIGHN6BvPZdkglwwiztxeCSaHKvSNXCXuHZqZh9EL2XJ2RnWPE7YP5jAuMFRNjasbm-Rth6xVCFkzY9BIAG-Nx5JC-h-0rFnPgn0YLhszXVfyn0FDNn9Nj_lcg_pCsz-1pGu5l9a3_uUW0pbdtTg7xQbOTa12Im1) - Code used for form in new recipe template
@@ -132,4 +139,3 @@ Keeping the app simple by using frameworks and not adding unnecessarily complica
 ### Acknowledgements
 - Seun Owonikoko @seun_mentor - My mentor at Code Institute
 - Code Institute channel on Slack - For motivation and a helping hand
-
